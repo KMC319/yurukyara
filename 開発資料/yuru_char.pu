@@ -1,0 +1,181 @@
+@startuml
+namespace General{
+    namespace Systems{
+        class ModeControll<<static>>{
+            +Mode gameMode
+        }
+
+        enum Mode{
+            ARCADE
+            COM
+            PRACTICE
+            TUTORIAL
+        }
+    }
+    namespace Input{
+        class InputRelayPoint<<d>>{
+        }
+
+        interface IUiKeySender{
+            +Subject<Unit> UpKey
+            +Subject<Unit> DownKey
+            +Subject<Unit> RightKey
+            +Subject<Unit> LeftKey
+            +Subject<Unit> EnterKey
+            +Subject<Unit> CancelKey
+        }
+        interface IUiKeyReciever{
+            +void UpKey()
+            +void DownKey()
+            +void RightKey()
+            +void LeftKey()
+            +void EnterKey()
+            +void CancelKey()
+        }
+
+        interface IBattleKeySender{
+            +Subject<float> HorizontalAxis
+            +Subject<float> VerticallAxis
+            +Subject<Unit> JumpKey
+            +Subject<Unit> RangeAtKey
+            +Subject<Unit> WeakAtKey
+            +Subject<Unit> StrongAtKey
+            +Subject<Unit> GuardKey
+        }
+        interface IBattleKeyReciever{
+            +void HorizontalAxis()
+            +void VerticallAxis()
+            +void JumpKey()
+            +void RangeAtKey()
+            +void WeakAtKey()
+            +void StrongAtKey()
+            +void GuardKey()
+        }
+
+        class UiKeySenderByUnity{
+        }
+        class BattleKeySenderByUnity{
+        }
+
+        InputRelayPoint-left->IUiKeySender
+        InputRelayPoint-left->IBattleKeySender
+        InputRelayPoint-right->IUiKeyReciever
+        InputRelayPoint-right->IBattleKeyReciever
+
+        UiKeySenderByUnity..u|>IUiKeySender
+        BattleKeySenderByUnity..u|>IBattleKeySender
+        }
+}
+
+namespace Battles{
+    namespace Charas{
+        class CharControll{
+            +PhaseName currentPhase
+            +Subject<DamageBox> damageNotification
+            +void RecieveDamage(DamageBox damage)
+        }
+        class CharAttackControll{
+            -MotionBox weakAttack
+            -MotionBox strongAttack
+            -MotionBox RangeAttack
+            -MotionBox GrabAttack
+            -MotionBox GuardAttack 
+            +void AddDamage()
+        }
+        class CharMotionControll{
+            +void PlayMotion(string name)
+        }
+
+        class MotionBox<<struct>>{
+            +string motionName
+            +DamageBox DamageBox
+        }
+        class DamageBox<<struct>>{
+            +float damageAmount
+            +AttackTag tag
+        }
+
+        enum AttackTag{
+            Attack
+            StrongAttack
+            Grab
+            Guard
+        }
+
+        
+        CharControll..left|>General.Input.IBattleKeyReciever
+        CharControll-->CharAttackControll
+        CharControll-->CharMotionControll
+        CharAttackControll-->CharMotionControll
+    }
+
+    namespace Systems{
+        enum PcaseName{
+            3d
+            2d
+        }
+
+        class BattleManager{
+        }
+        class TimeManager{
+            +float nowtime
+        }
+        class PhaseManager{
+        }
+        class PauseManager{
+        }
+
+
+        PhaseManager-->Battles.Charas.CharControll
+    }
+
+}
+
+namespace UIs{
+    class InterFaceEventSystem<<d>>{
+    }
+    interface ISelectablePanel<<d>>{
+    }
+    interface ICommandControll<<d>>{
+    }
+
+    namespace Battles{
+        class GaugeControll<<d>>{
+        }
+        class HealthGaugeControll{
+        }
+        class TimerInterface{
+        }
+
+
+        HealthGaugeControll-->GaugeControll
+        TimerInterface-->Battles.Systems.TimeManager
+    }
+    namespace Titles{
+        class TitlePanelControll{
+        }
+        class TitlePanel{
+        }
+
+
+        TitlePanelControll-->TitlePanel
+        TitlePanelControl-->UIs.ICommandControll
+        TitlePanelControl-->UIs.InterFaceEventSystem
+        TitlePanel..|>UIs.ISelectablePanel
+    }
+    namespace Select{
+        class IconCreater{
+            +List<IconPanel> CreateIcons(int num)
+        }
+        class IconPanel{
+            -string name;
+        }
+        class IconPanelsControll{
+        }
+
+        IconPanelsControll-->UIs.ICommandControll
+        IconPanelsControll-->UIs.InterFaceEventSystem
+        IconPanel--|>UIs.ISelectablePanel
+    }
+}
+@enduml
