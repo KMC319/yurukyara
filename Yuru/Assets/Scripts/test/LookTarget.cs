@@ -8,7 +8,11 @@ public class LookTarget : MonoBehaviour {
 	void Start () {
 		
 	}
-	
+
+	private void Update() {
+		transform.LookAt(target.transform);
+	}
+
 	// Update is called once per frame
 	void LateUpdate () {
 		transform.LookAt(target.transform);
