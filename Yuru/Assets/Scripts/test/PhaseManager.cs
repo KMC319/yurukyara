@@ -42,9 +42,9 @@ public class PhaseManager : MonoBehaviour {
 	}
 
 	void PointMove() {
-		var sumPoint = players.Aggregate(new Vector3(), (current, player) => current + player.position);
-		transform.position = sumPoint / players.Length + transform.forward * (Mathf.Clamp(Vector3.Distance(players[0].position, players[1].position),5f,1000f)) + new Vector3(0, 1, 0);
-		child.transform.position = sumPoint / players.Length;
+		var avePoint = players.Aggregate(new Vector3(), (current, player) => current + player.position) / players.Length;
+		transform.position = avePoint + transform.forward * (Mathf.Clamp(Vector3.Distance(players[0].position, players[1].position),5f,1000f)) + new Vector3(0, 2, 0);
+		child.transform.position = new Vector3(avePoint.x, 1, avePoint.z);
 	}
 	
 }
