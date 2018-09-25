@@ -42,9 +42,9 @@ namespace doma.Inputs{
 		private Subject<Unit> DelayForUndo=new Subject<Unit>();
 		
 		[Inject]
-		public InputRelayPoint(IBattleKeySender i_battle_key_sender,IUikeySender i_uikey_of_event){
+		public InputRelayPoint(IBattleKeySender i_battle_key_sender,IUikeySender i_uikey_sender){
 			iBattleKeySender = i_battle_key_sender;
-			iUikeySender = i_uikey_of_event;
+			iUikeySender = i_uikey_sender;
 			currentInputReciever=new CurrentInputReciever();
 			DefineSubscribe();
 
@@ -139,9 +139,7 @@ namespace doma.Inputs{
 
 			iUikeySender.UpKey
 				.Where(n => this.isActive)
-				.Subscribe(n => {
-					currentInputReciever.iUikeyReciever?.UpKey();
-				});
+				.Subscribe(n => {currentInputReciever.iUikeyReciever?.UpKey();});
 			iUikeySender.DownKey
 				.Where(n => this.isActive)
 				.Subscribe(n => currentInputReciever.iUikeyReciever?.DownKey());

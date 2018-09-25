@@ -19,9 +19,9 @@ namespace doma.Inputs{
 		private readonly Subject<Unit> leftKeySubject=new Subject<Unit>();
 		public IObservable<Unit> LeftKey => leftKeySubject;
 		private Subject<Unit> enterKey=new Subject<Unit>();
-		public IObservable<Unit> EnterKey{ get; }
+		public IObservable<Unit> EnterKey => enterKey;
 		private Subject<Unit> cancelKey=new Subject<Unit>();
-		public IObservable<Unit> CancelKey{ get; }
+		public IObservable<Unit> CancelKey => cancelKey;
 
 		private void Update (){
 			var vertical= Input.GetAxisRaw("Vertical");
