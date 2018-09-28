@@ -46,7 +46,6 @@ public class CameraManager : MonoBehaviour {
     }
 
     IEnumerator LerpCamView(int camNum, Rect endRect, float time) {
-        Debug.Log(cameras[camNum].rect);
         var startRect = cameras[camNum].rect;
         var a = 0f;
         while (a < time) {
@@ -56,6 +55,5 @@ public class CameraManager : MonoBehaviour {
         }
 
         cameras[camNum].rect = endRect;
-        Debug.Log(cameras[camNum].rect);
     }
 }
