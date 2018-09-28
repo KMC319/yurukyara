@@ -9,14 +9,13 @@ public enum Phase {
 [DefaultExecutionOrder(10)]
 public class PhaseManager : MonoBehaviour {
 	private Transform[] players;
-	private CinemachineVirtualCamera[] cameras;
+	[SerializeField]private GameObject[] cameras;
 	private GameObject child;
 
 	public Phase NowPhase { get; private set; }
 	// Use this for initialization
 	void Start () {
 		players = GameObject.FindGameObjectsWithTag("Player").Select(i => i.transform).ToArray();
-		cameras = GameObject.FindGameObjectsWithTag("Camera").Select(i => i.GetComponent<CinemachineVirtualCamera>()).ToArray();
 		NowPhase = Phase.P3D;
 		child = transform.Find("child").gameObject;
 	}
@@ -26,15 +25,17 @@ public class PhaseManager : MonoBehaviour {
 		PointMove();
 		switch (NowPhase) {
 			case Phase.P3D:
-				cameras[1].enabled = true;
+				cameras[1].SetActive(true);
+				cameras[2].SetActive(true);
 				break;
 			case Phase.P2D:
-				cameras[1].enabled = false;
+				cameras[1].SetActive(false);
+				cameras[2].SetActive(false);
 				break;
 			default:
 				throw new ArgumentOutOfRangeException();
 		}
-		if (Input.GetKeyDown(KeyCode.P)) NowPhase = (Phase) ((int) (NowPhase + 1) % 2);
+		if (Input.GetKeyDown(KeyCode.P)|| Input.GetKeyDown(KeyCode.O)) NowPhase = (Phase) ((int) (NowPhase + 1) % 2);
 	}
 
 	private void LateUpdate() {
