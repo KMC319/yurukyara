@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Battles.Systems;
 using UnityEngine;
 
-public class MoveManager : MonoBehaviour {
+public class TestMoveManager : IChangePhase {
 	public int nowNum;
 	private TestMove[] scripts;
 	private PhaseManager phaseManager;
@@ -12,7 +13,7 @@ public class MoveManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		scripts = GameObject.FindGameObjectsWithTag("Player").Select(i => i.GetComponent<TestMove>()).ToArray();
-		phaseManager = GameObject.Find("TestPhaseManager").GetComponent<PhaseManager>();
+		phaseManager = PhaseManager.Instance;
 		nowNum = 0;
 	}
 	
@@ -37,7 +38,12 @@ public class MoveManager : MonoBehaviour {
 			nowNum = 5;
 		}
 
-		switch (phaseManager.NowPhase) {
+		
+
+	}
+
+	public void ChangePhase(Phase changedPhase) {
+		switch (changedPhase) {
 			case Phase.P3D:
 				Array.ForEach(scripts.Where((script, index) => index != nowNum).ToArray(), i => i.Move3D(0));
 				if(nowNum >= scripts.Length) return;
@@ -51,6 +57,5 @@ public class MoveManager : MonoBehaviour {
 			default:
 				throw new ArgumentOutOfRangeException();
 		}
-
 	}
 }
