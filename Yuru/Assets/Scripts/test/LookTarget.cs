@@ -10,6 +10,7 @@ public class LookTarget : MonoBehaviour {
 	}
 
 	private void Update() {
+		transform.position = new Vector3(transform.position.x,0,transform.position.z);
 		transform.LookAt(target.transform);
 	}
 
