@@ -6,11 +6,10 @@ using UnityEngine;
 
 namespace Battles.Systems {
     public enum Phase {
-        P3D,
-        P2D
+        P3D, P2D
     }
 
-    [DefaultExecutionOrder(10)]
+    [DefaultExecutionOrder(-10)]
     public class PhaseManager : MonoBehaviour {
         private List<IChangePhase> list;
         public Phase NowPhase;
@@ -31,15 +30,22 @@ namespace Battles.Systems {
             players = GameObject.FindGameObjectsWithTag("Player").Select(i => i.transform).ToArray();
             NowPhase = Phase.P3D;
             child = transform.Find("child").gameObject;
-            this.ObserveEveryValueChanged(x => x.NowPhase).Subscribe(_ => {
-                foreach (var item in list) {
-                    item.ChangePhase(NowPhase);
-                }
-            });
+            Observable.EveryUpdate()
+                .FirstOrDefault()
+                .Subscribe(n => this.ObserveEveryValueChanged(x => x.NowPhase)
+                    .Subscribe(_ => {
+                        foreach (var item in list) {
+                            item.ChangePhase(NowPhase);
+                        }
+                    }));
         }
 
         private void Update() {
             PointMove();
+        }
+
+        private void LateUpdate() {
+            if (NowPhase == Phase.P3D) transform.LookAt(transform.position + players[0].Find("LookTarget").right * 5);
         }
 
         void PointMove() {
