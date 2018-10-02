@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 693268054}
   m_Layer: 9
   m_Name: vcam P1 3d
-  m_TagString: Camera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1322,7 +1322,7 @@ GameObject:
   - component: {fileID: 1729285241}
   m_Layer: 0
   m_Name: vcam 2d
-  m_TagString: Camera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
