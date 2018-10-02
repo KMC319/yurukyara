@@ -114,25 +114,25 @@ namespace doma.Inputs{
 		private void DefineSubscribe(){
 			iBattleKeySender.HorizontalAxsis
 				.Where(n => this.isActive)
-				.Subscribe(n => currentInputReciever.IBattleKyReciever?.ChangeHorizontalAxis(n));
+				.Subscribe(n => currentInputReciever.BattleKeyReciever?.ChangeHorizontalAxis(n));
 			iBattleKeySender.VerticalAxsis
 				.Where(n => this.isActive)
-				.Subscribe(n => currentInputReciever.IBattleKyReciever?.ChangeVerticalAxis(n));
+				.Subscribe(n => currentInputReciever.BattleKeyReciever?.ChangeVerticalAxis(n));
 			iBattleKeySender.JumpKey
 				.Where(n => this.isActive)
-				.Subscribe(n => currentInputReciever.IBattleKyReciever?.JumpKey());
+				.Subscribe(n => currentInputReciever.BattleKeyReciever?.JumpKey());
 			iBattleKeySender.RangeAtKey
 				.Where(n => this.isActive)
-				.Subscribe(n => currentInputReciever.IBattleKyReciever?.RangeAtKey());
+				.Subscribe(n => currentInputReciever.BattleKeyReciever?.RangeAtKey());
 			iBattleKeySender.WeakAtKey
 				.Where(n => this.isActive)
-				.Subscribe(n => currentInputReciever.IBattleKyReciever?.WeakAtKey());
+				.Subscribe(n => currentInputReciever.BattleKeyReciever?.WeakAtKey());
 			iBattleKeySender.StrongAtKey
 				.Where(n => this.isActive)
-				.Subscribe(n => currentInputReciever.IBattleKyReciever?.StrongAtKey());
+				.Subscribe(n => currentInputReciever.BattleKeyReciever?.StrongAtKey());
 			iBattleKeySender.GuardKey
 				.Where(n => this.isActive)
-				.Subscribe(n => currentInputReciever.IBattleKyReciever?.GuardKey());
+				.Subscribe(n => currentInputReciever.BattleKeyReciever?.GuardKey());
 			
 
 
@@ -162,13 +162,13 @@ namespace doma.Inputs{
 		
 		
 		public class CurrentInputReciever{		
-			public IBattleKyReciever IBattleKyReciever{ get; set; }
+			public IBattleKeyReciever BattleKeyReciever{ get; set; }
 			public IUikeyReciever iUikeyReciever{ get; set; }
 
 			public IInputReciever currentReciever{
 				get{
-					if (IBattleKyReciever != null){
-						return IBattleKyReciever;
+					if (BattleKeyReciever != null){
+						return BattleKeyReciever;
 					}
 
 					if (iUikeyReciever != null){
@@ -185,8 +185,8 @@ namespace doma.Inputs{
 				Reset();
 				var res = false;
 				
-				if (reciever is IBattleKyReciever){
-					IBattleKyReciever = reciever as IBattleKyReciever;
+				if (reciever is IBattleKeyReciever){
+					BattleKeyReciever = reciever as IBattleKeyReciever;
 					res=true;
 				}
 				if (reciever is IUikeyReciever){
@@ -214,12 +214,12 @@ namespace doma.Inputs{
 					});
 				
 				Action end_action=null;
-				end_action = check_null_for_endaction(end_action,IBattleKyReciever);
+				end_action = check_null_for_endaction(end_action,BattleKeyReciever);
 				end_action = check_null_for_endaction(end_action,iUikeyReciever);
 			
 				end_action?.Invoke();
 
-				IBattleKyReciever = null;
+				BattleKeyReciever = null;
 				iUikeyReciever = null;
 
 			}
