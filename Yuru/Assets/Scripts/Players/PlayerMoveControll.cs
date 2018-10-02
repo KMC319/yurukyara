@@ -4,7 +4,7 @@ using UnityEngine;
 using Zenject;
 
 namespace Players{
-	public class PlayerMoveControll : MonoBehaviour,IBattleKyReciever{
+	public class PlayerMoveControll : MonoBehaviour,IBattleKeyReciever{
 
 		[SerializeField] private float speed;
 		[SerializeField] private PlayerAnimDictionary myDic;

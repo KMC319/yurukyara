@@ -1,5 +1,5 @@
 ﻿namespace doma.Inputs{
-	public interface IBattleKyReciever:IInputReciever{
+	public interface IBattleKeyReciever:IInputReciever{
 		void ChangeHorizontalAxis(float delta);
 		void ChangeVerticalAxis(float delta);
 		void JumpKey();

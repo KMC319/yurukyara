@@ -22,8 +22,6 @@ namespace doma.Inputs{
 		private void Update(){
 			horizontalAxsis.OnNext(Input.GetAxisRaw("Horizontal"));
 			verticalAxsis.OnNext(Input.GetAxisRaw("Vertical"));
-			
-			
 		}
 
 	}
