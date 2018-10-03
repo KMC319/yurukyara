@@ -161,6 +161,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95350945896371070, guid: 9eb0b709483152f4a920e0bc606c8be6,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4d9085a67419dce49bc9059a02318711, type: 2}
+    - target: {fileID: 95350945896371070, guid: 9eb0b709483152f4a920e0bc606c8be6,
+        type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114731358123198574, guid: 9eb0b709483152f4a920e0bc606c8be6, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 9eb0b709483152f4a920e0bc606c8be6, type: 2}
