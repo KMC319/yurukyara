@@ -22,6 +22,8 @@ namespace doma.Inputs{
 		private void Update(){
 			horizontalAxsis.OnNext(Input.GetAxisRaw("Horizontal"));
 			verticalAxsis.OnNext(Input.GetAxisRaw("Vertical"));
+			
+			if(Input.GetButtonDown("Fire1"))weakAtKey.OnNext(Unit.Default);
 		}
 
 	}

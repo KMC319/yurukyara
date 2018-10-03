@@ -1,5 +1,6 @@
 ﻿using System;
 using doma.Inputs;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -7,7 +8,6 @@ namespace Players{
 	public class PlayerMoveControll : MonoBehaviour,IBattleKeyReciever{
 
 		[SerializeField] private float speed;
-		[SerializeField] private PlayerAnimDictionary myDic;
 		
 		private float horizontalMovement;
 		private float verticalMovement;
@@ -16,12 +16,15 @@ namespace Players{
 		private Transform lookTarget;
 
 		private PlayerAnimControll playerAnimControll;
+
+		private bool inAttack;
     
 		private void Start() {
 			rigid = GetComponent<Rigidbody>();
 			lookTarget = transform.Find("LookTarget");
 
 			playerAnimControll = this.transform.GetComponentInChildren<PlayerAnimControll>();
+			playerAnimControll.ResponseStream.Subscribe(RecieveResponce);
 		}
 
 		// Update is called once per frame
@@ -34,6 +37,7 @@ namespace Players{
 		}
 
 		private void Move() {
+			if(inAttack)return;;
 			if (Math.Abs(horizontalMovement) < 0.01f && Math.Abs(verticalMovement) < 0.01f){
 				Stop();
 				return;
@@ -42,13 +46,25 @@ namespace Players{
 			var x = lookTarget.right * Input.GetAxis("Horizontal") * speed;
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0) + z + x;
 			transform.LookAt(transform.position + rigid.velocity);
-			playerAnimControll.ChangeAnim(myDic.RunName);
+			playerAnimControll.ChangeAnim(playerAnimControll.myDic.RunName);
 		}
 
 		private void Stop() {
-			playerAnimControll.ChangeAnim(myDic.WaitName);
+			playerAnimControll.ChangeAnim(playerAnimControll.myDic.WaitName);
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 			rigid.angularVelocity = Vector3.zero;
+		}
+
+		private void RecieveResponce(AnimResponce responce){
+			switch (responce){
+				case AnimResponce.Wait:
+					break;
+				case AnimResponce.AttackEnd:
+					inAttack = false;
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(responce), responce, null);
+			}
 		}
 		
 		public void StartInputRecieve(){}
@@ -68,9 +84,13 @@ namespace Players{
 
 		public void JumpKey(){}
 
-		public void RangeAtKey(){}
+		public void RangeAtKey(){
+		}
 
-		public void WeakAtKey(){}
+		public void WeakAtKey(){
+			inAttack = true;
+			playerAnimControll.ChangeAnim(playerAnimControll.myDic.WeakName);
+		}
 
 		public void StrongAtKey(){}
 

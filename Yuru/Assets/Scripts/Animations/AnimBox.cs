@@ -6,7 +6,6 @@ namespace Animations{
 	[Serializable]
 	public class AnimBox{
 		public AnimationClip clip;
-		public bool loop;
 		public AnimBox[] autoAdvance;
 
 		public AnimBox(AnimationClip anim_clip){

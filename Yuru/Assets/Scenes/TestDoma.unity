@@ -347,14 +347,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4192b73d38e6f7498955cde3c171586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transtime: 0
+  transtime: 0.1
   currentAnim:
     clip: {fileID: 0}
-    loop: 0
     autoAdvance: []
   defoultAnim:
     clip: {fileID: 7400000, guid: 6a09fb2fdeabc4e47a1c704e5771dc6d, type: 2}
-    loop: 0
     autoAdvance: []
 --- !u!114 &177058022
 MonoBehaviour:
@@ -367,12 +365,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c55b652793737b4f8ebc7a7ab5087a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myDic:
+    waitName: MJ_Wait
+    runName: MJ_Run
+    jumpName: 
+    rangeName: 
+    weakName: MJ_WeakAttack1
+    strongName: 
+    guardName: 
   myAims:
   - clip: {fileID: 7400000, guid: 6a09fb2fdeabc4e47a1c704e5771dc6d, type: 2}
-    loop: 0
     autoAdvance: []
   - clip: {fileID: 7400000, guid: a2a9ae05789abc84aa0cb76b88dc325c, type: 2}
-    loop: 0
+    autoAdvance: []
+  - clip: {fileID: 7400000, guid: abfee0da440851a47a7e3276c2954e06, type: 2}
     autoAdvance: []
 --- !u!1 &452717931
 GameObject:
@@ -1537,11 +1543,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  myDic:
-    waitName: MJ_Wait
-    runName: MJ_Run
-    jumpName: 
-    rangeName: 
-    weakName: 
-    strongName: 
-    guardName: 

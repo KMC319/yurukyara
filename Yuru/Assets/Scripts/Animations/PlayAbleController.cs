@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using doma;
+using UniRx;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -22,6 +23,8 @@ namespace Animations{
 		
 		private PlayableGraph graph;
 
+		private readonly Subject<string> playEndStream=new Subject<string>();
+		public UniRx.IObservable<string> PlayEndStream => playEndStream;
 
 		private void Awake(){
 			graph = PlayableGraph.Create ();	
@@ -39,15 +42,7 @@ namespace Animations{
 
 		private void Update(){
 			if (isPlayFinish(transtime)){
-				if (currentAnim.loop){
-					currentPlayable.SetTime(0);
-				} else{
-					if (currentAnim.autoAdvance != null&&currentAnim.autoAdvance.Length > 0){
-						if (currentAnim.autoAdvance[0].clip != null){
-							TransAnimation(currentAnim.autoAdvance[0]);
-						}	
-					}
-				}
+				playEndStream.OnNext(currentAnim.clip.name);
 			}
 		}
 		
@@ -100,6 +95,7 @@ namespace Animations{
 			}
 			prePlayable = currentPlayable;
 			currentAnim=anim_box;
+			DebugLogger.Log(currentAnim.clip);
 			currentPlayable = AnimationClipPlayable.Create(graph, anim_box.clip);
 			mixer.ConnectInput(1, prePlayable, 0);
 			mixer.ConnectInput(0, currentPlayable, 0);
