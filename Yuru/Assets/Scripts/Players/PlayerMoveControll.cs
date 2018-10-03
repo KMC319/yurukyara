@@ -21,7 +21,7 @@ namespace Players{
 			rigid = GetComponent<Rigidbody>();
 			lookTarget = transform.Find("LookTarget");
 
-			playerAnimControll = this.GetComponent<PlayerAnimControll>();
+			playerAnimControll = this.transform.GetComponentInChildren<PlayerAnimControll>();
 		}
 
 		// Update is called once per frame
