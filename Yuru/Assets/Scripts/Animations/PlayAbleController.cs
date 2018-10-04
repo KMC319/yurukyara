@@ -23,6 +23,7 @@ namespace Animations{
 		
 		private PlayableGraph graph;
 
+		private Animator anim;
 		private readonly Subject<AnimBox> playEndStream=new Subject<AnimBox>();
 		public UniRx.IObservable<AnimBox> PlayEndStream => playEndStream;
 
@@ -30,9 +31,7 @@ namespace Animations{
 		
 		private void Awake(){
 			graph = PlayableGraph.Create ();	
-			var anim = GetComponent<Animator>();
-
-
+			anim = GetComponent<Animator>();
 			currentAnim=defoultAnim ;
 			var output = AnimationPlayableOutput.Create (graph, "output", anim);
 			mixer = AnimationMixerPlayable.Create(graph, 2);
@@ -53,7 +52,7 @@ namespace Animations{
 				return false;
 			}
 
-			if (currentPlayable.GetTime()+transT> currentPlayable.GetAnimationClip().length){
+			if (currentPlayable.GetTime()+transT> currentPlayable.GetAnimationClip().length+delay){
 				return true;
 			}
 			return false;

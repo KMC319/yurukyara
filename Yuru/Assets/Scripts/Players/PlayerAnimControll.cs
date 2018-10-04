@@ -10,8 +10,6 @@ namespace Players{
 		Wait,AttackEnd
 	}
 	public class PlayerAnimControll : MonoBehaviour{
-		[SerializeField] public PlayerAnimDictionary myDic;
-		
 		private PlayAbleController playAbleController;
 		
 		

@@ -11,12 +11,16 @@ namespace Players{
 	public class PlayerMoveControll : MonoBehaviour,IBattleKeyReciever{
 
 		[SerializeField] private float speed;
+		[SerializeField] private float jumpPower;
+		[SerializeField] private float fallDouble=1f;
 
+		[SerializeField] public PlayerAnimDictionary myDic;
+		
 		private AttackBox currentAttack;
 		
 		private float verticalMovement;
 		private float horizontalMovement;
-		[SerializeField]private bool attackRigor;
+		private bool attackRigor;
 		
 		private Rigidbody rigid;
 		private Transform lookTarget;
@@ -25,8 +29,10 @@ namespace Players{
 		private PlayerAnimControll playerAnimControll;
 
 
+		private bool inJumping;
+		private bool inFall;
 		private bool inAttack;
-    
+		
 		private void Start() {
 			rigid = GetComponent<Rigidbody>();
 			lookTarget = transform.Find("LookTarget");
@@ -38,8 +44,8 @@ namespace Players{
 		}
 
 		// Update is called once per frame
-		void Update() {
-        
+		private void Update() {
+			FallCheck();
 		}
 
 		private void FixedUpdate(){
@@ -52,18 +58,56 @@ namespace Players{
 				Stop();
 				return;
 			}
+
 			var z = lookTarget.forward * Input.GetAxis("Vertical") * speed;
 			var x = lookTarget.right * Input.GetAxis("Horizontal") * speed;
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0) + z + x;
 			transform.LookAt(transform.position + rigid.velocity);
-			playerAnimControll.ChangeAnim(boxContainer.FindAnim(playerAnimControll.myDic.RunName));
+			if (!inJumping){
+				PlayMotion(myDic.RunName);
+			}
 		}
 
 		private void Stop() {
-			playerAnimControll.ChangeAnim(boxContainer.FindAnim(playerAnimControll.myDic.WaitName));
+			if (!inJumping){
+				PlayMotion(myDic.WaitName);
+				
+				transform.rotation = lookTarget.rotation;
+			}
+
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 			rigid.angularVelocity = Vector3.zero;
+
 		}
+
+		private void Jump(){
+			if (inJumping||inAttack) return;
+			inJumping = true;
+			PlayMotion(myDic.JumpName);
+			rigid.AddForce(Vector3.up*jumpPower,ForceMode.Impulse);
+		}
+
+		private void FallCheck(){
+			if(!inJumping)return;
+			if (!inFall&&rigid.velocity.y < -0.1f){
+				rigid.AddForce(Vector3.down*jumpPower*fallDouble,ForceMode.Acceleration);
+				inFall = true;
+			}
+
+			if (inFall && !inAttack){
+				//PlayMotion(myDic.FallName);
+			}
+
+			if (inFall && Math.Abs(rigid.velocity.y) < 0.01f){
+				inFall = false;
+				inJumping = false;
+			}
+		}
+
+		private void PlayMotion(string name){
+			playerAnimControll.ChangeAnim(boxContainer.FindAnim(name));
+		}
+		
 
 		private void RecieveResponce(AnimResponce responce){
 			switch (responce){
@@ -80,6 +124,7 @@ namespace Players{
 
 		private void Attack(string name){
 			if (attackRigor) return;
+			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 			inAttack = true;
 			attackRigor = true;
 			if (currentAttack == null){
@@ -113,16 +158,25 @@ namespace Players{
 			verticalMovement = delta;
 		}
 
-		public void JumpKey(){}
+		public void JumpKey(){
+			Jump();
+		}
 
 		public void RangeAtKey(){
 		}
 
 		public void WeakAtKey(){
-			Attack(playerAnimControll.myDic.WeakName);
+			if (inJumping){
+				Attack(myDic.JumpAtName);
+			}
+			else{
+				Attack(myDic.WeakName);
+			}
 		}
 
-		public void StrongAtKey(){}
+		public void StrongAtKey(){
+			Attack(myDic.StrongName);
+		}
 
 		public void GuardKey(){}
 	}
