@@ -62,7 +62,7 @@ namespace Players{
 			var z = lookTarget.forward * Input.GetAxis("Vertical") * speed;
 			var x = lookTarget.right * Input.GetAxis("Horizontal") * speed;
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0) + z + x;
-			transform.LookAt(transform.position + rigid.velocity);
+			transform.LookAt(transform.position + z + x);
 			if (!inJumping){
 				PlayMotion(myDic.RunName);
 			}
@@ -90,7 +90,7 @@ namespace Players{
 		private void FallCheck(){
 			if(!inJumping)return;
 			if (!inFall&&rigid.velocity.y < -0.1f){
-				rigid.AddForce(Vector3.down*jumpPower*fallDouble,ForceMode.Acceleration);
+				rigid.AddForce(Vector3.down*jumpPower*fallDouble,ForceMode.Impulse);
 				inFall = true;
 			}
 
