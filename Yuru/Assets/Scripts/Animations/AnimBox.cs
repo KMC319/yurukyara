@@ -4,17 +4,11 @@ using UnityEngine;
 
 namespace Animations{
 	[Serializable]
-	public class AnimBox{
+	public abstract class AnimBox{
 		public AnimationClip clip;
-		public bool loop;
-		public AnimBox[] autoAdvance;
-
+		public float delayTime;
 		public AnimBox(AnimationClip anim_clip){
 			clip = anim_clip;
-		}
-		public AnimBox(AnimationClip anim,AnimBox anim_box):this(anim){
-			autoAdvance=new AnimBox[0];
-			autoAdvance[0] = anim_box;
 		}
 	}
 }

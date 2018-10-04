@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using doma;
+using UniRx;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -22,41 +23,36 @@ namespace Animations{
 		
 		private PlayableGraph graph;
 
+		private Animator anim;
+		private readonly Subject<AnimBox> playEndStream=new Subject<AnimBox>();
+		public UniRx.IObservable<AnimBox> PlayEndStream => playEndStream;
 
+		private bool once;
+		
 		private void Awake(){
 			graph = PlayableGraph.Create ();	
-			var anim = GetComponent<Animator>();
-
-
+			anim = GetComponent<Animator>();
 			currentAnim=defoultAnim ;
 			var output = AnimationPlayableOutput.Create (graph, "output", anim);
 			mixer = AnimationMixerPlayable.Create(graph, 2);
 			output.SetSourcePlayable(mixer);
 			graph.Play ();
-
-			ConnectProcess(defoultAnim, true);
 		}
 
 		private void Update(){
-			if (isPlayFinish(transtime)){
-				if (currentAnim.loop){
-					currentPlayable.SetTime(0);
-				} else{
-					if (currentAnim.autoAdvance != null&&currentAnim.autoAdvance.Length > 0){
-						if (currentAnim.autoAdvance[0].clip != null){
-							TransAnimation(currentAnim.autoAdvance[0]);
-						}	
-					}
-				}
+			if (isPlayFinish(transtime,currentAnim.delayTime)&&!once){
+				DebugLogger.Log(currentAnim.clip);
+				playEndStream.OnNext(currentAnim);
+				once = true;
 			}
 		}
 		
-		public bool isPlayFinish(float transT){
+		public bool isPlayFinish(float transT,float delay){
 			if (!currentPlayable.IsValid()){
 				return false;
 			}
 
-			if (currentPlayable.GetTime()+transT> currentPlayable.GetAnimationClip().length){
+			if (currentPlayable.GetTime()+transT> currentPlayable.GetAnimationClip().length+delay){
 				return true;
 			}
 			return false;
@@ -103,6 +99,7 @@ namespace Animations{
 			currentPlayable = AnimationClipPlayable.Create(graph, anim_box.clip);
 			mixer.ConnectInput(1, prePlayable, 0);
 			mixer.ConnectInput(0, currentPlayable, 0);
+			once = false;
 			return true;
 		}
 		
