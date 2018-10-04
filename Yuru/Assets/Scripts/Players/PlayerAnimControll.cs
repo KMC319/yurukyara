@@ -11,9 +11,9 @@ namespace Players{
 	}
 	public class PlayerAnimControll : MonoBehaviour{
 		[SerializeField] public PlayerAnimDictionary myDic;
-		[SerializeField] private List<AnimBox> myAims;
-
+		
 		private PlayAbleController playAbleController;
+		
 		
 		private readonly Subject<AnimResponce> responseStream=new Subject<AnimResponce>();
 		public Subject<AnimResponce> ResponseStream => responseStream;
@@ -22,24 +22,23 @@ namespace Players{
 			playAbleController = this.GetComponent<PlayAbleController>();
 			
 			playAbleController.PlayEndStream.Subscribe(FlowResponce);
-
 		}
-		public void ChangeAnim(string anim_name){
-			playAbleController.TransAnimation(FindMyAnim(anim_name));
-		}
-
-		private void FlowResponce(string name){
-			var check = new Func<string,bool>((n) => name == n);
-			if(check(myDic.WeakName))responseStream.OnNext(AnimResponce.AttackEnd);
+		
+		public void ChangeAnim(AnimBox anim_box){
+			playAbleController.TransAnimation(anim_box);
 		}
 
-		private AnimBox FindMyAnim(string anim_name){
-			var res = myAims.Find(n => n.clip.name == anim_name);
-			if (res == null){
-				DebugLogger.LogError(anim_name+"is not found");
-				return null;
+		private void FlowResponce(AnimBox anim_box){
+			AnimResponce? a = null;
+			
+			if (anim_box is AttackBox){
+				a = AnimResponce.AttackEnd;
 			}
-			return res;
+
+			if (a != null){
+				responseStream.OnNext((AnimResponce) a);
+			}
 		}
+
 	}
 }

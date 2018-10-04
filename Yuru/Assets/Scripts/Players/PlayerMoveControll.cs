@@ -1,21 +1,29 @@
 ﻿using System;
+using Animations;
+using doma;
 using doma.Inputs;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
 namespace Players{
+	[RequireComponent(typeof(BoxContainer))]
 	public class PlayerMoveControll : MonoBehaviour,IBattleKeyReciever{
 
 		[SerializeField] private float speed;
+
+		private AttackBox currentAttack;
 		
-		private float horizontalMovement;
 		private float verticalMovement;
+		private float horizontalMovement;
+		[SerializeField]private bool attackRigor;
 		
 		private Rigidbody rigid;
 		private Transform lookTarget;
 
+		private BoxContainer boxContainer;
 		private PlayerAnimControll playerAnimControll;
+
 
 		private bool inAttack;
     
@@ -23,7 +31,9 @@ namespace Players{
 			rigid = GetComponent<Rigidbody>();
 			lookTarget = transform.Find("LookTarget");
 
+			boxContainer = this.GetComponent<BoxContainer>();
 			playerAnimControll = this.transform.GetComponentInChildren<PlayerAnimControll>();
+			
 			playerAnimControll.ResponseStream.Subscribe(RecieveResponce);
 		}
 
@@ -46,11 +56,11 @@ namespace Players{
 			var x = lookTarget.right * Input.GetAxis("Horizontal") * speed;
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0) + z + x;
 			transform.LookAt(transform.position + rigid.velocity);
-			playerAnimControll.ChangeAnim(playerAnimControll.myDic.RunName);
+			playerAnimControll.ChangeAnim(boxContainer.FindAnim(playerAnimControll.myDic.RunName));
 		}
 
 		private void Stop() {
-			playerAnimControll.ChangeAnim(playerAnimControll.myDic.WaitName);
+			playerAnimControll.ChangeAnim(boxContainer.FindAnim(playerAnimControll.myDic.WaitName));
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 			rigid.angularVelocity = Vector3.zero;
 		}
@@ -60,11 +70,32 @@ namespace Players{
 				case AnimResponce.Wait:
 					break;
 				case AnimResponce.AttackEnd:
+					currentAttack = null;
 					inAttack = false;
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(responce), responce, null);
 			}
+		}
+
+		private void Attack(string name){
+			if (attackRigor) return;
+			inAttack = true;
+			attackRigor = true;
+			if (currentAttack == null){
+				currentAttack = boxContainer.FindAttack(name);
+			}else{
+				if (currentAttack.nextAttack != null && 
+				    currentAttack.nextAttack.Length==1&&
+				    currentAttack.nextAttack[0].clip != null){	
+					currentAttack = currentAttack.nextAttack[0];
+				}	
+			}
+			playerAnimControll.ChangeAnim(currentAttack);
+			Observable.Timer(TimeSpan.FromSeconds(currentAttack.rigorTime))
+				.Subscribe(_ => {
+					attackRigor = false;
+				});
 		}
 		
 		public void StartInputRecieve(){}
@@ -88,8 +119,7 @@ namespace Players{
 		}
 
 		public void WeakAtKey(){
-			inAttack = true;
-			playerAnimControll.ChangeAnim(playerAnimControll.myDic.WeakName);
+			Attack(playerAnimControll.myDic.WeakName);
 		}
 
 		public void StrongAtKey(){}
