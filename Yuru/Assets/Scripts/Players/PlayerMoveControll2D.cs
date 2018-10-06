@@ -1,29 +1,86 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Players{
 	public class PlayerMoveControll2D : MonoBehaviour,IPlayerMove{
+		
+		[SerializeField] private float speed;
+		[SerializeField] private float jumpPower;
+		[SerializeField] private float fallDouble=1f;
+		
+		private Rigidbody rigid;
+		private Transform lookTarget;
+		
+		private PlayerAnimControll playerAnimControll;
+		
 		public float HorizontalMovement{ get; set; }
 		public float VerticalMovement{ get; set; }
 		public bool InJumping{ get; set; }
+		private bool inFall;
+
+		private void Start(){
+			rigid = GetComponent<Rigidbody>();
+			lookTarget = transform.Find("LookTarget");
+			
+			playerAnimControll = this.transform.GetComponentInChildren<PlayerAnimControll>();
+		}
 
 		public void Move(){
-			throw new System.NotImplementedException();
+			if (Math.Abs(HorizontalMovement) < 0.01f && Math.Abs(VerticalMovement) < 0.01f){
+				Stop();
+				return;
+			}
+
+			var z = lookTarget.forward * HorizontalMovement * speed;
+			rigid.velocity = new Vector3(0, rigid.velocity.y, 0) + z ;
+			transform.LookAt(transform.position + z );
+			if (!InJumping){
+				PlayMotion(playerAnimControll.MyDic.RunName);
+			}
 		}
 
-		public void Jump(){
-			throw new System.NotImplementedException();
-		}
+		public void Stop() {
+			if (!InJumping){
+				PlayMotion(playerAnimControll.MyDic.WaitName);
+				
+				transform.rotation = lookTarget.rotation;
+			}
 
-		public void Stop(){
-			throw new System.NotImplementedException();
+			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+			rigid.angularVelocity = Vector3.zero;
 		}
 
 		public void Cancel(){
-			throw new System.NotImplementedException();
+			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+			rigid.angularVelocity = Vector3.zero;
+		}
+
+		public void Jump(){
+			if (InJumping) return;
+			InJumping = true;
+			PlayMotion(playerAnimControll.MyDic.JumpName);
+			rigid.AddForce(Vector3.up*jumpPower,ForceMode.Impulse);
 		}
 
 		public void FallCheck(bool in_attack){
-			throw new System.NotImplementedException();
+			if(!InJumping)return;
+			if (!inFall&&rigid.velocity.y < -0.1f){
+				rigid.AddForce(Vector3.down*jumpPower*fallDouble,ForceMode.Impulse);
+				inFall = true;
+			}
+
+			if (inFall && !in_attack){
+				PlayMotion(playerAnimControll.MyDic.FallName);
+			}
+
+			if (inFall && Math.Abs(rigid.velocity.y) < 0.01f){
+				inFall = false;
+				InJumping = false;
+			}
+		}
+
+		private void PlayMotion(string name){
+			playerAnimControll.ChangeAnim(name);
 		}
 	}
 }

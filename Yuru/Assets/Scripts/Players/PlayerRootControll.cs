@@ -1,15 +1,18 @@
 ﻿using System;
+using Battles.Systems;
 using doma.Inputs;
 using UnityEngine;
 using UniRx;
 
 namespace Players{
-	public class PlayerRootControll : MonoBehaviour,IBattleKeyReciever{
+	public class PlayerRootControll : MonoBehaviour,IBattleKeyReciever,IChangePhase{
 
 		private IPlayerMove currentPlayerMove;
 		private IPlayerMove playerMoveControll3D;
 		private IPlayerMove playerMoveControll2D;
 		private PlayerAttackControll playerAttackControll;
+		
+		
 	
 		private void Start(){
 			playerAttackControll = this.GetComponent<PlayerAttackControll>();
@@ -64,5 +67,18 @@ namespace Players{
 		}
 
 		public void GuardKey(){}
+		
+		public void ChangePhase(Phase changedPhase){
+			switch (changedPhase){
+				case Phase.P3D:
+					currentPlayerMove = playerMoveControll3D;
+					break;
+				case Phase.P2D:
+					currentPlayerMove = playerMoveControll2D;
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(changedPhase), changedPhase, null);
+			}
+		}
 	}
 }

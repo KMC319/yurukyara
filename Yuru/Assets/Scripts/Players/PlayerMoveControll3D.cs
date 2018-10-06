@@ -41,8 +41,8 @@ namespace Players{
 				return;
 			}
 
-			var z = lookTarget.forward * Input.GetAxis("Vertical") * speed;
-			var x = lookTarget.right * Input.GetAxis("Horizontal") * speed;
+			var z = lookTarget.forward * VerticalMovement * speed;
+			var x = lookTarget.right * HorizontalMovement * speed;
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0) + z + x;
 			transform.LookAt(transform.position + z + x);
 			if (!InJumping){
