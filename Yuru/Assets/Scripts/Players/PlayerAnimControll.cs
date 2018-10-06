@@ -9,8 +9,12 @@ namespace Players{
 	public enum AnimResponce{
 		Wait,AttackEnd
 	}
+	[RequireComponent(typeof(BoxContainer))]
 	public class PlayerAnimControll : MonoBehaviour{
+		[SerializeField] public PlayerAnimDictionary MyDic;
+		
 		private PlayAbleController playAbleController;
+		private BoxContainer boxContainer;
 		
 		
 		private readonly Subject<AnimResponce> responseStream=new Subject<AnimResponce>();
@@ -18,8 +22,15 @@ namespace Players{
 
 		private void Start (){
 			playAbleController = this.GetComponent<PlayAbleController>();
+			boxContainer = this.GetComponent<BoxContainer>();
 			
 			playAbleController.PlayEndStream.Subscribe(FlowResponce);
+		}
+
+		public AnimBox ChangeAnim(string name){
+			var res = boxContainer.FindAnim(name);
+			playAbleController.TransAnimation(res);
+			return res;
 		}
 		
 		public void ChangeAnim(AnimBox anim_box){

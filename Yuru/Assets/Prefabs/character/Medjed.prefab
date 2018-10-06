@@ -419,7 +419,9 @@ GameObject:
   - component: {fileID: 136807098624763582}
   - component: {fileID: 114159571311739178}
   - component: {fileID: 114563726955007860}
-  - component: {fileID: 114563695034425798}
+  - component: {fileID: 114687197290349954}
+  - component: {fileID: 114873695747438188}
+  - component: {fileID: 114298265573569972}
   m_Layer: 0
   m_Name: Medjed
   m_TagString: Player
@@ -485,6 +487,7 @@ GameObject:
   - component: {fileID: 95350945896371070}
   - component: {fileID: 114763519318306190}
   - component: {fileID: 114584703195781628}
+  - component: {fileID: 114838586287286030}
   m_Layer: 0
   m_Name: MJ_yurukyara
   m_TagString: Untagged
@@ -1176,12 +1179,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cadfea9c4a70479a8912afe1a3cb9d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114563695034425798
+--- !u!114 &114298265573569972
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1717165939482066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa50507cd06b43159005793a820cdd3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114563726955007860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1717165939482066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020d1d00c2f64300aceb458e4924f5ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  jumpPower: 1500
+  fallDouble: 0.5
+--- !u!114 &114584703195781628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1796064440627950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c55b652793737b4f8ebc7a7ab5087a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyDic:
+    WaitName: MJ_Wait
+    RunName: MJ_Run
+    JumpName: MJ_Jumping
+    FallName: MJ_Falling
+    RangeName: 
+    WeakName: MJ_WeakAttack1
+    StrongName: MJ_StrongAttack
+    JumpAtName: MJ_JumpAttack
+    GrabName: 
+    GuardName: 
+--- !u!114 &114687197290349954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1717165939482066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882d275f991240fdb1e3f542e2b0566e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114763519318306190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1796064440627950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4192b73d38e6f7498955cde3c171586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transtime: 0.1
+--- !u!114 &114838586287286030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1796064440627950}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b58b018fc47e4c83976ae74fa857aaef, type: 3}
@@ -1229,7 +1302,7 @@ MonoBehaviour:
     delayTime: 0
     rigorTime: 0.05
     nextAttack: []
---- !u!114 &114563726955007860
+--- !u!114 &114873695747438188
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1237,46 +1310,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1717165939482066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 020d1d00c2f64300aceb458e4924f5ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cdf1aee70c64ba9a14d3f043cef6ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpPower: 1500
-  fallDouble: 0.5
-  myDic:
-    WaitName: MJ_Wait
-    RunName: MJ_Run
-    JumpName: MJ_Jumping
-    FallName: MJ_Falling
-    RangeName: 
-    WeakName: MJ_WeakAttack1
-    StrongName: MJ_StrongAttack
-    JumpAtName: MJ_JumpAttack
-    GrabName: 
-    GuardName: 
---- !u!114 &114584703195781628
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1796064440627950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c55b652793737b4f8ebc7a7ab5087a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114763519318306190
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1796064440627950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4192b73d38e6f7498955cde3c171586, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transtime: 0.1
 --- !u!114 &114889797704980942
 MonoBehaviour:
   m_ObjectHideFlags: 1
