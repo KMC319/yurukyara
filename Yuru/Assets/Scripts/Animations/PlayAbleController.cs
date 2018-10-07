@@ -41,7 +41,7 @@ namespace Animations{
 
 		private void Update(){
 			if (isPlayFinish(transtime,currentAnim.delayTime)&&!once){
-				DebugLogger.Log(currentAnim.clip);
+				//DebugLogger.Log(currentAnim.clip);
 				playEndStream.OnNext(currentAnim);
 				once = true;
 			}
@@ -72,6 +72,8 @@ namespace Animations{
 			}
 		}
 
+
+
 		public void ForcePauseAnimation(){
 			currentPlayable.Pause();
 		}
@@ -84,11 +86,7 @@ namespace Animations{
 		//<private Methods>
 		*/
 		
-		private bool ConnectProcess(AnimBox anim_box,bool force=false){
-			if (anim_box ==  currentAnim&&!force){
-				//DebugLogger.LogWarning(anim_box.clip+" is play now!!");
-				return false;
-			}
+		private bool ConnectProcess(AnimBox anim_box){
 			graph.Disconnect(mixer, 0);
 			graph.Disconnect(mixer, 1);
 			if (prePlayable.IsValid()){

@@ -6,19 +6,27 @@ using UniRx;
 
 namespace Players{
 	public class PlayerRootControll : MonoBehaviour,IBattleKeyReciever,IChangePhase{
+		private bool moveAble => !playerAttackControll.InAttack &&
+		                         !playerGuardControll.InGuard &&
+		                         !playerDamageControll.InDamage;
 
 		private IPlayerMove currentPlayerMove;
 		private IPlayerMove playerMoveControll3D;
 		private IPlayerMove playerMoveControll2D;
 		private PlayerAttackControll playerAttackControll;
+		private PlayerGuardControll playerGuardControll;
 		
-		
-	
-		private void Start(){
+		public PlayerDamageControll playerDamageControll{ get; private set; }
+
+		private void Awake(){
 			playerAttackControll = this.GetComponent<PlayerAttackControll>();
 			playerMoveControll3D = this.GetComponent<PlayerMoveControll3D>();
 			playerMoveControll2D = this.GetComponent<PlayerMoveControll2D>();
-			
+			playerDamageControll = this.GetComponent<PlayerDamageControll>();
+			playerGuardControll = this.GetComponent<PlayerGuardControll>();
+		}
+
+		private void Start(){
 			
 			currentPlayerMove = playerMoveControll3D;
 		}
@@ -28,10 +36,8 @@ namespace Players{
 		}
 
 		private void FixedUpdate(){
-			if (!playerAttackControll.InAttack){
+			if (moveAble){
 				currentPlayerMove.Move();
-			}else{
-				currentPlayerMove.Cancel();
 			}
 		}
 		
@@ -56,17 +62,23 @@ namespace Players{
 		}
 
 		public void RangeAtKey(){
+			currentPlayerMove.Cancel();
 		}
 
 		public void WeakAtKey(){
+			currentPlayerMove.Cancel();
 			playerAttackControll.WeakAttack(currentPlayerMove.InJumping);
 		}
 
 		public void StrongAtKey(){
+			currentPlayerMove.Cancel();
 			playerAttackControll.StrongAttack();
 		}
 
-		public void GuardKey(){}
+		public void GuardKey(){
+			currentPlayerMove.Cancel();
+			playerGuardControll.GuardCommand();
+		}
 		
 		public void ChangePhase(Phase changedPhase){
 			switch (changedPhase){

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Animations;
+using Battles.Health;
 using doma;
 using UniRx;
 using UnityEngine;
 
 namespace Players{
 	public enum AnimResponce{
-		Wait,AttackEnd
+		Wait,AttackEnd,Damaged
 	}
 	[RequireComponent(typeof(BoxContainer))]
 	public class PlayerAnimControll : MonoBehaviour{
@@ -20,6 +21,8 @@ namespace Players{
 		private readonly Subject<AnimResponce> responseStream=new Subject<AnimResponce>();
 		public Subject<AnimResponce> ResponseStream => responseStream;
 
+		private AnimBox current;
+
 		private void Start (){
 			playAbleController = this.GetComponent<PlayAbleController>();
 			boxContainer = this.GetComponent<BoxContainer>();
@@ -27,14 +30,29 @@ namespace Players{
 			playAbleController.PlayEndStream.Subscribe(FlowResponce);
 		}
 
+		private void Play(AnimBox anim_box){
+			if(current==anim_box)return;
+			playAbleController.TransAnimation(anim_box);
+			current = anim_box;
+		}
+
 		public AnimBox ChangeAnim(string name){
 			var res = boxContainer.FindAnim(name);
-			playAbleController.TransAnimation(res);
+			Play(res);
 			return res;
 		}
 		
 		public void ChangeAnim(AnimBox anim_box){
+			Play(anim_box);
+		}
+
+		public void ForceChangeAnim(AnimBox anim_box){
 			playAbleController.TransAnimation(anim_box);
+		}
+		public AnimBox ForceChangeAnim(string name){
+			var res = boxContainer.FindAnim(name);
+			playAbleController.TransAnimation(res);
+			return res;
 		}
 
 		private void FlowResponce(AnimBox anim_box){
@@ -42,6 +60,10 @@ namespace Players{
 			
 			if (anim_box is AttackBox){
 				a = AnimResponce.AttackEnd;
+			}
+
+			if (anim_box.clip.name == MyDic.SmallDamage){
+				a = AnimResponce.Damaged;
 			}
 
 			if (a != null){
