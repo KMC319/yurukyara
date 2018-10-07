@@ -14,5 +14,7 @@ namespace Players{
 		public string JumpAtName;
 		public string GrabName;
 		public string GuardName;
+		public string SmallDamage;
+		public string BigDamage;
 	}
 }
