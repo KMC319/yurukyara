@@ -10,7 +10,7 @@ namespace Players{
 		                         !playerGuardControll.InGuard &&
 		                         !playerDamageControll.InDamage;
 
-		private IPlayerMove currentPlayerMove;
+		public IPlayerMove currentPlayerMove { get; private set; }
 		private IPlayerMove playerMoveControll3D;
 		private IPlayerMove playerMoveControll2D;
 		private PlayerAttackControll playerAttackControll;

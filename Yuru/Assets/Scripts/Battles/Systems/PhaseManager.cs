@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using test;
 using UniRx;
 using UnityEngine;
 
@@ -28,6 +28,8 @@ namespace Battles.Systems {
 
         private void Start() {
             players = GameObject.FindGameObjectsWithTag("Player").Select(i => i.transform).ToArray();
+            var key = players.Select(i => i.transform.position.z).ToArray();
+            Array.Sort(key, players);
             NowPhase = Phase.P3D;
             child = transform.Find("child").gameObject;
             Observable.EveryUpdate()
@@ -45,7 +47,7 @@ namespace Battles.Systems {
         }
 
         private void LateUpdate() {
-            if (NowPhase == Phase.P3D) transform.LookAt(transform.position + players[0].Find("LookTarget").right * 5);
+            if (NowPhase == Phase.P3D) transform.LookAt(transform.position + Vector3.Cross(Vector3.up, new Vector3(players[1].transform.position.x, 1, players[1].transform.position.z) - child.transform.position));
         }
 
         void PointMove() {
