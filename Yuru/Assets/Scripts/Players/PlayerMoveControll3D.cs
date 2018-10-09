@@ -16,7 +16,7 @@ namespace Players{
 		private Rigidbody rigid;
 		private Transform lookTarget;
 
-		private PlayerAnimControll playerAnimControll;
+		private MotionAnimControll motionAnimControll;
 
 
 		public float HorizontalMovement{ get; set; }
@@ -29,7 +29,7 @@ namespace Players{
 			rigid = GetComponent<Rigidbody>();
 			lookTarget = transform.Find("LookTarget");
 
-			playerAnimControll = this.transform.GetComponentInChildren<PlayerAnimControll>();
+			motionAnimControll = this.transform.GetComponentInChildren<MotionAnimControll>();
 		}
 
 		// Update is called once per frame
@@ -46,13 +46,13 @@ namespace Players{
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0) + z + x;
 			transform.LookAt(transform.position + z + x);
 			if (!InJumping){
-				PlayMotion(playerAnimControll.MyDic.RunName);
+				PlayMotion(motionAnimControll.MyDic.RunName);
 			}
 		}
 
 		public void Stop() {
 			if (!InJumping){
-				PlayMotion(playerAnimControll.MyDic.WaitName);
+				PlayMotion(motionAnimControll.MyDic.WaitName);
 				
 				transform.rotation = lookTarget.rotation;
 			}
@@ -69,7 +69,7 @@ namespace Players{
 		public void Jump(){
 			if (InJumping) return;
 			InJumping = true;
-			PlayMotion(playerAnimControll.MyDic.JumpName);
+			PlayMotion(motionAnimControll.MyDic.JumpName);
 			rigid.AddForce(Vector3.up*jumpPower,ForceMode.Impulse);
 		}
 
@@ -81,7 +81,7 @@ namespace Players{
 			}
 
 			if (inFall && !in_attack){
-				PlayMotion(playerAnimControll.MyDic.FallName);
+				PlayMotion(motionAnimControll.MyDic.FallName);
 			}
 
 			if (inFall && Math.Abs(rigid.velocity.y) < 0.01f){
@@ -91,7 +91,7 @@ namespace Players{
 		}
 
 		private void PlayMotion(string name){
-			playerAnimControll.ChangeAnim(name);
+			motionAnimControll.ChangeAnim(name);
 		}
 	}
 }

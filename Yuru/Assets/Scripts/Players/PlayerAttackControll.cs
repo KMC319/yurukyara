@@ -1,80 +1,97 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using Animations;
 using Battles.Attack;
 using Battles.Health;
+using doma;
 using UniRx;
 using UnityEngine;
 
 namespace Players{
 	public class PlayerAttackControll : MonoBehaviour{
-		private AttackBox currentAttack;
-		private string currentRootAttackName;
-		private PlayerAnimControll playerAnimControll;
-		private PlayerRootControll taregtPlayer;
+		[SerializeField] private float bufferTime;
 		
-		private bool attackRigor;
+		private AttackBox currentAttack;
+		private AttackBox currentRoot;
+		private PlayerKeyCode? keyBuffer;
+		
+		private AttackAnimControll attackAnimControll;
+		public IPlayerMove iPlayerMove;
+
+		private PlayerRootControll taregtPlayer;
+
+
+		private CommandType CurrentState{
+			get{ return iPlayerMove.InJumping ? CommandType.Jump : CommandType.Normal; }
+		}
+
 		public bool InAttack{ get; private set; }
 		private bool hitEnable;
 
 		private void Start(){
-			playerAnimControll = this.transform.GetComponentInChildren<PlayerAnimControll>();
+			attackAnimControll = this.GetComponentInChildren<AttackAnimControll>();
 			taregtPlayer = this.GetComponent<IPlayerBinder>().TargetPlayerRootControll;
-			
-			playerAnimControll.ResponseStream.Subscribe(RecieveResponce);
 
+			attackAnimControll.ResponseStream.Subscribe(RecieveResponce);
 			Observable.Merge(transform.GetComponentsInChildren<AttackCollider>().Select(n => n.HitStream))
 				.Subscribe(RecieveHit);
 		}
 
+
+		public void InputKey(PlayerKeyCode player_key_code){
+			Attack(player_key_code);
+			
+			
+
+		}
+
 		private void RecieveHit(Collider collider){
-			if(!(InAttack&&hitEnable))return;
-			if(collider.gameObject!=taregtPlayer.gameObject)return;
+			if (!(InAttack && hitEnable)) return;
+			if (collider.gameObject != taregtPlayer.gameObject) return;
 			taregtPlayer.playerDamageControll.Hit(currentAttack.attackDamageBox);
 			hitEnable = false;
 		}
 
-		public void WeakAttack(bool in_jumping){
-			if (in_jumping){
-				Attack(playerAnimControll.MyDic.JumpAtName);
-			}
-			else{
-				Attack(playerAnimControll.MyDic.WeakName);
-			}
-		}
-		
-		private void RecieveResponce(AnimResponce responce){
-			if (responce == AnimResponce.AttackEnd){
+		private void RecieveResponce(AnimResponce anim_responce){
+			if (anim_responce == AnimResponce.AttackEnd){
 				currentAttack = null;
+				currentRoot = null;
+				keyBuffer = null;
 				InAttack = false;
 				hitEnable = false;
-				currentRootAttackName="";
+				attackAnimControll.CashClear();
 			}
 		}
 
+		private void Attack(PlayerKeyCode player_key_code){
+			AttackBox result = null;
+			if (currentAttack == null){
+				result= attackAnimControll.FindAttack(player_key_code, CurrentState);
+			}else{
+				if (keyBuffer != null){
+					result = attackAnimControll.FindAttack(player_key_code,(PlayerKeyCode)keyBuffer, CurrentState);
+					
+				}else if (attackAnimControll.FindAttack(player_key_code,CurrentState)==currentRoot&&
+				          currentAttack.nextAttack != null &&
+				          currentAttack.nextAttack.Length == 1 && 
+				          currentAttack.nextAttack.First().clip != null){
+					result = currentAttack.nextAttack.First();
+				}
+			}
 
-		public void StrongAttack(){
-			Attack(playerAnimControll.MyDic.StrongName);
-		}
-
-		private void Attack(string name){
-			if (attackRigor) return;
+			
+			if(result==null)return;
+			currentAttack = result;
+			if (currentRoot == null) currentRoot = result;
+			attackAnimControll.Play(currentAttack);
 			InAttack = true;
-			attackRigor = true;
-			if (currentRootAttackName!=name){
-				currentRootAttackName = name;
-				currentAttack = (AttackBox)playerAnimControll.ChangeAnim(name);
-			}else if (currentAttack.nextAttack != null && 
-				    currentAttack.nextAttack.Length==1&&
-				    currentAttack.nextAttack[0].clip != null){	
-					currentAttack = currentAttack.nextAttack[0];
-					playerAnimControll.ChangeAnim(currentAttack);
-			}
-			Observable.Timer(TimeSpan.FromSeconds(currentAttack.rigorTime))
-				.Subscribe(_ => {
-					attackRigor = false;
-				});
+			
+			keyBuffer = player_key_code;
+			Observable.Timer(TimeSpan.FromSeconds(bufferTime))
+				.Subscribe(_ => { keyBuffer = null;});
+
 			Observable.Timer(TimeSpan.FromSeconds(currentAttack.enableTime))
 				.Subscribe(_ => { hitEnable = true; });
 		}

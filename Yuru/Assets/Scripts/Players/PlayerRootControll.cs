@@ -27,8 +27,8 @@ namespace Players{
 		}
 
 		private void Start(){
-			
 			currentPlayerMove = playerMoveControll3D;
+			playerAttackControll.iPlayerMove = currentPlayerMove;
 		}
 
 		private void Update() {
@@ -52,27 +52,40 @@ namespace Players{
 
 		public void ChangeHorizontalAxis(float delta){
 			currentPlayerMove.HorizontalMovement = delta;
+			if (delta > 0){
+				playerAttackControll.InputKey(PlayerKeyCode.RArrow);
+			}else if (delta < 0){
+				playerAttackControll.InputKey(PlayerKeyCode.LArrow);
+			}
 		}
+		
 		public void ChangeVerticalAxis(float delta){
 			currentPlayerMove.VerticalMovement = delta;
+			if (delta > 0){
+				playerAttackControll.InputKey(PlayerKeyCode.UArrow);
+			}else if (delta < 0){
+				playerAttackControll.InputKey(PlayerKeyCode.DArrow);
+			}
 		}
 
 		public void JumpKey(){
 			currentPlayerMove.Jump();
+			playerAttackControll.InputKey(PlayerKeyCode.A);
 		}
 
 		public void RangeAtKey(){
 			currentPlayerMove.Cancel();
+			playerAttackControll.InputKey(PlayerKeyCode.B);
 		}
 
 		public void WeakAtKey(){
 			currentPlayerMove.Cancel();
-			playerAttackControll.WeakAttack(currentPlayerMove.InJumping);
+			playerAttackControll.InputKey(PlayerKeyCode.X);
 		}
 
 		public void StrongAtKey(){
 			currentPlayerMove.Cancel();
-			playerAttackControll.StrongAttack();
+			playerAttackControll.InputKey(PlayerKeyCode.Y);
 		}
 
 		public void GuardKey(){
@@ -91,6 +104,8 @@ namespace Players{
 				default:
 					throw new ArgumentOutOfRangeException(nameof(changedPhase), changedPhase, null);
 			}
+
+			playerAttackControll.iPlayerMove = currentPlayerMove;
 		}
 	}
 }

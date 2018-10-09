@@ -11,8 +11,8 @@ namespace Players{
 		Wait,AttackEnd,Damaged
 	}
 	[RequireComponent(typeof(BoxContainer))]
-	public class PlayerAnimControll : MonoBehaviour{
-		[SerializeField] public PlayerAnimDictionary MyDic;
+	public class MotionAnimControll : MonoBehaviour{
+		[SerializeField] public MotionDictionary MyDic;
 		
 		private PlayAbleController playAbleController;
 		private BoxContainer boxContainer;
@@ -58,10 +58,6 @@ namespace Players{
 		private void FlowResponce(AnimBox anim_box){
 			AnimResponce? a = null;
 			
-			if (anim_box is AttackBox){
-				a = AnimResponce.AttackEnd;
-			}
-
 			if (anim_box.clip.name == MyDic.SmallDamage){
 				a = AnimResponce.Damaged;
 			}
