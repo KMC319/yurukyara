@@ -53,7 +53,6 @@ namespace Players{
 		public void Stop() {
 			if (!InJumping){
 				PlayMotion(motionAnimControll.MyDic.WaitName);
-				
 				transform.rotation = lookTarget.rotation;
 			}
 

@@ -21,7 +21,6 @@ namespace Players{
 		private readonly Subject<AnimResponce> responseStream=new Subject<AnimResponce>();
 		public Subject<AnimResponce> ResponseStream => responseStream;
 
-		private AnimBox current;
 
 		private void Start (){
 			playAbleController = this.GetComponent<PlayAbleController>();
@@ -31,9 +30,8 @@ namespace Players{
 		}
 
 		private void Play(AnimBox anim_box){
-			if(current==anim_box)return;
+			if(playAbleController.CurrentAnimBox==anim_box)return;
 			playAbleController.TransAnimation(anim_box);
-			current = anim_box;
 		}
 
 		public AnimBox ChangeAnim(string name){
