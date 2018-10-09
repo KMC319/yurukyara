@@ -11,8 +11,6 @@ using UnityEngine;
 
 namespace Players{
 	public class PlayerAttackControll : MonoBehaviour{
-		[SerializeField] private float bufferTime;
-		
 		private AttackBox currentAttack;
 		private AttackBox currentRoot;
 		private PlayerKeyCode? keyBuffer;
@@ -42,9 +40,6 @@ namespace Players{
 
 		public void InputKey(PlayerKeyCode player_key_code){
 			Attack(player_key_code);
-			
-			
-
 		}
 
 		private void RecieveHit(Collider collider){
@@ -83,17 +78,17 @@ namespace Players{
 
 			
 			if(result==null)return;
+			currentAttack?.ColliderOff();
 			currentAttack = result;
+			currentAttack.ColliderOn();
 			if (currentRoot == null) currentRoot = result;
 			attackAnimControll.Play(currentAttack);
 			InAttack = true;
+			hitEnable = true;
 			
 			keyBuffer = player_key_code;
-			Observable.Timer(TimeSpan.FromSeconds(bufferTime))
+			Observable.Timer(TimeSpan.FromSeconds(currentAttack.bufferTime))
 				.Subscribe(_ => { keyBuffer = null;});
-
-			Observable.Timer(TimeSpan.FromSeconds(currentAttack.enableTime))
-				.Subscribe(_ => { hitEnable = true; });
 		}
 	}
 }

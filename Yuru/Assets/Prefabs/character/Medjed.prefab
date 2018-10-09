@@ -1207,7 +1207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa50507cd06b43159005793a820cdd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bufferTime: 0.1
 --- !u!114 &114563726955007860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1352,54 +1351,61 @@ MonoBehaviour:
   attackBoxs:
   - clip: {fileID: 7400000, guid: abfee0da440851a47a7e3276c2954e06, type: 2}
     delayTime: 0.2
-    enableTime: 0
+    bufferTime: 0.1
     keyCodes: 02000000
     commandType: 0
+    attackColliders:
+    - {fileID: 114826650396584968}
     attackDamageBox:
       damage: 10
       attackType: 0
     nextAttack:
     - clip: {fileID: 7400000, guid: 57342cbc07b47a14aa17e5a85a2491e8, type: 2}
       delayTime: 0
-      enableTime: 0
+      bufferTime: 0
       keyCodes: 
       commandType: 0
+      attackColliders: []
       attackDamageBox:
         damage: 0
         attackType: 0
       nextAttack:
       - clip: {fileID: 7400000, guid: 3cc97e0a292b69b48ae8dc848d0460a1, type: 2}
         delayTime: 0
-        enableTime: 0
+        bufferTime: 0
         keyCodes: 
         commandType: 0
+        attackColliders: []
         attackDamageBox:
           damage: 0
           attackType: 0
         nextAttack:
         - clip: {fileID: 7400000, guid: d611da949aeb263468d1819eee89bd22, type: 2}
           delayTime: 0
-          enableTime: 0
+          bufferTime: 0
           keyCodes: 
           commandType: 0
+          attackColliders: []
           attackDamageBox:
             damage: 0
             attackType: 0
           nextAttack: []
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
     delayTime: 0.2
-    enableTime: 0
+    bufferTime: 0
     keyCodes: 03000000
     commandType: 0
+    attackColliders: []
     attackDamageBox:
       damage: 20
       attackType: 1
     nextAttack: []
   - clip: {fileID: 7400000, guid: 9cf83a6bc851b0743879068705994e54, type: 2}
     delayTime: 0.2
-    enableTime: 0
+    bufferTime: 0
     keyCodes: 02000000
     commandType: 1
+    attackColliders: []
     attackDamageBox:
       damage: 20
       attackType: 1
