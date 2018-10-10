@@ -1456,7 +1456,7 @@ MonoBehaviour:
           nextAttack: []
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
     delayTime: 0.2
-    bufferTime: 0
+    bufferTime: 0.1
     attackInputInfo:
       keyCodes: 03000000
       commandType: 0
@@ -1480,7 +1480,7 @@ MonoBehaviour:
     nextAttack: []
   - clip: {fileID: 7400000, guid: 0ad5ecad466fe0b47b1eccb373b4730d, type: 2}
     delayTime: 0
-    bufferTime: 0
+    bufferTime: 0.1
     attackInputInfo:
       keyCodes: 01000000
       commandType: 0
@@ -1527,6 +1527,19 @@ MonoBehaviour:
         damage: 0
         attackType: 0
       nextAttack: []
+  - clip: {fileID: 7400000, guid: 48b23bf82927a144ca1a9671c7baed81, type: 2}
+    delayTime: 0
+    bufferTime: 0
+    attackInputInfo:
+      keyCodes: 0300000001000000
+      commandType: 0
+      applyPhase: 2
+    attackTools:
+    - {fileID: 114189678837363600}
+    attackDamageBox:
+      damage: 0
+      attackType: 0
+    nextAttack: []
 --- !u!114 &114873695747438188
 MonoBehaviour:
   m_ObjectHideFlags: 1

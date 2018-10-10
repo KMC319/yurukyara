@@ -62,14 +62,17 @@ namespace Players{
 
 		public void Cancel(){
 			transform.rotation = lookTarget.rotation;
-			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+			rigid.velocity = new Vector3(0, 0, 0);
 			rigid.angularVelocity = Vector3.zero;
 		}
 
 		public void Jump(){
 			if (InJumping) return;
-			InJumping = true;
-			PlayMotion(motionAnimControll.MyDic.JumpName);
+			Observable.Timer(TimeSpan.FromSeconds(0.02f)).Subscribe(n=>{
+				if(Math.Abs(rigid.velocity.y) > 0.1f)InJumping = true;
+		});
+
+		PlayMotion(motionAnimControll.MyDic.JumpName);
 			rigid.AddForce(Vector3.up*jumpPower,ForceMode.Impulse);
 		}
 
