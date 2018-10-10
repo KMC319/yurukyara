@@ -13,12 +13,12 @@ namespace Players{
 
 		public bool InDamage{ get; private set; }
 
-		private PlayerAnimControll playerAnimControll;
+		private MotionAnimControll motionAnimControll;
 		
 		private void Start(){
-			playerAnimControll = this.GetComponentInChildren<PlayerAnimControll>();
+			motionAnimControll = this.GetComponentInChildren<MotionAnimControll>();
 
-			playerAnimControll.ResponseStream.Subscribe(RecieveResponce);
+			motionAnimControll.ResponseStream.Subscribe(RecieveResponce);
 		}
 		
 		private void RecieveResponce(AnimResponce responce){
@@ -30,7 +30,7 @@ namespace Players{
 
 		public void Hit(AttackDamageBox attack_damage_box){
 			damageStream.OnNext(attack_damage_box);
-			playerAnimControll.ForceChangeAnim(playerAnimControll.MyDic.SmallDamage);
+			motionAnimControll.ForceChangeAnim(motionAnimControll.MyDic.SmallDamage);
 			InDamage = true;
 		}
 	}

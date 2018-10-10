@@ -1,54 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Animations;
+using Battles.Attack;
 using Battles.Health;
-using doma;
 using UniRx;
 using UnityEngine;
 
 namespace Players{
-	public enum AnimResponce{
-		Wait,AttackEnd,Damaged
-	}
-	[RequireComponent(typeof(BoxContainer))]
-	public class PlayerAnimControll : MonoBehaviour{
-		[SerializeField] public PlayerAnimDictionary MyDic;
-		
+	public class AttackAnimControll : MonoBehaviour{
 		private PlayAbleController playAbleController;
 		private BoxContainer boxContainer;
-		
-		
-		private readonly Subject<AnimResponce> responseStream=new Subject<AnimResponce>();
+		private List<AttackBox> AttackBoxs => boxContainer.AttackBoxs;
+		private readonly Subject<AnimResponce> responseStream = new Subject<AnimResponce>();
 		public Subject<AnimResponce> ResponseStream => responseStream;
 
 		private AnimBox current;
 
-		private void Start (){
+		private void Start(){
 			playAbleController = this.GetComponent<PlayAbleController>();
 			boxContainer = this.GetComponent<BoxContainer>();
-			
+
 			playAbleController.PlayEndStream.Subscribe(FlowResponce);
 		}
 
-		private void Play(AnimBox anim_box){
-			if(current==anim_box)return;
+		public void Play(AnimBox anim_box){
+			if (current == anim_box) return;
 			playAbleController.TransAnimation(anim_box);
 			current = anim_box;
 		}
 
-		public AnimBox ChangeAnim(string name){
-			var res = boxContainer.FindAnim(name);
-			Play(res);
-			return res;
+		public void CashClear(){
+			current = null;
 		}
-		
+
 		public void ChangeAnim(AnimBox anim_box){
 			Play(anim_box);
+		}
+		
+		public AttackBox FindAttack(AttackInputInfo info){
+			return  AttackBoxs
+					.Where(n => n.attackInputInfo.keyCodes.Count == info.keyCodes.Count)
+					.Where(n=>n.attackInputInfo.applyPhase==ApplyPhase.Both||n.attackInputInfo.applyPhase == info.applyPhase)
+					.Where(n => n.attackInputInfo.commandType == info.commandType)
+					.ToList()
+					.Find(n =>n.attackInputInfo.keyCodes.OrderBy(v=>v)
+						.SequenceEqual(info.keyCodes.OrderBy(w=>w)));
 		}
 
 		public void ForceChangeAnim(AnimBox anim_box){
 			playAbleController.TransAnimation(anim_box);
 		}
+
 		public AnimBox ForceChangeAnim(string name){
 			var res = boxContainer.FindAnim(name);
 			playAbleController.TransAnimation(res);
@@ -56,20 +58,9 @@ namespace Players{
 		}
 
 		private void FlowResponce(AnimBox anim_box){
-			AnimResponce? a = null;
-			
 			if (anim_box is AttackBox){
-				a = AnimResponce.AttackEnd;
-			}
-
-			if (anim_box.clip.name == MyDic.SmallDamage){
-				a = AnimResponce.Damaged;
-			}
-
-			if (a != null){
-				responseStream.OnNext((AnimResponce) a);
+				responseStream.OnNext(AnimResponce.AttackEnd);
 			}
 		}
-
 	}
 }

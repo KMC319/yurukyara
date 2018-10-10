@@ -6,7 +6,9 @@ using UnityEngine;
 namespace Animations{
 	public class BoxContainer : MonoBehaviour{
 		[SerializeField] private List<MotionBox> motionBoxs;
+		public List<MotionBox> MotionBoxs => motionBoxs;
 		[SerializeField] private List<AttackBox> attackBoxs;
+		public List<AttackBox> AttackBoxs => attackBoxs;
 
 		public MotionBox FindMotion(string name){
 			return motionBoxs.Find(n=>n.clip.name==name); 

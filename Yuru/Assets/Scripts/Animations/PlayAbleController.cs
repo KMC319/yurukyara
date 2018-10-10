@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Battles.Systems;
 using doma;
 using UniRx;
 using UnityEditor.Animations;
@@ -9,10 +10,10 @@ using UnityEngine.Animations;
 using UnityEngine.Playables;
 
 namespace Animations{
-	public class PlayAbleController : MonoBehaviour{	
+	public class PlayAbleController : MonoBehaviour,IPauseObserver{
 		[SerializeField]private float transtime;
 
-		[SerializeField]private AnimBox currentAnim;
+		[SerializeField]private AnimBox currentAnim;public AnimBox CurrentAnimBox => currentAnim;
 		
 		[SerializeField]private AnimBox defoultAnim;
 
@@ -123,5 +124,12 @@ namespace Animations{
 			});
 		}
 
+		public void Pause(){
+			graph.Stop();
+		}
+
+		public void Resume(){
+			graph.Play();
+		}
 	}
 }
