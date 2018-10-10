@@ -6938,64 +6938,82 @@ MonoBehaviour:
   attackBoxs:
   - clip: {fileID: 7400000, guid: abfee0da440851a47a7e3276c2954e06, type: 2}
     delayTime: 0.2
-    rigorTime: 0.05
-    enableTime: 0
+    bufferTime: 0
+    keyCodes: 
+    commandType: 0
+    attackerCarriers:
+    - {fileID: 0}
+    - {fileID: 0}
     attackDamageBox:
       damage: 10
       attackType: 0
     nextAttack:
     - clip: {fileID: 7400000, guid: 57342cbc07b47a14aa17e5a85a2491e8, type: 2}
       delayTime: 0
-      rigorTime: 0
-      enableTime: 0
+      bufferTime: 0
+      keyCodes: 
+      commandType: 0
+      attackerCarriers: []
       attackDamageBox:
         damage: 0
         attackType: 0
       nextAttack:
       - clip: {fileID: 7400000, guid: 3cc97e0a292b69b48ae8dc848d0460a1, type: 2}
         delayTime: 0
-        rigorTime: 0
-        enableTime: 0
+        bufferTime: 0
+        keyCodes: 
+        commandType: 0
+        attackerCarriers: []
         attackDamageBox:
           damage: 0
           attackType: 0
         nextAttack:
         - clip: {fileID: 7400000, guid: d611da949aeb263468d1819eee89bd22, type: 2}
           delayTime: 0
-          rigorTime: 0
-          enableTime: 0
+          bufferTime: 0
+          keyCodes: 
+          commandType: 0
+          attackerCarriers: []
           attackDamageBox:
             damage: 0
             attackType: 0
           nextAttack: []
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
     delayTime: 0.2
-    rigorTime: 0.05
-    enableTime: 0
+    bufferTime: 0
+    keyCodes: 
+    commandType: 0
+    attackerCarriers: []
     attackDamageBox:
       damage: 0
       attackType: 0
     nextAttack: []
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
     delayTime: 0.2
-    rigorTime: 0.05
-    enableTime: 0
+    bufferTime: 0
+    keyCodes: 
+    commandType: 0
+    attackerCarriers: []
     attackDamageBox:
       damage: 0
       attackType: 0
     nextAttack: []
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
     delayTime: 0.2
-    rigorTime: 0.05
-    enableTime: 0
+    bufferTime: 0
+    keyCodes: 
+    commandType: 0
+    attackerCarriers: []
     attackDamageBox:
       damage: 0
       attackType: 0
     nextAttack: []
   - clip: {fileID: 7400000, guid: 9cf83a6bc851b0743879068705994e54, type: 2}
     delayTime: 0
-    rigorTime: 0.05
-    enableTime: 0
+    bufferTime: 0
+    keyCodes: 
+    commandType: 0
+    attackerCarriers: []
     attackDamageBox:
       damage: 0
       attackType: 0
@@ -7017,12 +7035,8 @@ MonoBehaviour:
     RunName: MJ_Run
     JumpName: MJ_Jumping
     FallName: MJ_Falling
-    RangeName: 
-    WeakName: MJ_WeakAttack1
-    StrongName: MJ_StrongAttack
-    JumpAtName: MJ_JumpAttack
-    GrabName: 
-    GuardName: 
+    SmallDamage: 
+    BigDamage: 
 --- !u!114 &2014340019
 MonoBehaviour:
   m_ObjectHideFlags: 0

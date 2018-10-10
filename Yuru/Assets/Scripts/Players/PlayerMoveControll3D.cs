@@ -61,6 +61,7 @@ namespace Players{
 		}
 
 		public void Cancel(){
+			transform.rotation = lookTarget.rotation;
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 			rigid.angularVelocity = Vector3.zero;
 		}

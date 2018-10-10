@@ -1348,13 +1348,17 @@ MonoBehaviour:
     delayTime: 0
   - clip: {fileID: 7400000, guid: ac0099b1a43931541a90c67e0a8d6f86, type: 2}
     delayTime: 0
+  - clip: {fileID: 7400000, guid: 9e3a75c794851ca4fb6eb3d6bf52b66d, type: 2}
+    delayTime: 0
   attackBoxs:
   - clip: {fileID: 7400000, guid: abfee0da440851a47a7e3276c2954e06, type: 2}
     delayTime: 0.2
     bufferTime: 0.1
-    keyCodes: 02000000
-    commandType: 0
-    attackColliders:
+    attackInputInfo:
+      keyCodes: 02000000
+      commandType: 0
+      applyPhase: 1
+    attackTools:
     - {fileID: 114826650396584968}
     attackDamageBox:
       damage: 10
@@ -1363,9 +1367,11 @@ MonoBehaviour:
     - clip: {fileID: 7400000, guid: 57342cbc07b47a14aa17e5a85a2491e8, type: 2}
       delayTime: 0
       bufferTime: 0
-      keyCodes: 
-      commandType: 0
-      attackColliders: []
+      attackInputInfo:
+        keyCodes: 
+        commandType: 0
+        applyPhase: 0
+      attackTools: []
       attackDamageBox:
         damage: 0
         attackType: 0
@@ -1373,9 +1379,11 @@ MonoBehaviour:
       - clip: {fileID: 7400000, guid: 3cc97e0a292b69b48ae8dc848d0460a1, type: 2}
         delayTime: 0
         bufferTime: 0
-        keyCodes: 
-        commandType: 0
-        attackColliders: []
+        attackInputInfo:
+          keyCodes: 
+          commandType: 0
+          applyPhase: 0
+        attackTools: []
         attackDamageBox:
           damage: 0
           attackType: 0
@@ -1383,9 +1391,11 @@ MonoBehaviour:
         - clip: {fileID: 7400000, guid: d611da949aeb263468d1819eee89bd22, type: 2}
           delayTime: 0
           bufferTime: 0
-          keyCodes: 
-          commandType: 0
-          attackColliders: []
+          attackInputInfo:
+            keyCodes: 
+            commandType: 0
+            applyPhase: 0
+          attackTools: []
           attackDamageBox:
             damage: 0
             attackType: 0
@@ -1393,19 +1403,59 @@ MonoBehaviour:
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
     delayTime: 0.2
     bufferTime: 0
-    keyCodes: 03000000
-    commandType: 0
-    attackColliders: []
+    attackInputInfo:
+      keyCodes: 03000000
+      commandType: 0
+      applyPhase: 0
+    attackTools: []
     attackDamageBox:
       damage: 20
       attackType: 1
     nextAttack: []
   - clip: {fileID: 7400000, guid: 9cf83a6bc851b0743879068705994e54, type: 2}
     delayTime: 0.2
+    bufferTime: 0.1
+    attackInputInfo:
+      keyCodes: 02000000
+      commandType: 1
+      applyPhase: 0
+    attackTools: []
+    attackDamageBox:
+      damage: 20
+      attackType: 1
+    nextAttack: []
+  - clip: {fileID: 7400000, guid: 0ad5ecad466fe0b47b1eccb373b4730d, type: 2}
+    delayTime: 0
     bufferTime: 0
-    keyCodes: 02000000
-    commandType: 1
-    attackColliders: []
+    attackInputInfo:
+      keyCodes: 01000000
+      commandType: 0
+      applyPhase: 0
+    attackTools: []
+    attackDamageBox:
+      damage: 20
+      attackType: 1
+    nextAttack: []
+  - clip: {fileID: 7400000, guid: 67a13c5c47cf1c240b1deabb99e2352d, type: 2}
+    delayTime: 0
+    bufferTime: 0.1
+    attackInputInfo:
+      keyCodes: 02000000
+      commandType: 0
+      applyPhase: 2
+    attackTools: []
+    attackDamageBox:
+      damage: 20
+      attackType: 1
+    nextAttack: []
+  - clip: {fileID: 7400000, guid: fc541b4590f862b4cafe3cf7ead062b1, type: 2}
+    delayTime: 0
+    bufferTime: 0
+    attackInputInfo:
+      keyCodes: 0200000000000000
+      commandType: 0
+      applyPhase: 2
+    attackTools: []
     attackDamageBox:
       damage: 20
       attackType: 1

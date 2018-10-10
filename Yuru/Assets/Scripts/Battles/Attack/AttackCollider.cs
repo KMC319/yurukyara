@@ -2,16 +2,21 @@
 using UnityEngine;
 
 namespace Battles.Attack{
-	public class AttackCollider : MonoBehaviour{
-
-		private Subject<Collider> hitStream=new Subject<Collider>();
-		public IObservable<Collider> HitStream=>hitStream;
+	public class AttackCollider : AttackTool{
 		
-		public bool IsActive{ get; set; }
+		private bool IsActive{ get; set; }
 		
 		private void OnTriggerEnter(Collider other){
 			if(!IsActive)return;
 			hitStream.OnNext(other);
+		}
+
+		public override void On(){
+			IsActive = true;
+		}
+
+		public override void Off(){
+			IsActive = false;
 		}
 	}
 }

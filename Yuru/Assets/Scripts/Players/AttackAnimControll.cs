@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Animations;
+using Battles.Attack;
 using Battles.Health;
 using UniRx;
 using UnityEngine;
@@ -35,21 +36,15 @@ namespace Players{
 		public void ChangeAnim(AnimBox anim_box){
 			Play(anim_box);
 		}
-
-		public AttackBox FindAttack(PlayerKeyCode key1,CommandType command_type){
-			return AttackBoxs
-				.Where(n=>n.keyCodes.Count==1)
-				.Where(n=>n.commandType==command_type)
-				.ToList()
-				.Find(n=>n.keyCodes.Contains(key1));
-		}
 		
-		public AttackBox FindAttack(PlayerKeyCode key1,PlayerKeyCode key2,CommandType command_type){
-			return AttackBoxs
-				.Where(n=>n.keyCodes.Count==2)
-				.Where(n=>n.commandType==command_type)
-				.ToList()
-				.Find(n=>n.keyCodes.Contains(key1)&&n.keyCodes.Contains(key2));
+		public AttackBox FindAttack(AttackInputInfo info){
+			return  AttackBoxs
+					.Where(n => n.attackInputInfo.keyCodes.Count == info.keyCodes.Count)
+					.Where(n=>n.attackInputInfo.applyPhase==ApplyPhase.Both||n.attackInputInfo.applyPhase == info.applyPhase)
+					.Where(n => n.attackInputInfo.commandType == info.commandType)
+					.ToList()
+					.Find(n =>n.attackInputInfo.keyCodes.OrderBy(v=>v)
+						.SequenceEqual(info.keyCodes.OrderBy(w=>w)));
 		}
 
 		public void ForceChangeAnim(AnimBox anim_box){

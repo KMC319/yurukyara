@@ -69,7 +69,7 @@ namespace Players{
 		}
 
 		public void JumpKey(){
-			currentPlayerMove.Jump();
+			if(!playerAttackControll.InAttack)currentPlayerMove.Jump();
 			playerAttackControll.InputKey(PlayerKeyCode.A);
 		}
 

@@ -6,4 +6,8 @@
 	public enum CommandType{
 		Normal,Jump
 	}
+
+	public enum ApplyPhase{
+		Both,P2D,P3D
+	}
 }

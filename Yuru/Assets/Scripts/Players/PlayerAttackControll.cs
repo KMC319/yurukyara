@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using Animations;
 using Battles.Attack;
 using Battles.Health;
+using Battles.Systems;
 using doma;
 using UniRx;
 using UnityEngine;
@@ -21,6 +22,19 @@ namespace Players{
 		private PlayerRootControll taregtPlayer;
 
 
+		private ApplyPhase CurrentPhase{
+			get{
+				var now = PhaseManager.Instance.NowPhase;
+				if ( now == Phase.P2D){
+					return ApplyPhase.P2D;
+				}
+				if (now == Phase.P3D){
+					return ApplyPhase.P3D;
+				}
+				return ApplyPhase.Both;
+			}
+		}
+
 		private CommandType CurrentState{
 			get{ return iPlayerMove.InJumping ? CommandType.Jump : CommandType.Normal; }
 		}
@@ -33,7 +47,7 @@ namespace Players{
 			taregtPlayer = this.GetComponent<IPlayerBinder>().TargetPlayerRootControll;
 
 			attackAnimControll.ResponseStream.Subscribe(RecieveResponce);
-			Observable.Merge(transform.GetComponentsInChildren<AttackCollider>().Select(n => n.HitStream))
+			transform.GetComponentsInChildren<AttackTool>().Select(n => n.HitStream).Merge()
 				.Subscribe(RecieveHit);
 		}
 
@@ -62,13 +76,14 @@ namespace Players{
 
 		private void Attack(PlayerKeyCode player_key_code){
 			AttackBox result = null;
+			var info=new AttackInputInfo(new List<PlayerKeyCode>(){player_key_code},CurrentState,CurrentPhase);
 			if (currentAttack == null){
-				result= attackAnimControll.FindAttack(player_key_code, CurrentState);
+				result= attackAnimControll.FindAttack(info);
 			}else{
 				if (keyBuffer != null){
-					result = attackAnimControll.FindAttack(player_key_code,(PlayerKeyCode)keyBuffer, CurrentState);
-					
-				}else if (attackAnimControll.FindAttack(player_key_code,CurrentState)==currentRoot&&
+					info.keyCodes.Add((PlayerKeyCode)keyBuffer);
+					result = attackAnimControll.FindAttack(info);
+				}else if (attackAnimControll.FindAttack(info)==currentRoot&&
 				          currentAttack.nextAttack != null &&
 				          currentAttack.nextAttack.Length == 1 && 
 				          currentAttack.nextAttack.First().clip != null){
@@ -78,9 +93,9 @@ namespace Players{
 
 			
 			if(result==null)return;
-			currentAttack?.ColliderOff();
+			currentAttack?.ToolsOff();
 			currentAttack = result;
-			currentAttack.ColliderOn();
+			currentAttack.ToolsOn();
 			if (currentRoot == null) currentRoot = result;
 			attackAnimControll.Play(currentAttack);
 			InAttack = true;
