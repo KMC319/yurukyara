@@ -161,6 +161,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1133369555164230
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4007921058958268}
+  - component: {fileID: 65009285530181304}
+  - component: {fileID: 114189678837363600}
+  m_Layer: 0
+  m_Name: Grab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1161232780829192
 GameObject:
   m_ObjectHideFlags: 1
@@ -578,6 +595,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4007921058958268
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133369555164230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0041, z: -0.0121}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 4264654547835380}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4009678331880096
 Transform:
   m_ObjectHideFlags: 1
@@ -698,6 +728,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 4386694139607620}
+  - {fileID: 4007921058958268}
   - {fileID: 4812711386483796}
   - {fileID: 4406490243852966}
   m_Father: {fileID: 4362389576680024}
@@ -772,7 +803,7 @@ Transform:
   - {fileID: 4724012350412540}
   - {fileID: 4159917909101618}
   m_Father: {fileID: 4264654547835380}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4411623131794604
 Transform:
@@ -983,7 +1014,7 @@ Transform:
   - {fileID: 4724131743670144}
   - {fileID: 4020492947421608}
   m_Father: {fileID: 4264654547835380}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4868260506953232
 Transform:
@@ -1096,6 +1127,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!65 &65009285530181304
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133369555164230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65660682100426720
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1183,6 +1226,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cadfea9c4a70479a8912afe1a3cb9d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114189678837363600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133369555164230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b5ea71047a4ee7b5eb8f8e71e2b72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114287165247976132
@@ -1361,7 +1415,7 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114826650396584968}
     attackDamageBox:
-      damage: 10
+      damage: 20
       attackType: 0
     nextAttack:
     - clip: {fileID: 7400000, guid: 57342cbc07b47a14aa17e5a85a2491e8, type: 2}
@@ -1409,7 +1463,7 @@ MonoBehaviour:
       applyPhase: 0
     attackTools: []
     attackDamageBox:
-      damage: 20
+      damage: 0
       attackType: 1
     nextAttack: []
   - clip: {fileID: 7400000, guid: 9cf83a6bc851b0743879068705994e54, type: 2}
@@ -1421,8 +1475,8 @@ MonoBehaviour:
       applyPhase: 0
     attackTools: []
     attackDamageBox:
-      damage: 20
-      attackType: 1
+      damage: 0
+      attackType: 0
     nextAttack: []
   - clip: {fileID: 7400000, guid: 0ad5ecad466fe0b47b1eccb373b4730d, type: 2}
     delayTime: 0
@@ -1433,8 +1487,8 @@ MonoBehaviour:
       applyPhase: 0
     attackTools: []
     attackDamageBox:
-      damage: 20
-      attackType: 1
+      damage: 0
+      attackType: 0
     nextAttack: []
   - clip: {fileID: 7400000, guid: 67a13c5c47cf1c240b1deabb99e2352d, type: 2}
     delayTime: 0
@@ -1445,21 +1499,34 @@ MonoBehaviour:
       applyPhase: 2
     attackTools: []
     attackDamageBox:
-      damage: 20
-      attackType: 1
+      damage: 0
+      attackType: 0
     nextAttack: []
-  - clip: {fileID: 7400000, guid: fc541b4590f862b4cafe3cf7ead062b1, type: 2}
+  - clip: {fileID: 7400000, guid: bc6d772a3db6b5847be20256faa31438, type: 2}
     delayTime: 0
     bufferTime: 0
     attackInputInfo:
       keyCodes: 0200000000000000
       commandType: 0
       applyPhase: 2
-    attackTools: []
+    attackTools:
+    - {fileID: 114189678837363600}
     attackDamageBox:
-      damage: 20
-      attackType: 1
-    nextAttack: []
+      damage: 0
+      attackType: 0
+    nextAttack:
+    - clip: {fileID: 7400000, guid: fc541b4590f862b4cafe3cf7ead062b1, type: 2}
+      delayTime: 0
+      bufferTime: 0
+      attackInputInfo:
+        keyCodes: 
+        commandType: 2
+        applyPhase: 0
+      attackTools: []
+      attackDamageBox:
+        damage: 0
+        attackType: 0
+      nextAttack: []
 --- !u!114 &114873695747438188
 MonoBehaviour:
   m_ObjectHideFlags: 1

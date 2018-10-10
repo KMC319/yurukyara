@@ -47,6 +47,7 @@ namespace Players{
 			taregtPlayer = this.GetComponent<IPlayerBinder>().TargetPlayerRootControll;
 
 			attackAnimControll.ResponseStream.Subscribe(RecieveResponce);
+			
 			transform.GetComponentsInChildren<AttackTool>().Select(n => n.HitStream).Merge()
 				.Subscribe(RecieveHit);
 		}
@@ -59,12 +60,20 @@ namespace Players{
 		private void RecieveHit(Collider collider){
 			if (!(InAttack && hitEnable)) return;
 			if (collider.gameObject != taregtPlayer.gameObject) return;
-			taregtPlayer.playerDamageControll.Hit(currentAttack.attackDamageBox);
 			hitEnable = false;
+
+			if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
+				ChainAttack();
+				return;
+			}
+
+			taregtPlayer.playerDamageControll.Hit(currentAttack.attackDamageBox);
+
 		}
 
 		private void RecieveResponce(AnimResponce anim_responce){
 			if (anim_responce == AnimResponce.AttackEnd){
+				currentAttack.ToolsOff();
 				currentAttack = null;
 				currentRoot = null;
 				keyBuffer = null;
@@ -83,11 +92,8 @@ namespace Players{
 				if (keyBuffer != null){
 					info.keyCodes.Add((PlayerKeyCode)keyBuffer);
 					result = attackAnimControll.FindAttack(info);
-				}else if (attackAnimControll.FindAttack(info)==currentRoot&&
-				          currentAttack.nextAttack != null &&
-				          currentAttack.nextAttack.Length == 1 && 
-				          currentAttack.nextAttack.First().clip != null){
-					result = currentAttack.nextAttack.First();
+				}else if (attackAnimControll.FindAttack(info)==currentRoot&&currentAttack.HasNext){
+					result = currentAttack.NextAttack();
 				}
 			}
 
@@ -104,6 +110,18 @@ namespace Players{
 			keyBuffer = player_key_code;
 			Observable.Timer(TimeSpan.FromSeconds(currentAttack.bufferTime))
 				.Subscribe(_ => { keyBuffer = null;});
+		}
+
+		private void ChainAttack(){
+			currentAttack?.ToolsOff();
+			if (currentAttack != null){
+				currentAttack = currentAttack.NextAttack();
+				currentAttack.ToolsOn();
+				attackAnimControll.Play(currentAttack);
+			}
+
+			InAttack = true;
+			hitEnable = true;
 		}
 	}
 }

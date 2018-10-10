@@ -4,10 +4,13 @@
 	}
 
 	public enum CommandType{
-		Normal,Jump
+		Normal,Jump,Chain
 	}
 
 	public enum ApplyPhase{
 		Both,P2D,P3D
+	}
+	public enum AttackType{
+		Weak,Strong,Range,Grab,Empty
 	}
 }

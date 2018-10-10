@@ -1,5 +1,5 @@
 ﻿using System;
-using Battles.Health;
+using Players;
 
 namespace Battles.Attack{
 	[Serializable]
