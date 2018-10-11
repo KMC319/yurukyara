@@ -286,16 +286,26 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1641650918}
-    - target: {fileID: 114584703195781628, guid: 9eb0b709483152f4a920e0bc606c8be6,
+    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
         type: 2}
-      propertyPath: MyDic.GuardName
-      value: MJ_Guard
+      propertyPath: attackBoxs.Array.data[0].attackDamageBox.knockbackPower.z
+      value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 114563726955007860, guid: 9eb0b709483152f4a920e0bc606c8be6,
+    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
         type: 2}
-      propertyPath: jumpBuffer
-      value: 0.01
+      propertyPath: attackBoxs.Array.data[4].attackInputInfo.applyPhase
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
+        type: 2}
+      propertyPath: attackBoxs.Array.data[0].attackInputInfo.applyPhase
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
+        type: 2}
+      propertyPath: attackBoxs.Array.data[6].attackTools.Array.data[0]
+      value: 
+      objectReference: {fileID: 1331883478}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eb0b709483152f4a920e0bc606c8be6, type: 2}
   m_IsPrefabAsset: 0
@@ -1686,6 +1696,23 @@ Prefab:
     - {fileID: 114159571311739178, guid: 9eb0b709483152f4a920e0bc606c8be6, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 9eb0b709483152f4a920e0bc606c8be6, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1331883467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1717165939482066, guid: 9eb0b709483152f4a920e0bc606c8be6,
+    type: 2}
+  m_PrefabInternal: {fileID: 100478628}
+--- !u!114 &1331883478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1331883467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1ad155e36145e68a007ff318d4080c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guardTime: 0.1
 --- !u!1 &1354892616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1802229719299500, guid: 9eb0b709483152f4a920e0bc606c8be6,

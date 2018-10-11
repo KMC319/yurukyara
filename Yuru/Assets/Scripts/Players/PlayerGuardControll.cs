@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Players{
 	public class PlayerGuardControll : MonoBehaviour{
-		public bool InGuard{ get; private set; }
+		public bool InGuard{ get; set; }
 
 		private MotionAnimControll motionAnimControll;
 

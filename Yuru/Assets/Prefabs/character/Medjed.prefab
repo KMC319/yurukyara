@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 114574708394490642}
   - component: {fileID: 114614085830369872}
   - component: {fileID: 114287165247976132}
+  - component: {fileID: 114842331969505796}
   m_Layer: 0
   m_Name: Medjed
   m_TagString: Player
@@ -1261,7 +1262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa50507cd06b43159005793a820cdd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iPlayerMove: {fileID: 0}
+  keyBufferTime: 0
 --- !u!114 &114563726955007860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1289,6 +1290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blowTime: 0
+  reductionRate: 0
 --- !u!114 &114584703195781628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1414,12 +1416,13 @@ MonoBehaviour:
     attackInputInfo:
       keyCodes: 02000000
       commandType: 0
-      applyPhase: 1
+      applyPhase: 2
     attackTools:
     - {fileID: 114826650396584968}
     attackDamageBox:
       damage: 20
       attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack:
     - clip: {fileID: 7400000, guid: 57342cbc07b47a14aa17e5a85a2491e8, type: 2}
       delayTime: 0
@@ -1432,6 +1435,7 @@ MonoBehaviour:
       attackDamageBox:
         damage: 0
         attackType: 0
+        knockbackPower: {x: 0, y: 0, z: 0}
       nextAttack:
       - clip: {fileID: 7400000, guid: 3cc97e0a292b69b48ae8dc848d0460a1, type: 2}
         delayTime: 0
@@ -1444,6 +1448,7 @@ MonoBehaviour:
         attackDamageBox:
           damage: 0
           attackType: 0
+          knockbackPower: {x: 0, y: 0, z: 0}
         nextAttack:
         - clip: {fileID: 7400000, guid: d611da949aeb263468d1819eee89bd22, type: 2}
           delayTime: 0
@@ -1456,6 +1461,7 @@ MonoBehaviour:
           attackDamageBox:
             damage: 0
             attackType: 0
+            knockbackPower: {x: 0, y: 0, z: 0}
           nextAttack: []
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
     delayTime: 0.2
@@ -1468,6 +1474,7 @@ MonoBehaviour:
     attackDamageBox:
       damage: 0
       attackType: 1
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 9cf83a6bc851b0743879068705994e54, type: 2}
     delayTime: 0.2
@@ -1480,6 +1487,7 @@ MonoBehaviour:
     attackDamageBox:
       damage: 0
       attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 0ad5ecad466fe0b47b1eccb373b4730d, type: 2}
     delayTime: 0
@@ -1492,6 +1500,7 @@ MonoBehaviour:
     attackDamageBox:
       damage: 0
       attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 67a13c5c47cf1c240b1deabb99e2352d, type: 2}
     delayTime: 0
@@ -1499,11 +1508,12 @@ MonoBehaviour:
     attackInputInfo:
       keyCodes: 02000000
       commandType: 0
-      applyPhase: 2
+      applyPhase: 1
     attackTools: []
     attackDamageBox:
       damage: 0
       attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: bc6d772a3db6b5847be20256faa31438, type: 2}
     delayTime: 0
@@ -1517,6 +1527,7 @@ MonoBehaviour:
     attackDamageBox:
       damage: 0
       attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack:
     - clip: {fileID: 7400000, guid: fc541b4590f862b4cafe3cf7ead062b1, type: 2}
       delayTime: 0
@@ -1529,6 +1540,7 @@ MonoBehaviour:
       attackDamageBox:
         damage: 0
         attackType: 0
+        knockbackPower: {x: 0, y: 0, z: 0}
       nextAttack: []
   - clip: {fileID: 7400000, guid: 48b23bf82927a144ca1a9671c7baed81, type: 2}
     delayTime: 0
@@ -1538,11 +1550,24 @@ MonoBehaviour:
       commandType: 0
       applyPhase: 2
     attackTools:
-    - {fileID: 114189678837363600}
+    - {fileID: 114842331969505796}
     attackDamageBox:
       damage: 0
       attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
+--- !u!114 &114842331969505796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1717165939482066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1ad155e36145e68a007ff318d4080c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guardTime: 0.1
 --- !u!114 &114873695747438188
 MonoBehaviour:
   m_ObjectHideFlags: 1

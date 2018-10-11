@@ -12,12 +12,13 @@ using UnityEngine;
 
 namespace Players{
 	public class PlayerAttackControll : MonoBehaviour{
+		[SerializeField] private float keyBufferTime;
 		private AttackBox currentAttack;
 		private AttackBox currentRoot;
 		private PlayerKeyCode? keyBuffer;
 		
 		private AttackAnimControll attackAnimControll;
-		public PlayerMove iPlayerMove;
+		[NonSerialized]public PlayerMove iPlayerMove;
 
 		private PlayerRootControll taregtPlayer;
 
@@ -66,7 +67,7 @@ namespace Players{
 			Attack(player_key_code);
 						
 			keyBuffer = player_key_code;
-			Observable.Timer(TimeSpan.FromSeconds(0.1f))
+			Observable.Timer(TimeSpan.FromSeconds(currentAttack?.bufferTime ?? keyBufferTime))
 				.Subscribe(_ => { keyBuffer = null;});
 		}
 
