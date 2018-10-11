@@ -17,7 +17,7 @@ namespace Players{
 		private PlayerKeyCode? keyBuffer;
 		
 		private AttackAnimControll attackAnimControll;
-		public IPlayerMove iPlayerMove;
+		public PlayerMove iPlayerMove;
 
 		private PlayerRootControll taregtPlayer;
 
@@ -54,6 +54,7 @@ namespace Players{
 				.Subscribe(n => {
 					if (currentAttack.attackInputInfo.commandType != CommandType.Jump){
 						iPlayerMove.Cancel();
+						iPlayerMove.ForceFall();
 					}
 				});
 		}

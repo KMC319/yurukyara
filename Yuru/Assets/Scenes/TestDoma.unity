@@ -249,26 +249,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 329780336}
     m_Modifications:
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[6].nextAttack.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[6].attackTools.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[6].attackInputInfo.keyCodes.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4484029421083002, guid: 9eb0b709483152f4a920e0bc606c8be6, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -306,55 +286,15 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1641650918}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
+    - target: {fileID: 114584703195781628, guid: 9eb0b709483152f4a920e0bc606c8be6,
         type: 2}
-      propertyPath: attackBoxs.Array.data[6].clip
-      value: 
-      objectReference: {fileID: 7400000, guid: 48b23bf82927a144ca1a9671c7baed81, type: 2}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[6].attackInputInfo.keyCodes.Array.data[0]
-      value: 3
+      propertyPath: MyDic.GuardName
+      value: MJ_Guard
       objectReference: {fileID: 0}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
+    - target: {fileID: 114563726955007860, guid: 9eb0b709483152f4a920e0bc606c8be6,
         type: 2}
-      propertyPath: attackBoxs.Array.data[6].attackInputInfo.applyPhase
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[6].attackTools.Array.data[0]
-      value: 
-      objectReference: {fileID: 855782191}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[6].nextAttack.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 7400000, guid: fc541b4590f862b4cafe3cf7ead062b1, type: 2}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[6].nextAttack.Array.data[0].attackInputInfo.commandType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[6].attackInputInfo.keyCodes.Array.data[1]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[1].bufferTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[3].bufferTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114838586287286030, guid: 9eb0b709483152f4a920e0bc606c8be6,
-        type: 2}
-      propertyPath: attackBoxs.Array.data[2].bufferTime
-      value: 0.1
+      propertyPath: jumpBuffer
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eb0b709483152f4a920e0bc606c8be6, type: 2}
@@ -1458,12 +1398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c1342b6f7c9e048839e1f93cee16ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &855782191 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114189678837363600, guid: 9eb0b709483152f4a920e0bc606c8be6,
-    type: 2}
-  m_PrefabInternal: {fileID: 100478628}
-  m_Script: {fileID: 11500000, guid: a2b5ea71047a4ee7b5eb8f8e71e2b72c, type: 3}
 --- !u!1 &887596380
 GameObject:
   m_ObjectHideFlags: 3

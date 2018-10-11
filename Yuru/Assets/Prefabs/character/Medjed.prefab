@@ -1261,6 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa50507cd06b43159005793a820cdd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iPlayerMove: {fileID: 0}
 --- !u!114 &114563726955007860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1275,6 +1276,7 @@ MonoBehaviour:
   speed: 10
   jumpPower: 1500
   fallDouble: 0.5
+  jumpBuffer: 0.01
 --- !u!114 &114574708394490642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1305,6 +1307,7 @@ MonoBehaviour:
     FallName: MJ_Falling
     SmallDamage: MJ_Damage1
     BigDamage: MJ_Damage2
+    GuardName: MJ_Guard
 --- !u!114 &114614085830369872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1554,6 +1557,7 @@ MonoBehaviour:
   speed: 10
   jumpPower: 1500
   fallDouble: 0.5
+  jumpBuffer: 0
 --- !u!114 &114889797704980942
 MonoBehaviour:
   m_ObjectHideFlags: 1

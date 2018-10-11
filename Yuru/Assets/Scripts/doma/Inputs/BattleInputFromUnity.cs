@@ -27,7 +27,7 @@ namespace doma.Inputs{
 			if(Input.GetButtonDown("B1"))rangeAtKey.OnNext(Unit.Default);
 			if(Input.GetButtonDown("X1")){weakAtKey.OnNext(Unit.Default);}
 			if(Input.GetButtonDown("Y1"))strongAtKey.OnNext(Unit.Default);
-			if(Input.GetButtonDown("RB1"))guardKey.OnNext(Unit.Default);
+			if(Input.GetButton("RB1"))guardKey.OnNext(Unit.Default);
 		}
 
 	}
