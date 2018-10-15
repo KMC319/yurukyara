@@ -24,7 +24,8 @@ namespace Battles.Health{
 			healthManagers[1] = foo;
 			p2.playerDamageControll.DamageStream.Subscribe(n => foo.DamageRecieve(n));
 
-			Observable.Merge(hoo.PhaseChangeNotification).Merge(foo.PhaseChangeNotification)
+			hoo.PhaseChangeNotification.Merge()
+				.Merge(foo.PhaseChangeNotification)
 				.Subscribe(n => {
 					if (phaseManager.NowPhase != Phase.P2D) phaseManager.NowPhase = Phase.P2D;
 				});

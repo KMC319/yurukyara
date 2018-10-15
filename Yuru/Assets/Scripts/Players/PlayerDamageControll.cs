@@ -20,6 +20,7 @@ namespace Players{
 		
 		private void Start(){
 			motionAnimControll = this.GetComponentInChildren<MotionAnimControll>();
+			playerGuardControll=this.GetComponent<PlayerGuardControll>();
 
 			rigid = this.GetComponent<Rigidbody>();
 			motionAnimControll.ResponseStream.Subscribe(RecieveResponce);
