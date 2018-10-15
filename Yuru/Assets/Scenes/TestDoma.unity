@@ -607,13 +607,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charHealth: 100
+  stackAbleHeatlh: 0
   healthManagers:
   - health: 0
   - health: 0
   gaugeControlls:
   - {fileID: 1830491516}
   - {fileID: 45244476}
-  phaseManager: {fileID: 475610105}
 --- !u!1 &428498130
 GameObject:
   m_ObjectHideFlags: 0

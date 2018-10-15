@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 114614085830369872}
   - component: {fileID: 114287165247976132}
   - component: {fileID: 114842331969505796}
+  - component: {fileID: 114430904799845806}
   m_Layer: 0
   m_Name: Medjed
   m_TagString: Player
@@ -1263,6 +1264,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyBufferTime: 0
+--- !u!114 &114430904799845806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1717165939482066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1ad155e36145e68a007ff318d4080c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guardTime: 0.1
 --- !u!114 &114563726955007860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1416,7 +1429,7 @@ MonoBehaviour:
     attackInputInfo:
       keyCodes: 02000000
       commandType: 0
-      applyPhase: 2
+      applyPhase: 1
     attackTools:
     - {fileID: 114826650396584968}
     attackDamageBox:
@@ -1457,10 +1470,12 @@ MonoBehaviour:
             keyCodes: 
             commandType: 0
             applyPhase: 0
-          attackTools: []
+          attackTools:
+          - {fileID: 114808690174115834}
+          - {fileID: 114826650396584968}
           attackDamageBox:
             damage: 0
-            attackType: 0
+            attackType: 2
             knockbackPower: {x: 0, y: 0, z: 0}
           nextAttack: []
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
@@ -1470,7 +1485,9 @@ MonoBehaviour:
       keyCodes: 03000000
       commandType: 0
       applyPhase: 0
-    attackTools: []
+    attackTools:
+    - {fileID: 114808690174115834}
+    - {fileID: 114826650396584968}
     attackDamageBox:
       damage: 0
       attackType: 1
@@ -1508,7 +1525,7 @@ MonoBehaviour:
     attackInputInfo:
       keyCodes: 02000000
       commandType: 0
-      applyPhase: 1
+      applyPhase: 2
     attackTools: []
     attackDamageBox:
       damage: 0
@@ -1550,7 +1567,7 @@ MonoBehaviour:
       commandType: 0
       applyPhase: 2
     attackTools:
-    - {fileID: 114842331969505796}
+    - {fileID: 114430904799845806}
     attackDamageBox:
       damage: 0
       attackType: 0
