@@ -1,8 +1,8 @@
 ﻿using doma;
 using UnityEngine;
 
-namespace Players{
-	public class PlayerGuardControll : MonoBehaviour{
+namespace Battles.Players{
+	public class GuardControll : MonoBehaviour{
 		public bool InGuard{ get; set; }
 
 		private MotionAnimControll motionAnimControll;

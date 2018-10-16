@@ -1,5 +1,5 @@
 ﻿using System;
-using Players;
+using Battles.Players;
 using UniRx;
 using UnityEngine;
 
@@ -7,19 +7,19 @@ namespace Battles.Attack{
 	public class BlockShield :AttackTool{
 		[SerializeField] private float guardTime;
 		
-		private PlayerGuardControll playerGuardControll;
+		private GuardControll guardControll;
 
 		private void Start(){
-			playerGuardControll = this.GetComponent<PlayerGuardControll>();
+			guardControll = this.GetComponent<GuardControll>();
 		}
 
 		public override void On(){
-			playerGuardControll.InGuard = true;
-			Observable.Timer(TimeSpan.FromSeconds(guardTime)).Subscribe(n => playerGuardControll.InGuard = false);
+			guardControll.InGuard = true;
+			Observable.Timer(TimeSpan.FromSeconds(guardTime)).Subscribe(n => guardControll.InGuard = false);
 		}
 
 		public override void Off(){
-			playerGuardControll.InGuard = false;
+			guardControll.InGuard = false;
 		}
 	}
 }

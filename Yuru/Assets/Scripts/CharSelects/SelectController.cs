@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Chars;
+using Systems.Chars;
 using doma;
 using doma.Inputs;
 using doma.Interfaces;
@@ -24,8 +24,8 @@ namespace CharSelects{
 
 		protected InputRelayPoint inputRelayPoint;
 		
-		protected CharSelectControll cSc1;
-		protected CharSelectControll cSc2;
+		protected CharSelectedPanelControll cSc1;
+		protected CharSelectedPanelControll cSc2;
 
 		protected InterfaceEventSystem iEs1;
 		protected InterfaceEventSystem iEs2;
@@ -38,13 +38,13 @@ namespace CharSelects{
 			inputRelayPoint = input_relay_point;
 			iEs1 = root.AddComponent<InterfaceEventSystem>();
 			iEs1.CreateActiveSelectableList<CharSelectedPanelP1>(ListCreateOption.Horizontal);
-			cSc1=new CharSelectControll(iEs1,imgs[0]);
+			cSc1=new CharSelectedPanelControll(iEs1,imgs[0]);
 			iEs1.Launch();
 
 			
 			iEs2 = root.AddComponent<InterfaceEventSystem>();
 			iEs2.CreateActiveSelectableList<CharSelectedPanelP2>(ListCreateOption.Horizontal);
-			cSc2=new CharSelectControll(iEs2,imgs[1]);
+			cSc2=new CharSelectedPanelControll(iEs2,imgs[1]);
 			iEs2.Launch();
 
 			cSc1.MyStream.Subscribe(n =>Flow(n,0));

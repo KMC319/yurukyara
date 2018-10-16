@@ -1,11 +1,9 @@
-﻿using System;
-using Battles.Attack;
-using doma;
+﻿using Battles.Attack;
 using UniRx;
 using UnityEngine;
 
-namespace Players{
-	public class PlayerDamageControll : MonoBehaviour{
+namespace Battles.Players{
+	public class DamageControll : MonoBehaviour{
 		[SerializeField] private float blowTime;
 		[SerializeField] private float reductionRate;
 		
@@ -16,11 +14,11 @@ namespace Players{
 
 		private Rigidbody rigid;
 		private MotionAnimControll motionAnimControll;
-		private PlayerGuardControll playerGuardControll;
+		private GuardControll guardControll;
 		
 		private void Start(){
 			motionAnimControll = this.GetComponentInChildren<MotionAnimControll>();
-			playerGuardControll=this.GetComponent<PlayerGuardControll>();
+			guardControll=this.GetComponent<GuardControll>();
 
 			rigid = this.GetComponent<Rigidbody>();
 			motionAnimControll.ResponseStream.Subscribe(RecieveResponce);
@@ -35,7 +33,7 @@ namespace Players{
 
 		public void Hit(AttackDamageBox attack_damage_box){
 
-			if (playerGuardControll.InGuard){
+			if (guardControll.InGuard){
 				if (attack_damage_box.attackType == AttackType.Weak){//guard succeced
 					return;
 				}else if(attack_damage_box.attackType==AttackType.Strong){

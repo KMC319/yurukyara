@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using Battles.Systems;
-using doma;
 using UniRx;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Playables;
 
-namespace Animations{
+namespace Battles.Animations{
 	public class PlayAbleController : MonoBehaviour,IPauseObserver{
 		[SerializeField]private float transtime;
 
@@ -41,14 +37,14 @@ namespace Animations{
 		}
 
 		private void Update(){
-			if (isPlayFinish(transtime,currentAnim.delayTime)&&!once){
+			if (IsPlayFinish(transtime,currentAnim.delayTime)&&!once){
 				//DebugLogger.Log(currentAnim.clip);
 				playEndStream.OnNext(currentAnim);
 				once = true;
 			}
 		}
-		
-		public bool isPlayFinish(float transT,float delay){
+
+		private bool IsPlayFinish(float transT,float delay){
 			if (!currentPlayable.IsValid()){
 				return false;
 			}

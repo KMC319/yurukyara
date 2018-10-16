@@ -1,9 +1,8 @@
 ﻿using System;
 using Systems;
-using Chars;
+using Systems.Chars;
 using doma;
 using doma.Inputs;
-using Players;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +10,7 @@ using UnityEngine.UI;
 using Zenject;
 
 namespace CharSelects{
-	public class CharSelectRoot : MonoBehaviour{
+	public class SelectContollManager : MonoBehaviour{
 		[SerializeField] private ModeName mode;
 		[SerializeField] private Image p1Img;
 		[SerializeField] private Image p2Img;

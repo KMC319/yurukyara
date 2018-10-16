@@ -1,37 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using Animations;
 using Battles.Attack;
-using Battles.Health;
 using Battles.Systems;
-using doma;
 using UniRx;
 using UnityEngine;
 
-namespace Players{
-	public class PlayerAttackControll : MonoBehaviour{
+namespace Battles.Players{
+	public class AttackControll : MonoBehaviour{
 		[SerializeField] private float keyBufferTime;
 		private AttackBox currentAttack;
 		private AttackBox currentRoot;
 		private PlayerKeyCode? keyBuffer;
 		
 		private AttackAnimControll attackAnimControll;
-		[NonSerialized]public PlayerMove iPlayerMove;
+		[NonSerialized]public MoveCotroll iMoveCotroll;
 
-		private PlayerRootControll taregtPlayer;
+		private PlayerRoot taregtPlayer;
 
-		private PlayerRootControll TaregtPlayer{
+		private PlayerRoot TaregtPlayer{
 			get{
 				if (taregtPlayer == null){
-					taregtPlayer = this.GetComponent<IPlayerBinder>().TargetPlayerRootControll;
+					taregtPlayer = this.GetComponent<IPlayerBinder>().TargetPlayerRoot;
 				}
 				return taregtPlayer;
 			}
 		}
-
-
 
 		private ApplyPhase CurrentPhase{
 			get{
@@ -47,7 +41,7 @@ namespace Players{
 		}
 
 		private CommandType CurrentState{
-			get{ return iPlayerMove.InJumping ? CommandType.Jump : CommandType.Normal; }
+			get{ return iMoveCotroll.InJumping ? CommandType.Jump : CommandType.Normal; }
 		}
 
 		public bool InAttack{ get; private set; }
@@ -63,8 +57,8 @@ namespace Players{
 			this.ObserveEveryValueChanged(n => n.InAttack).Where(n => n)
 				.Subscribe(n => {
 					if (currentAttack.attackInputInfo.commandType != CommandType.Jump){
-						iPlayerMove.Cancel();
-						iPlayerMove.ForceFall();
+						iMoveCotroll.Pause();
+						iMoveCotroll.ForceFall();
 					}
 				});
 		}
@@ -90,7 +84,7 @@ namespace Players{
 				return;
 			}
 
-			TaregtPlayer.playerDamageControll.Hit(currentAttack.attackDamageBox);
+			TaregtPlayer.DamageControll.Hit(currentAttack.attackDamageBox);
 
 		}
 
@@ -131,7 +125,7 @@ namespace Players{
 			currentAttack = result;
 			currentAttack.ToolsOn();
 			if (currentRoot == null) currentRoot = result;
-			attackAnimControll.Play(currentAttack);
+			attackAnimControll.ChangeAnim(currentAttack);
 			InAttack = true;
 			hitEnable = true;
 
@@ -141,7 +135,7 @@ namespace Players{
 			currentAttack?.ToolsOff();
 			currentAttack = currentAttack.NextAttack();
 			currentAttack.ToolsOn();
-			attackAnimControll.Play(currentAttack);
+			attackAnimControll.ChangeAnim(currentAttack);
 			InAttack = true;
 			hitEnable = true;
 		}

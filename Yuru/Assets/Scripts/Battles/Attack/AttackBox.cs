@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using Animations;
-using Battles.Attack;
-using Battles.Systems;
-using doma;
-using Players;
+using Battles.Animations;
 using UnityEngine;
 
-namespace Battles.Health{
+namespace Battles.Attack{
 	[Serializable]
 	public class AttackBox:AnimBox{
 		public float bufferTime;

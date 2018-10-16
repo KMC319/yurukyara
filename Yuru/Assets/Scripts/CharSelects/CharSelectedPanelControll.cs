@@ -1,4 +1,4 @@
-﻿using Chars;
+﻿using Systems.Chars;
 using doma;
 using doma.Inputs;
 using doma.Interfaces;
@@ -8,14 +8,14 @@ using UnityEngine.UI;
 using Zenject;
 
 namespace CharSelects{
-	public class CharSelectControll{
+	public class CharSelectedPanelControll{
 		private InterfaceEventSystem interfaceEventSystem;
 		private Subject<CharName?> myStream=new Subject<CharName?>();
 		public IObservable<CharName?> MyStream=>myStream;
 
 		private Image myImg;
 		
-		public CharSelectControll(InterfaceEventSystem interface_event_system,Image img){
+		public CharSelectedPanelControll(InterfaceEventSystem interface_event_system,Image img){
 			interfaceEventSystem = interface_event_system;
 			myImg = img;
 			

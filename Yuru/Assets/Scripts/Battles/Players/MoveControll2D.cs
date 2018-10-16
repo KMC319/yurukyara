@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Players{
-	public class PlayerMoveControll2D :PlayerMove{
+namespace Battles.Players{
+	public class MoveControll2D :MoveCotroll{
 		public override void Move(){
 			if (Math.Abs(HorizontalMovement) < 0.01f && Math.Abs(VerticalMovement) < 0.01f){
 				Stop();

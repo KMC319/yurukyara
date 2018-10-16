@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Battles.Health;
-using Players;
+using Battles.Animations;
+using Battles.Attack;
 using UnityEngine;
 
-namespace Animations{
+namespace Battles.Players{
 	public class BoxContainer : MonoBehaviour{
 		[SerializeField] private List<MotionBox> motionBoxs;
 		public List<MotionBox> MotionBoxs => motionBoxs;

@@ -1,5 +1,4 @@
-﻿using Chars;
-using Players;
+﻿using Systems.Chars;
 using UnityEngine;
 
 namespace Systems{

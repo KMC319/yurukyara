@@ -34,10 +34,9 @@ namespace Start{
 				.Subscribe(_ => Launch())
 				.AddTo(this);
 		}
-		
-		
 
-		public void Launch(){
+
+		private void Launch(){
 			Destroy(text);
 			panelRoot.SetActive(true);
 			inputRelayPoint.IsActive = true;

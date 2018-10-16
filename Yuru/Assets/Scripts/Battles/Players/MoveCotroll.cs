@@ -2,8 +2,8 @@
 using UniRx;
 using UnityEngine;
 
-namespace Players{
-	public abstract class PlayerMove:MonoBehaviour{
+namespace Battles.Players{
+	public abstract class MoveCotroll:MonoBehaviour{
 		[SerializeField] protected float speed;
 		[SerializeField] private float jumpPower;
 		[SerializeField] private float fallDouble=1f;
@@ -42,7 +42,7 @@ namespace Players{
 			rigid.angularVelocity = Vector3.zero;
 		}
 
-		public virtual void Cancel(){
+		public virtual void Pause(){
 			transform.rotation = lookTarget.rotation;
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 			rigid.angularVelocity = Vector3.zero;

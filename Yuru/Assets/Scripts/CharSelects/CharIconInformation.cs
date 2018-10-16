@@ -1,5 +1,5 @@
 ﻿using System;
-using Chars;
+using Systems.Chars;
 using UnityEngine;
 
 namespace CharSelects{
