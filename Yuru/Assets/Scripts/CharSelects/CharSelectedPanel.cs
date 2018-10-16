@@ -6,12 +6,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace CharSelects{
-	public abstract class SelectedPanel : MonoBehaviour,ISelectablePanel{
+	public abstract class CharSelectedPanel : MonoBehaviour,ISelectablePanel{
 
 		public CharName charName{ get; private set; }
 		private Image img;
 
-		private void Awake(){
+		private void Start(){
 			try{
 				charName = this.transform.parent.GetComponent<CharIconPanel>().MyName;
 			}catch (Exception e){

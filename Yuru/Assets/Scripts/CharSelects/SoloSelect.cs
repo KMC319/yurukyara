@@ -1,10 +1,11 @@
 ﻿using Chars;
 using doma.Inputs;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CharSelects{
 	public class SoloSelect:SelectController{
-		public SoloSelect(GameObject root,InputRelayPoint input_relay_point) : base(root,input_relay_point){
+		public SoloSelect(GameObject root,InputRelayPoint input_relay_point,Image[] images) : base(root,input_relay_point,images){
 			SetFirstCtl();
 		}
 
