@@ -4,7 +4,7 @@ using Players;
 using UnityEngine;
 
 public class LookTarget : MonoBehaviour {
-	[SerializeField] private GameObject target;
+	[SerializeField] public GameObject target;
 	private Vector3 targetDistance;
 
 	private PlayerRootControll rootControll;

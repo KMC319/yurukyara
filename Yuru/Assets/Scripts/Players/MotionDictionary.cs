@@ -10,5 +10,6 @@ namespace Players{
 		public string FallName;
 		public string SmallDamage;
 		public string BigDamage;
+		public string GuardName;
 	}
 }

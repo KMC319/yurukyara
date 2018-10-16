@@ -161,6 +161,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1133369555164230
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4007921058958268}
+  - component: {fileID: 65009285530181304}
+  - component: {fileID: 114189678837363600}
+  m_Layer: 0
+  m_Name: Grab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1161232780829192
 GameObject:
   m_ObjectHideFlags: 1
@@ -419,14 +436,14 @@ GameObject:
   - component: {fileID: 4484029421083002}
   - component: {fileID: 54312314689911842}
   - component: {fileID: 136807098624763582}
-  - component: {fileID: 114159571311739178}
   - component: {fileID: 114563726955007860}
   - component: {fileID: 114687197290349954}
   - component: {fileID: 114873695747438188}
   - component: {fileID: 114298265573569972}
   - component: {fileID: 114574708394490642}
-  - component: {fileID: 114614085830369872}
   - component: {fileID: 114287165247976132}
+  - component: {fileID: 114842331969505796}
+  - component: {fileID: 114482414692918188}
   m_Layer: 0
   m_Name: Medjed
   m_TagString: Player
@@ -578,6 +595,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4007921058958268
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133369555164230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0041, z: -0.0121}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 4264654547835380}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4009678331880096
 Transform:
   m_ObjectHideFlags: 1
@@ -698,6 +728,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 4386694139607620}
+  - {fileID: 4007921058958268}
   - {fileID: 4812711386483796}
   - {fileID: 4406490243852966}
   m_Father: {fileID: 4362389576680024}
@@ -772,7 +803,7 @@ Transform:
   - {fileID: 4724012350412540}
   - {fileID: 4159917909101618}
   m_Father: {fileID: 4264654547835380}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4411623131794604
 Transform:
@@ -983,7 +1014,7 @@ Transform:
   - {fileID: 4724131743670144}
   - {fileID: 4020492947421608}
   m_Father: {fileID: 4264654547835380}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4868260506953232
 Transform:
@@ -1096,6 +1127,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!65 &65009285530181304
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133369555164230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65660682100426720
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1174,15 +1217,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114159571311739178
+--- !u!114 &114189678837363600
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1717165939482066}
+  m_GameObject: {fileID: 1133369555164230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cadfea9c4a70479a8912afe1a3cb9d43, type: 3}
+  m_Script: {fileID: 11500000, guid: a2b5ea71047a4ee7b5eb8f8e71e2b72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114287165247976132
@@ -1207,6 +1250,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa50507cd06b43159005793a820cdd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyBufferTime: 0
+--- !u!114 &114482414692918188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1717165939482066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7f183f900dd93428649965a444ff5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: 1
 --- !u!114 &114563726955007860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1221,6 +1277,7 @@ MonoBehaviour:
   speed: 10
   jumpPower: 1500
   fallDouble: 0.5
+  jumpBuffer: 0.01
 --- !u!114 &114574708394490642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1233,6 +1290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blowTime: 0
+  reductionRate: 0
 --- !u!114 &114584703195781628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1251,23 +1309,7 @@ MonoBehaviour:
     FallName: MJ_Falling
     SmallDamage: MJ_Damage1
     BigDamage: MJ_Damage2
---- !u!114 &114614085830369872
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1717165939482066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _components:
-  - {fileID: 114159571311739178}
-  _identifier: 
-  _useSceneContext: 0
-  _context: {fileID: 0}
-  _bindType: 0
+    GuardName: MJ_Guard
 --- !u!114 &114687197290349954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1361,8 +1403,9 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114826650396584968}
     attackDamageBox:
-      damage: 10
+      damage: 20
       attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack:
     - clip: {fileID: 7400000, guid: 57342cbc07b47a14aa17e5a85a2491e8, type: 2}
       delayTime: 0
@@ -1375,6 +1418,7 @@ MonoBehaviour:
       attackDamageBox:
         damage: 0
         attackType: 0
+        knockbackPower: {x: 0, y: 0, z: 0}
       nextAttack:
       - clip: {fileID: 7400000, guid: 3cc97e0a292b69b48ae8dc848d0460a1, type: 2}
         delayTime: 0
@@ -1387,6 +1431,7 @@ MonoBehaviour:
         attackDamageBox:
           damage: 0
           attackType: 0
+          knockbackPower: {x: 0, y: 0, z: 0}
         nextAttack:
         - clip: {fileID: 7400000, guid: d611da949aeb263468d1819eee89bd22, type: 2}
           delayTime: 0
@@ -1395,22 +1440,28 @@ MonoBehaviour:
             keyCodes: 
             commandType: 0
             applyPhase: 0
-          attackTools: []
+          attackTools:
+          - {fileID: 114808690174115834}
+          - {fileID: 114826650396584968}
           attackDamageBox:
             damage: 0
-            attackType: 0
+            attackType: 2
+            knockbackPower: {x: 0, y: 0, z: 0}
           nextAttack: []
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
     delayTime: 0.2
-    bufferTime: 0
+    bufferTime: 0.1
     attackInputInfo:
       keyCodes: 03000000
       commandType: 0
       applyPhase: 0
-    attackTools: []
+    attackTools:
+    - {fileID: 114808690174115834}
+    - {fileID: 114826650396584968}
     attackDamageBox:
-      damage: 20
+      damage: 0
       attackType: 1
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 9cf83a6bc851b0743879068705994e54, type: 2}
     delayTime: 0.2
@@ -1421,20 +1472,22 @@ MonoBehaviour:
       applyPhase: 0
     attackTools: []
     attackDamageBox:
-      damage: 20
-      attackType: 1
+      damage: 0
+      attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 0ad5ecad466fe0b47b1eccb373b4730d, type: 2}
     delayTime: 0
-    bufferTime: 0
+    bufferTime: 0.1
     attackInputInfo:
       keyCodes: 01000000
       commandType: 0
       applyPhase: 0
     attackTools: []
     attackDamageBox:
-      damage: 20
-      attackType: 1
+      damage: 0
+      attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 67a13c5c47cf1c240b1deabb99e2352d, type: 2}
     delayTime: 0
@@ -1445,21 +1498,63 @@ MonoBehaviour:
       applyPhase: 2
     attackTools: []
     attackDamageBox:
-      damage: 20
-      attackType: 1
+      damage: 0
+      attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
-  - clip: {fileID: 7400000, guid: fc541b4590f862b4cafe3cf7ead062b1, type: 2}
+  - clip: {fileID: 7400000, guid: bc6d772a3db6b5847be20256faa31438, type: 2}
     delayTime: 0
     bufferTime: 0
     attackInputInfo:
       keyCodes: 0200000000000000
       commandType: 0
       applyPhase: 2
-    attackTools: []
+    attackTools:
+    - {fileID: 114189678837363600}
     attackDamageBox:
-      damage: 20
-      attackType: 1
+      damage: 0
+      attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 0}
+    nextAttack:
+    - clip: {fileID: 7400000, guid: fc541b4590f862b4cafe3cf7ead062b1, type: 2}
+      delayTime: 0
+      bufferTime: 0
+      attackInputInfo:
+        keyCodes: 
+        commandType: 2
+        applyPhase: 0
+      attackTools: []
+      attackDamageBox:
+        damage: 0
+        attackType: 0
+        knockbackPower: {x: 0, y: 0, z: 0}
+      nextAttack: []
+  - clip: {fileID: 7400000, guid: 48b23bf82927a144ca1a9671c7baed81, type: 2}
+    delayTime: 0
+    bufferTime: 0
+    attackInputInfo:
+      keyCodes: 0300000001000000
+      commandType: 0
+      applyPhase: 2
+    attackTools:
+    - {fileID: 0}
+    attackDamageBox:
+      damage: 0
+      attackType: 0
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
+--- !u!114 &114842331969505796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1717165939482066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1ad155e36145e68a007ff318d4080c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guardTime: 0.1
 --- !u!114 &114873695747438188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1474,6 +1569,7 @@ MonoBehaviour:
   speed: 10
   jumpPower: 1500
   fallDouble: 0.5
+  jumpBuffer: 0
 --- !u!114 &114889797704980942
 MonoBehaviour:
   m_ObjectHideFlags: 1

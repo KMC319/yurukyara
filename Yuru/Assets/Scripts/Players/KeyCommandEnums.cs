@@ -4,7 +4,7 @@
 	}
 
 	public enum CommandType{
-		Normal,Jump
+		Normal,Jump,Chain
 	}
 
 	public enum ApplyPhase{

@@ -10,9 +10,9 @@ namespace Players{
 		                         !playerGuardControll.InGuard &&
 		                         !playerDamageControll.InDamage;
 
-		public IPlayerMove currentPlayerMove { get; private set; }
-		private IPlayerMove playerMoveControll3D;
-		private IPlayerMove playerMoveControll2D;
+		public PlayerMove currentPlayerMove { get; private set; }
+		private PlayerMove playerMoveControll3D;
+		private PlayerMove playerMoveControll2D;
 		private PlayerAttackControll playerAttackControll;
 		private PlayerGuardControll playerGuardControll;
 		
@@ -32,7 +32,7 @@ namespace Players{
 		}
 
 		private void Update() {
-			currentPlayerMove.FallCheck(playerAttackControll.InAttack);
+			currentPlayerMove.FallCheck(playerAttackControll.InAttack||playerGuardControll.InGuard);
 		}
 
 		private void FixedUpdate(){
@@ -74,23 +74,20 @@ namespace Players{
 		}
 
 		public void RangeAtKey(){
-			currentPlayerMove.Cancel();
 			playerAttackControll.InputKey(PlayerKeyCode.B);
 		}
 
 		public void WeakAtKey(){
-			currentPlayerMove.Cancel();
 			playerAttackControll.InputKey(PlayerKeyCode.X);
 		}
 
 		public void StrongAtKey(){
-			currentPlayerMove.Cancel();
 			playerAttackControll.InputKey(PlayerKeyCode.Y);
 		}
 
 		public void GuardKey(){
-			currentPlayerMove.Cancel();
 			playerGuardControll.GuardCommand();
+			currentPlayerMove.Cancel();
 		}
 		
 		public void ChangePhase(Phase changedPhase){

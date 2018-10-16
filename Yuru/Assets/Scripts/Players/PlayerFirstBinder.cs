@@ -1,11 +1,12 @@
-﻿using doma.Inputs;
+﻿using doma;
+using doma.Inputs;
 using UnityEngine;
 using Zenject;
 
 namespace Players{
 	public class PlayerFirstBinder : MonoBehaviour,IPlayerBinder{
 
-		[Inject]private PlayerSecondBinder target;
+		private PlayerSecondBinder target;
 
 		public PlayerRootControll TargetPlayerRootControll => target.PlayerRootControll;
 		public PlayerRootControll PlayerRootControll{ get; set; }
@@ -21,9 +22,14 @@ namespace Players{
 			Launch();
 		}
 
+
 		public void Launch(){
 			inputRelayPoint.ChangeReciever(PlayerRootControll);
 			inputRelayPoint.IsActive = true;
+		}
+
+		public void SetUp(PlayerSecondBinder player_second_binder){
+			target = player_second_binder;
 		}
 	}
 }

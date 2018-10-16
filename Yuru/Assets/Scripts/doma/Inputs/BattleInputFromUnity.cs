@@ -23,11 +23,11 @@ namespace doma.Inputs{
 			horizontalAxsis.OnNext(Input.GetAxisRaw("Horizontal"));
 			verticalAxsis.OnNext(Input.GetAxisRaw("Vertical"));
 			
-			if(Input.GetButtonDown("Jump"))jumpKey.OnNext(Unit.Default);
-			if(Input.GetButtonDown("Fire1")){weakAtKey.OnNext(Unit.Default);}
-			if(Input.GetButtonDown("Fire2"))strongAtKey.OnNext(Unit.Default);
-			if(Input.GetButtonDown("Fire3"))guardKey.OnNext(Unit.Default);
-			if(Input.GetButtonDown("Fire4"))rangeAtKey.OnNext(Unit.Default);
+			if(Input.GetButtonDown("A1"))jumpKey.OnNext(Unit.Default);
+			if(Input.GetButtonDown("B1"))rangeAtKey.OnNext(Unit.Default);
+			if(Input.GetButtonDown("X1")){weakAtKey.OnNext(Unit.Default);}
+			if(Input.GetButtonDown("Y1"))strongAtKey.OnNext(Unit.Default);
+			if(Input.GetButton("RB1"))guardKey.OnNext(Unit.Default);
 		}
 
 	}
