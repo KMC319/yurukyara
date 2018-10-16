@@ -1,5 +1,4 @@
 ﻿using System;
-using Players;
 using UnityEngine;
 
 namespace Battles.Attack{
@@ -8,5 +7,8 @@ namespace Battles.Attack{
 		public float damage;
 		public AttackType attackType;
 		public Vector3 knockbackPower;
+	}
+	public enum AttackType{
+		Weak,Strong,Finish,Range,Grab,Empty
 	}
 }

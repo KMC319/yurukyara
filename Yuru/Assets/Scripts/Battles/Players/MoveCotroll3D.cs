@@ -1,13 +1,8 @@
 ﻿using System;
-using Animations;
-using doma;
-using doma.Inputs;
-using UniRx;
 using UnityEngine;
-using Zenject;
 
-namespace Players{
-	public class PlayerMoveControll3D :PlayerMove{
+namespace Battles.Players{
+	public class MoveCotroll3D :MoveCotroll{
 		public override void Move(){
 			if (Math.Abs(HorizontalMovement) < 0.01f && Math.Abs(VerticalMovement) < 0.01f){
 				Stop();

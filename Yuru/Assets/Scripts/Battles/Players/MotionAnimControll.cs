@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Animations;
-using Battles.Health;
-using doma;
+﻿using Battles.Animations;
 using UniRx;
 using UnityEngine;
 
-namespace Players{
+namespace Battles.Players{
 	public enum AnimResponce{
 		Wait,AttackEnd,Damaged
 	}
@@ -19,7 +15,7 @@ namespace Players{
 		
 		
 		private readonly Subject<AnimResponce> responseStream=new Subject<AnimResponce>();
-		public Subject<AnimResponce> ResponseStream => responseStream;
+		public IObservable<AnimResponce> ResponseStream => responseStream;
 
 
 		private void Start (){

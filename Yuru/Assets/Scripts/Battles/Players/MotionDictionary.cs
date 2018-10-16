@@ -1,7 +1,6 @@
 ﻿using System;
-using UnityEngine;
 
-namespace Players{
+namespace Battles.Players{
 	[Serializable]
 	public struct MotionDictionary{
 		public string WaitName;

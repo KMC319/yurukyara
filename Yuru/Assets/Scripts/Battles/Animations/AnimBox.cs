@@ -1,8 +1,7 @@
 ﻿using System;
-using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Animations{
+namespace Battles.Animations{
 	[Serializable]
 	public abstract class AnimBox{
 		public AnimationClip clip;

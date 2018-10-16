@@ -1,8 +1,9 @@
-﻿using Cinemachine;
+﻿using Battles.Players;
+using Cinemachine;
 using UnityEngine;
 using Zenject;
 
-namespace Players{
+namespace Battles.Systems{
 	public class PlayerDIContainer : MonoBehaviour{
 		[SerializeField] private CinemachineVirtualCamera p1Vcam;
 		[SerializeField] private CinemachineVirtualCamera p2Vcam;
@@ -10,8 +11,8 @@ namespace Players{
 		[Inject] private DiContainer diContainer;
 		
 		public void Launch(GameObject p1,GameObject p2){
-			var p1fb = p1.AddComponent<PlayerFirstBinder>();
-			var p2fb = p2.AddComponent<PlayerSecondBinder>();
+			var p1fb = p1.AddComponent<FirstPlayerBinder>();
+			var p2fb = p2.AddComponent<SecondPlayerBinder>();
 			p1fb.SetUp(p2fb);
 			p2fb.SerUp(p1fb);
 			

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Players;
 
 namespace Battles.Attack{
 	[Serializable]
@@ -14,5 +13,15 @@ namespace Battles.Attack{
 			commandType = command_type;
 			applyPhase = apply_phase;
 		}
+	}
+	
+	public enum PlayerKeyCode{
+		A,B,X,Y,RArrow,LArrow,UArrow,DArrow
+	}
+	public enum CommandType{
+		Normal,Jump,Chain
+	}
+	public enum ApplyPhase{
+		Both,P2D,P3D
 	}
 }

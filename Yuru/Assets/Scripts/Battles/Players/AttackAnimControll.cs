@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Animations;
+using Battles.Animations;
 using Battles.Attack;
-using Battles.Health;
 using UniRx;
 using UnityEngine;
 
-namespace Players{
+namespace Battles.Players{
 	public class AttackAnimControll : MonoBehaviour{
 		private PlayAbleController playAbleController;
 		private BoxContainer boxContainer;
 		private List<AttackBox> AttackBoxs => boxContainer.AttackBoxs;
 		private readonly Subject<AnimResponce> responseStream = new Subject<AnimResponce>();
-		public Subject<AnimResponce> ResponseStream => responseStream;
+		public IObservable<AnimResponce> ResponseStream => responseStream;
 
 		private AnimBox current;
 
@@ -23,7 +22,7 @@ namespace Players{
 			playAbleController.PlayEndStream.Subscribe(FlowResponce);
 		}
 
-		public void Play(AnimBox anim_box){
+		public void ChangeAnim(AnimBox anim_box){
 			if (current == anim_box) return;
 			playAbleController.TransAnimation(anim_box);
 			current = anim_box;
@@ -33,9 +32,6 @@ namespace Players{
 			current = null;
 		}
 
-		public void ChangeAnim(AnimBox anim_box){
-			Play(anim_box);
-		}
 		
 		public AttackBox FindAttack(AttackInputInfo info){
 			return  AttackBoxs

@@ -1,5 +1,5 @@
 ﻿using System;
-using Chars;
+using Systems.Chars;
 using doma;
 using doma.Interfaces;
 using UnityEngine;
@@ -15,7 +15,7 @@ namespace CharSelects{
 			try{
 				charName = this.transform.parent.GetComponent<CharIconPanel>().MyName;
 			}catch (Exception e){
-				DebugLogger.LogError("MyParent isnt CharIconPanel ");
+				DebugLogger.LogError(e+"MyParent isnt CharIconPanel ");
 				throw;
 			}
 
