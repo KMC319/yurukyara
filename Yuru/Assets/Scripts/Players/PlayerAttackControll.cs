@@ -22,6 +22,16 @@ namespace Players{
 
 		private PlayerRootControll taregtPlayer;
 
+		private PlayerRootControll TaregtPlayer{
+			get{
+				if (taregtPlayer == null){
+					taregtPlayer = this.GetComponent<IPlayerBinder>().TargetPlayerRootControll;
+				}
+				return taregtPlayer;
+			}
+		}
+
+
 
 		private ApplyPhase CurrentPhase{
 			get{
@@ -45,8 +55,7 @@ namespace Players{
 
 		private void Start(){
 			attackAnimControll = this.GetComponentInChildren<AttackAnimControll>();
-			taregtPlayer = this.GetComponent<IPlayerBinder>().TargetPlayerRootControll;
-
+			
 			attackAnimControll.ResponseStream.Subscribe(RecieveResponce);
 			
 			transform.GetComponentsInChildren<AttackTool>().Select(n => n.HitStream).Merge()
@@ -73,7 +82,7 @@ namespace Players{
 
 		private void RecieveHit(Collider collider){
 			if (!(InAttack && hitEnable)) return;
-			if (collider.gameObject != taregtPlayer.gameObject) return;
+			if (collider.gameObject != TaregtPlayer.gameObject) return;
 			hitEnable = false;
 
 			if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
@@ -81,7 +90,7 @@ namespace Players{
 				return;
 			}
 
-			taregtPlayer.playerDamageControll.Hit(currentAttack.attackDamageBox);
+			TaregtPlayer.playerDamageControll.Hit(currentAttack.attackDamageBox);
 
 		}
 

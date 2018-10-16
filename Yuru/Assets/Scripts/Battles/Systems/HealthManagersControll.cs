@@ -1,13 +1,9 @@
-﻿using System;
-using Battles.Attack;
-using Battles.Systems;
-using doma;
+﻿using doma;
 using Players;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Battles.Health{
+namespace Battles.Systems{
 	public class HealthManagersControll : MonoBehaviour{
 		[SerializeField]private float charHealth;
 		[SerializeField] private float stackAbleHeatlh;

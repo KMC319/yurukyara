@@ -436,16 +436,14 @@ GameObject:
   - component: {fileID: 4484029421083002}
   - component: {fileID: 54312314689911842}
   - component: {fileID: 136807098624763582}
-  - component: {fileID: 114159571311739178}
   - component: {fileID: 114563726955007860}
   - component: {fileID: 114687197290349954}
   - component: {fileID: 114873695747438188}
   - component: {fileID: 114298265573569972}
   - component: {fileID: 114574708394490642}
-  - component: {fileID: 114614085830369872}
   - component: {fileID: 114287165247976132}
   - component: {fileID: 114842331969505796}
-  - component: {fileID: 114430904799845806}
+  - component: {fileID: 114482414692918188}
   m_Layer: 0
   m_Name: Medjed
   m_TagString: Player
@@ -1219,17 +1217,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114159571311739178
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1717165939482066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cadfea9c4a70479a8912afe1a3cb9d43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114189678837363600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1264,7 +1251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyBufferTime: 0
---- !u!114 &114430904799845806
+--- !u!114 &114482414692918188
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1272,10 +1259,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1717165939482066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee1ad155e36145e68a007ff318d4080c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a7f183f900dd93428649965a444ff5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guardTime: 0.1
+  charName: 1
 --- !u!114 &114563726955007860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1323,23 +1310,6 @@ MonoBehaviour:
     SmallDamage: MJ_Damage1
     BigDamage: MJ_Damage2
     GuardName: MJ_Guard
---- !u!114 &114614085830369872
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1717165939482066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _components:
-  - {fileID: 114159571311739178}
-  _identifier: 
-  _useSceneContext: 0
-  _context: {fileID: 0}
-  _bindType: 0
 --- !u!114 &114687197290349954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1567,7 +1537,7 @@ MonoBehaviour:
       commandType: 0
       applyPhase: 2
     attackTools:
-    - {fileID: 114430904799845806}
+    - {fileID: 0}
     attackDamageBox:
       damage: 0
       attackType: 0
