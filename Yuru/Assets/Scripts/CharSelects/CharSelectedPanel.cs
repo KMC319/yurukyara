@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace CharSelects{
-	public abstract class SelectedPanel : MonoBehaviour,ISelectablePanel{
+	public abstract class CharSelectedPanel : MonoBehaviour,ISelectablePanel{
 
 		public CharName charName{ get; private set; }
 		private Image img;

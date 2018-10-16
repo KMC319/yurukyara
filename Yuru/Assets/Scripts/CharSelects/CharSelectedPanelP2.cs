@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace CharSelects{
-	public class SelectedPanelP1 : SelectedPanel{
+	public class CharSelectedPanelP2 : CharSelectedPanel{
 		
 	}
 }

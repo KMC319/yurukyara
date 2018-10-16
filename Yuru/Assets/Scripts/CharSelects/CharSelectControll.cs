@@ -25,20 +25,20 @@ namespace CharSelects{
 		}
 
 		private void Focus(ISelectablePanel i_selectable_panel){
-			if (!(i_selectable_panel is SelectedPanel)){
+			if (!(i_selectable_panel is CharSelectedPanel)){
 				DebugLogger.LogError(i_selectable_panel+" is should not be selecting");
 				return;
 			}
-			var char_panel=(SelectedPanel) i_selectable_panel;
+			var char_panel=(CharSelectedPanel) i_selectable_panel;
 			myImg.sprite = FindCharImg(char_panel.charName);
 		}
 
 		private void Submit(ISelectablePanel i_selectable_panel){
-			if (!(i_selectable_panel is SelectedPanel)){
+			if (!(i_selectable_panel is CharSelectedPanel)){
 				DebugLogger.LogError(i_selectable_panel+" is should not be selecting");
 				return;
 			}
-			var char_panel=(SelectedPanel) i_selectable_panel;
+			var char_panel=(CharSelectedPanel) i_selectable_panel;
 			myStream.OnNext(char_panel.charName);
 		}
 

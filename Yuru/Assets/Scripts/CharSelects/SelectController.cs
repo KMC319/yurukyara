@@ -37,13 +37,13 @@ namespace CharSelects{
 			}
 			inputRelayPoint = input_relay_point;
 			iEs1 = root.AddComponent<InterfaceEventSystem>();
-			iEs1.CreateActiveSelectableList<SelectedPanelP1>(ListCreateOption.Horizontal);
+			iEs1.CreateActiveSelectableList<CharSelectedPanelP1>(ListCreateOption.Horizontal);
 			cSc1=new CharSelectControll(iEs1,imgs[0]);
 			iEs1.Launch();
 
 			
 			iEs2 = root.AddComponent<InterfaceEventSystem>();
-			iEs2.CreateActiveSelectableList<SelectedPanelP2>(ListCreateOption.Horizontal);
+			iEs2.CreateActiveSelectableList<CharSelectedPanelP2>(ListCreateOption.Horizontal);
 			cSc2=new CharSelectControll(iEs2,imgs[1]);
 			iEs2.Launch();
 
