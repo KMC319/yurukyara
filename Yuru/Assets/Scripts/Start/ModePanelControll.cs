@@ -50,7 +50,7 @@ namespace Start{
 			}
 
 			var mode_select_panel = (ModeSelectedPanel) i_selectable_panel;
-			GameModeManager.instance.mode = mode_select_panel.GetModeName;
+			GameStateManager.instance.mode = mode_select_panel.GetModeName;
 			DebugLogger.Log(mode_select_panel.GetModeName);
 			SceneManager.LoadScene("CharSelect");
 		}

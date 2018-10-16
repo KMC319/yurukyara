@@ -3,8 +3,10 @@ using Systems;
 using Chars;
 using doma;
 using doma.Inputs;
+using Players;
 using UniRx;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
@@ -20,8 +22,12 @@ namespace CharSelects{
 
 		private void Start(){
 			var imgs = new Image[]{p1Img, p2Img};
+			var m = mode;
+			if (GameStateManager.instance != null){
+				m = GameStateManager.instance.mode;
+			}
 			SelectController select_controller;
-			switch (mode){
+			switch (m){
 				case ModeName.Arcade:
 					throw new ArgumentOutOfRangeException();
 					break;
@@ -50,6 +56,11 @@ namespace CharSelects{
 				throw;
 			}
 			DebugLogger.Log(selectedChars[0]+","+selectedChars[1]);
+			if (selectedChars[0] != null && selectedChars[1] != null){
+				GameStateManager.instance.player1 = (CharName)selectedChars[0];
+				GameStateManager.instance.player2 = (CharName)selectedChars[1];
+				SceneManager.LoadScene("TestDoma");
+			}
 		}
 
 	}

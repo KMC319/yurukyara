@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using Chars;
+using Players;
+using UnityEngine;
 
 namespace Systems{
-	public class GameModeManager : MonoBehaviour{
+	public class GameStateManager : MonoBehaviour{
 
 		public ModeName mode;
-		public static GameModeManager instance;
+		public CharName player1;
+		public CharName player2;
+		public static GameStateManager instance;
 
 		private void Awake(){
 			if (instance == null){

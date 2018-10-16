@@ -6,7 +6,7 @@ namespace Battles.Attack{
 		[SerializeField] private Bullet bullet;
 
 		private void Start(){
-			bullet.HitStream.Subscribe(n => hitStream.OnNext(n));
+			if(bullet!=null)bullet.HitStream.Subscribe(n => hitStream.OnNext(n));
 		}
 
 		public override void On(){
