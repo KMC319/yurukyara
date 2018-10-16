@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Systems;
 using Chars;
 using doma;
 using Players;
@@ -16,7 +17,10 @@ namespace Battles.Systems{
 		
 		
 		private void Awake(){
-			if (debugChars.Count == 2){
+			var gsm = GameStateManager.instance;
+			if (gsm != null){
+				Launch(gsm.player1,gsm.player2);
+			}else if (debugChars.Count == 2){
 				Launch(debugChars[0],debugChars[1]);	
 			}
 		}
