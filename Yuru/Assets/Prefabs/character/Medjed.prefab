@@ -299,6 +299,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1417184017682830
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4856498645322608}
+  - component: {fileID: 114059511493990094}
+  m_Layer: 0
+  m_Name: ShotTool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1431252658928502
 GameObject:
   m_ObjectHideFlags: 1
@@ -606,7 +622,7 @@ Transform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4264654547835380}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4009678331880096
 Transform:
@@ -728,6 +744,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 4386694139607620}
+  - {fileID: 4856498645322608}
   - {fileID: 4007921058958268}
   - {fileID: 4812711386483796}
   - {fileID: 4406490243852966}
@@ -803,7 +820,7 @@ Transform:
   - {fileID: 4724012350412540}
   - {fileID: 4159917909101618}
   m_Father: {fileID: 4264654547835380}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4411623131794604
 Transform:
@@ -1014,7 +1031,20 @@ Transform:
   - {fileID: 4724131743670144}
   - {fileID: 4020492947421608}
   m_Father: {fileID: 4264654547835380}
-  m_RootOrder: 2
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4856498645322608
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1417184017682830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00012, y: 0.00515, z: -0.00575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4264654547835380}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4868260506953232
 Transform:
@@ -1217,6 +1247,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114059511493990094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1417184017682830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cc07180dc644879175ced4eecb6e8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
 --- !u!114 &114189678837363600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1496,7 +1538,8 @@ MonoBehaviour:
       keyCodes: 02000000
       commandType: 0
       applyPhase: 2
-    attackTools: []
+    attackTools:
+    - {fileID: 114059511493990094}
     attackDamageBox:
       damage: 0
       attackType: 0
