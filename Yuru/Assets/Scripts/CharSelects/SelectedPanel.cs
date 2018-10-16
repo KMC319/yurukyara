@@ -11,7 +11,7 @@ namespace CharSelects{
 		public CharName charName{ get; private set; }
 		private Image img;
 
-		private void Awake(){
+		private void Start(){
 			try{
 				charName = this.transform.parent.GetComponent<CharIconPanel>().MyName;
 			}catch (Exception e){
