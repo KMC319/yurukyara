@@ -1,4 +1,6 @@
-﻿using Systems.Chars;
+﻿using System;
+using System.Collections.Generic;
+using Systems.Chars;
 using doma;
 using doma.Inputs;
 using doma.Interfaces;
@@ -11,13 +13,13 @@ namespace CharSelects{
 	public class CharSelectedPanelControll{
 		private InterfaceEventSystem interfaceEventSystem;
 		private Subject<CharName?> myStream=new Subject<CharName?>();
-		public IObservable<CharName?> MyStream=>myStream;
+		public UniRx.IObservable<CharName?> MyStream=>myStream;
 
-		private Image myImg;
+		private List<GameObject> myObjs;
 		
-		public CharSelectedPanelControll(InterfaceEventSystem interface_event_system,Image img){
+		public CharSelectedPanelControll(InterfaceEventSystem interface_event_system,List<GameObject> objs){
 			interfaceEventSystem = interface_event_system;
-			myImg = img;
+			myObjs = objs;
 			
 			interface_event_system.FocusSelectable.Subscribe(Focus);
 			interface_event_system.EnterSelectable.Subscribe(Submit);
@@ -30,7 +32,10 @@ namespace CharSelects{
 				return;
 			}
 			var char_panel=(CharSelectedPanel) i_selectable_panel;
-			myImg.sprite = FindCharImg(char_panel.charName);
+			var index = FindCharIndex(char_panel.charName);
+			foreach (var obj in myObjs) {
+				obj.SetActive(myObjs.IndexOf(obj) == index);
+			}
 		}
 
 		private void Submit(ISelectablePanel i_selectable_panel){
@@ -47,8 +52,8 @@ namespace CharSelects{
 			interfaceEventSystem.ReBoot();
 		}
 		
-		private Sprite FindCharImg(CharName char_name){
-			return ParameterTable.Instance.CharIconInformations.Find(n => n.charName == char_name).CharImg;
+		private int FindCharIndex(CharName char_name) {
+			return ParameterTable.Instance.CharIconInformations.FindIndex(n => n.charName == char_name);
 		}
 	}
 }

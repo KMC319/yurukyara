@@ -1,4 +1,5 @@
-﻿using Systems;
+﻿using System.Collections.Generic;
+using Systems;
 using doma;
 using doma.Inputs;
 using doma.Interfaces;
@@ -9,7 +10,7 @@ using Zenject;
 namespace CharSelects{
 	public class MultiSelect:SelectController{
 		
-		public MultiSelect(GameObject root,InputRelayPoint input_relay_point,Image[] images) : base(root,input_relay_point,images){
+		public MultiSelect(GameObject root,InputRelayPoint input_relay_point,List<List<GameObject>> objs) : base(root,input_relay_point,objs){
 			inputRelayPoint.ChangeReciever(iEs1);
 			inputRelayPoint.IsActive = true;
 			

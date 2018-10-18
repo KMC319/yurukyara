@@ -13,11 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharIconInformations:
   - charName: 1
-    CharImg: {fileID: 21300000, guid: b50558a06440e16408a0457551dd7d4a, type: 3}
+    CharObj: {fileID: 1811438685912054, guid: aab36521580da5a4293f6061c1525481, type: 2}
     IconImg: {fileID: 21300000, guid: b50558a06440e16408a0457551dd7d4a, type: 3}
   - charName: 1
-    CharImg: {fileID: 21300000, guid: b50558a06440e16408a0457551dd7d4a, type: 3}
+    CharObj: {fileID: 1811438685912054, guid: aab36521580da5a4293f6061c1525481, type: 2}
     IconImg: {fileID: 21300000, guid: b50558a06440e16408a0457551dd7d4a, type: 3}
   - charName: 1
-    CharImg: {fileID: 21300000, guid: b50558a06440e16408a0457551dd7d4a, type: 3}
+    CharObj: {fileID: 1811438685912054, guid: aab36521580da5a4293f6061c1525481, type: 2}
     IconImg: {fileID: 21300000, guid: b50558a06440e16408a0457551dd7d4a, type: 3}

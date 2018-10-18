@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Systems;
 using Systems.Chars;
 using doma;
@@ -12,15 +13,15 @@ using Zenject;
 namespace CharSelects{
 	public class SelectContollManager : MonoBehaviour{
 		[SerializeField] private ModeName mode;
-		[SerializeField] private Image p1Img;
-		[SerializeField] private Image p2Img;
+		[SerializeField] private GameObject p1Img;
+		[SerializeField] private GameObject p2Img;
 		
 		private CharName?[] selectedChars=new CharName?[]{null,null};
 
 		[Inject]private InputRelayPoint inputRelayPoint;
 
 		private void Start(){
-			var imgs = new Image[]{p1Img, p2Img};
+			var imgs = new List<List<GameObject>>{p1Img.GetComponent<ObjFactory>().CharList, p2Img.GetComponent<ObjFactory>().CharList};
 			var m = mode;
 			if (GameStateManager.instance != null){
 				m = GameStateManager.instance.mode;
