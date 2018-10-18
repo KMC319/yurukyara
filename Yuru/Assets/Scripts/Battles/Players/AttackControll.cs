@@ -85,7 +85,6 @@ namespace Battles.Players{
 			}
 
 			TaregtPlayer.DamageControll.Hit(currentAttack.attackDamageBox);
-
 		}
 
 		private void RecieveResponce(AnimResponce anim_responce){
