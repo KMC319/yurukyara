@@ -77,6 +77,7 @@ namespace Battles.Players{
 		private void RecieveHit(Collider collider){
 			if (!(InAttack && hitEnable)) return;
 			if (collider.gameObject != TaregtPlayer.gameObject) return;
+			Debug.Log("b");
 			hitEnable = false;
 
 			if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
@@ -86,6 +87,7 @@ namespace Battles.Players{
 
 			TaregtPlayer.DamageControll.Hit(currentAttack.attackDamageBox);
 
+			Debug.Log("c");
 		}
 
 		private void RecieveResponce(AnimResponce anim_responce){
