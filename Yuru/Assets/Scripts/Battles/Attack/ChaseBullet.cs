@@ -3,11 +3,11 @@ using UnityEngine;
 namespace Battles.Attack {
     public class ChaseBullet : Bullet {
         [SerializeField] private float speed;
-        private ChaseBulletMother mother;
+        private ChaseBulletFactory mother;
         private Rigidbody rigid;
         private GameObject target;
 
-        public void Setup(ChaseBulletMother mom, GameObject targetObj) {
+        public void Setup(ChaseBulletFactory mom, GameObject targetObj) {
             mother = mom;
             target = targetObj;
         }

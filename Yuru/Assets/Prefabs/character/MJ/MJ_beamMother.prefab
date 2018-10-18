@@ -9,55 +9,51 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1784561500887720}
+  m_RootGameObject: {fileID: 1075283668075214}
   m_IsPrefabAsset: 1
---- !u!1 &1784561500887720
+--- !u!1 &1075283668075214
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4939289040849456}
-  - component: {fileID: 114064205451536184}
+  - component: {fileID: 4414927913239650}
+  - component: {fileID: 114447935024955096}
   m_Layer: 0
-  m_Name: MJ_bulletMother
+  m_Name: MJ_beamMother
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4939289040849456
+--- !u!4 &4414927913239650
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1784561500887720}
+  m_GameObject: {fileID: 1075283668075214}
   m_LocalRotation: {x: 0.00653531, y: -0.9998386, z: 0.000109314926, w: 0.016736329}
-  m_LocalPosition: {x: 0.00067468954, y: 1.5085679, z: -9.251587}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114064205451536184
+--- !u!114 &114447935024955096
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1784561500887720}
+  m_GameObject: {fileID: 1075283668075214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0dad8f105d41a8af73c0f7c1a0d2b1, type: 3}
+  m_Script: {fileID: 11500000, guid: cd5322ddb59a460f955a6c196c9d7d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullets:
-  - Bullet: {fileID: 1743531368692656, guid: 98800569f0b98004aa9ca818978b6d56, type: 2}
-    SpawnLocalPos: {x: -1, y: 0, z: 0.6}
-    SpawnLocalRota: {x: -50, y: -90, z: 90}
-    Delay: 0
-  - Bullet: {fileID: 1743531368692656, guid: 98800569f0b98004aa9ca818978b6d56, type: 2}
-    SpawnLocalPos: {x: 1, y: 0, z: 0.6}
-    SpawnLocalRota: {x: -120, y: -90, z: 90}
+  Bullets:
+  - Bullet: {fileID: 114114663435912542, guid: abba2716d4f52a24dbcf0b2a1eff0636, type: 2}
+    SpawnLocalPos: {x: 0, y: 1.8, z: 0}
+    SpawnLocalRota: {x: 0, y: 0, z: 0}
     Delay: 0
   MyPos: {x: 0, y: 0, z: 0}

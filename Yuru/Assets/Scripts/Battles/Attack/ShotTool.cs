@@ -12,7 +12,7 @@ namespace Battles.Attack {
         public override void On() {
             var obj = Instantiate(bullet.gameObject, transform.position, transform.rotation).GetComponent<Bullet>();
             obj.HitStream.Subscribe(n => hitStream.OnNext(n)).AddTo(obj);
-            if (obj.GetComponent<ChaseBulletMother>() != null) obj.GetComponent<ChaseBulletMother>().MyPos = transform.position;
+            if (obj.GetComponent<BulletFactory>() != null) obj.GetComponent<BulletFactory>().MyPos = transform.position;
         }
 
         public override void Off() { }
