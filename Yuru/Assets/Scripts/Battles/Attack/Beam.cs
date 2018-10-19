@@ -9,7 +9,7 @@ namespace Battles.Attack {
         [SerializeField] private float lifeTime;
         private Vector3 targetPos;
         private BeamFactory mom;
-        
+
         private ParticleSystem beamParticle;
         private ParticleSystem chargeParticle;
         private LineRenderer lineRenderer;
@@ -35,17 +35,17 @@ namespace Battles.Attack {
             chargeParticle.Stop();
             beamParticle.Play();
             lineRenderer.enabled = true;
-            lineRenderer.SetPosition(0,transform.position);
+            lineRenderer.SetPosition(0, transform.position);
             var nowPos = transform.position;
-            while (Vector3.Distance(nowPos , targetPos) > speed * Time.deltaTime) {
+            while (Vector3.Distance(nowPos, targetPos) > speed * Time.deltaTime) {
                 lineRenderer.SetPosition(1, nowPos + transform.forward * speed * Time.deltaTime);
                 nowPos += transform.forward * speed * Time.deltaTime;
-                col.center = (nowPos - transform.position) / 2f;
+                col.center = new Vector3(0, 0, Vector3.Distance(nowPos, transform.position) / 2f);
                 col.height = Vector3.Distance(nowPos, transform.position);
                 yield return null;
             }
-            var dis = (targetPos - transform.position) / 2f;
-            col.center = new Vector3(dis.x, 0, dis.z);
+
+            col.center = new Vector3(0, 0, Vector3.Distance(targetPos, transform.position) / 2f);
             col.height = Vector3.Distance(targetPos, transform.position);
             lineRenderer.SetPosition(1, targetPos);
             yield return new WaitForSeconds(lifeTime);

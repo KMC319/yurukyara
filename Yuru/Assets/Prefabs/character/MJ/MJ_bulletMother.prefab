@@ -53,11 +53,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullets:
   - Bullet: {fileID: 114466188662427040, guid: 98800569f0b98004aa9ca818978b6d56, type: 2}
-    SpawnLocalPos: {x: -1, y: 0, z: 0.6}
+    SpawnLocalPos: {x: -1, y: 0.6, z: 0.6}
     SpawnLocalRota: {x: -50, y: -90, z: 90}
     Delay: 0
   - Bullet: {fileID: 114466188662427040, guid: 98800569f0b98004aa9ca818978b6d56, type: 2}
-    SpawnLocalPos: {x: 1, y: 0, z: 0.6}
+    SpawnLocalPos: {x: 1, y: 0.6, z: 0.6}
     SpawnLocalRota: {x: -120, y: -90, z: 90}
     Delay: 0
   MyPos: {x: 0, y: 0, z: 0}
