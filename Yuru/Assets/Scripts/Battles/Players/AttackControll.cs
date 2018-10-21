@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Battles.Attack;
 using Battles.Systems;
+using doma;
 using UniRx;
 using UnityEngine;
 
@@ -40,9 +41,7 @@ namespace Battles.Players{
 			}
 		}
 
-		private CommandType CurrentState{
-			get{ return iMoveCotroll.InJumping ? CommandType.Jump : CommandType.Normal; }
-		}
+		private CommandType CurrentState => iMoveCotroll.InJumping ? CommandType.Jump : CommandType.Normal;
 
 		public bool InAttack{ get; private set; }
 		private bool hitEnable;
@@ -105,20 +104,20 @@ namespace Battles.Players{
 			
 			if (keyBuffer != null){
 				var duo_info=info;
-				duo_info.keyCodes.Add((PlayerKeyCode) keyBuffer);
+				duo_info.keyCodes = new List<PlayerKeyCode>(info.keyCodes){(PlayerKeyCode) keyBuffer};
 				result = attackAnimControll.FindAttack(duo_info);
 			}
-
+			
 			if (result == null){
 				if (currentAttack == null){
 					result = attackAnimControll.FindAttack(info);
-				}
-				else if (attackAnimControll.FindAttack(info) == currentRoot && currentAttack.HasNext){
+					var str =result+",";
+				}else if (attackAnimControll.FindAttack(info) == currentRoot && currentAttack.HasNext){
 					result = currentAttack.NextAttack();
 				}
 			}
 
-
+			//DebugLogger.Log(result+","+player_key_code);
 			if(result==null)return;
 			currentAttack?.ToolsOff();
 			currentAttack = result;
