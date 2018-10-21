@@ -8,6 +8,10 @@ namespace Battles.Players{
 		private SecondPlayerBinder target;
 
 		public PlayerRoot TargetPlayerRoot => target.PlayerRoot;
+		public void SetInputEnable(bool en){
+			inputRelayPoint.IsActive = en;
+		}
+
 		public PlayerRoot PlayerRoot{ get; set; }
 		
 		
