@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1f00ce417a49bd9afa9330bfebead5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleTime: 0
+  battleTime: 5
   timer: {fileID: 392538354}
   centerMesseage: {fileID: 1736324169}
 --- !u!114 &167320468

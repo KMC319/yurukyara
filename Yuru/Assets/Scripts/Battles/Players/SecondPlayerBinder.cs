@@ -1,4 +1,5 @@
 ﻿using Systems;
+using Battles.Systems;
 using doma.Inputs;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Battles.Players{
 		private FirstPlayerBinder target;
 
 		public PlayerRoot TargetPlayerRoot => target.PlayerRoot;
+		public PlayerNum PlayerNum => PlayerNum.P2;
+
 		public void SetInputEnable(bool en){
 			instantBattleInput.IsActive = en;
 		}

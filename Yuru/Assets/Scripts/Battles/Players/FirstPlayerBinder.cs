@@ -1,4 +1,5 @@
-﻿using doma.Inputs;
+﻿using Battles.Systems;
+using doma.Inputs;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,8 @@ namespace Battles.Players{
 		private SecondPlayerBinder target;
 
 		public PlayerRoot TargetPlayerRoot => target.PlayerRoot;
+		public PlayerNum PlayerNum => PlayerNum.P1;
+
 		public void SetInputEnable(bool en){
 			inputRelayPoint.IsActive = en;
 		}

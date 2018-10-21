@@ -10,7 +10,7 @@ namespace Battles.Systems{
 			txt = this.GetComponent<Text>();
 		}
 
-		public void Diaply(string mess){
+		public void Display(string mess){
 			txt.text = mess;
 		}
 	}
