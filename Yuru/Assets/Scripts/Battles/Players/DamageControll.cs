@@ -1,4 +1,6 @@
-﻿using Battles.Attack;
+﻿using System;
+using Battles.Attack;
+using doma;
 using UniRx;
 using UnityEngine;
 
@@ -32,7 +34,6 @@ namespace Battles.Players{
 		}
 
 		public void Hit(AttackDamageBox attack_damage_box){
-
 			if (guardControll.InGuard){
 				if (attack_damage_box.attackType == AttackType.Weak){//guard succeced
 					return;
@@ -40,6 +41,9 @@ namespace Battles.Players{
 					attack_damage_box.damage *= reductionRate;
 				}
 			}
+			var po = attack_damage_box.knockbackPower;
+			rigid.AddForce(transform.forward+new Vector3(po.x,po.y,po.z*Math.Sign(transform.forward.z)*-1),ForceMode.Impulse);
+
 			damageStream.OnNext(attack_damage_box);
 			motionAnimControll.ForceChangeAnim(motionAnimControll.MyDic.SmallDamage);
 			InDamage = true;
