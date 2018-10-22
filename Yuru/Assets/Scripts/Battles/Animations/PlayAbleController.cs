@@ -29,7 +29,7 @@ namespace Battles.Animations{
 		private void Awake(){
 			graph = PlayableGraph.Create ();	
 			anim = GetComponent<Animator>();
-			currentAnim=defoultAnim ;
+			currentAnim=defoultAnim;
 			var output = AnimationPlayableOutput.Create (graph, "output", anim);
 			mixer = AnimationMixerPlayable.Create(graph, 2);
 			output.SetSourcePlayable(mixer);
@@ -37,6 +37,7 @@ namespace Battles.Animations{
 		}
 
 		private void Update(){
+			if(currentAnim==null)return;
 			if (IsPlayFinish(transtime,currentAnim.delayTime)&&!once){
 				//DebugLogger.Log(currentAnim.clip);
 				playEndStream.OnNext(currentAnim);
