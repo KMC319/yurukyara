@@ -1586,7 +1586,7 @@ MonoBehaviour:
     attackDamageBox:
       damage: 10
       attackType: 0
-      knockbackPower: {x: 0, y: 0, z: 100}
+      knockbackPower: {x: 0, y: 100, z: 100}
     nextAttack: []
   - clip: {fileID: 7400000, guid: bc6d772a3db6b5847be20256faa31438, type: 2}
     delayTime: 0

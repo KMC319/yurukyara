@@ -30,12 +30,15 @@ namespace Battles.Systems{
 			}
 		}
 
-		public void Launch(float time){
+		public void Set(float time){
 			if (moveAble){
 				DebugLogger.LogError("Timer is running!!");
 				return;
 			}
 			currentTime = time;
+		}
+
+		public void TimerStart(){
 			moveAble = true;
 		}
 

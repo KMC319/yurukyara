@@ -26,8 +26,8 @@ namespace doma.Inputs{
 		private void Update (){
 			var vertical= Input.GetAxisRaw("Vertical");
 			var horizontal=Input.GetAxisRaw("Horizontal");
-			if(Input.GetButtonDown("Submit"))enterKey.OnNext(Unit.Default);
-			if(Input.GetButtonDown("Cancel"))cancelKey.OnNext(Unit.Default);
+			if(Input.GetButtonDown("A1"))enterKey.OnNext(Unit.Default);
+			if(Input.GetButtonDown("B1"))cancelKey.OnNext(Unit.Default);
 
 			if (vertical != 0){
 				if (vertical > 0){

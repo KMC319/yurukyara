@@ -1,4 +1,5 @@
 ﻿using System;
+using doma;
 using UnityEngine;
 
 namespace Battles.Players{
@@ -8,7 +9,6 @@ namespace Battles.Players{
 				Stop();
 				return;
 			}
-
 			var z = lookTarget.forward * VerticalMovement * speed;
 			var x = lookTarget.right * HorizontalMovement * speed;
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0) + z + x;

@@ -1,12 +1,13 @@
 ﻿using System;
 using Battles.Attack;
 using doma;
+using UniRx;
 using UnityEngine;
 
 namespace Battles.Systems{
 	[Serializable]
 	public class HealthManager{
-		[SerializeField] private float health;
+		public float health;
 		
 		private float stackableHealth;
 		private float maxHealth;
@@ -14,6 +15,9 @@ namespace Battles.Systems{
 		
 		private readonly GaugeControll gaugeControll;
 
+		private Subject<Unit> deadStream=new Subject<Unit>();
+		public UniRx.IObservable<Unit> DeadStream=>deadStream;
+		
 		public HealthManager(float health,float stackable_health,GaugeControll gauge_controll){
 			this.health = health;
 			maxHealth = this.health;
@@ -27,7 +31,11 @@ namespace Battles.Systems{
 			health -= attack_damage_box.damage;
 			gaugeControll.TempUpdate(health/maxHealth);
 			gaugeControll.EntityUpdate();
-			
+
+			if (health <= 0){
+				deadStream.OnNext(Unit.Default);
+				return;
+			}
 			PhaseControll(attack_damage_box);
 		}
 		
