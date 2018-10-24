@@ -11,12 +11,12 @@ namespace Battles.Attack {
         }
 
         public override void On() {
-            DebugLogger.Log(Target.gameObject);
             var obj = Instantiate(bullet.gameObject, transform.position, transform.rotation).GetComponent<Bullet>();
             obj.HitStream.Subscribe(n => hitStream.OnNext(n.gameObject)).AddTo(obj);
-            if (obj.GetComponent<BulletFactory>() != null) obj.GetComponent<BulletFactory>().MyPos = transform.position;
         }
 
-        public override void Off() { }
+        public override void Off(){
+           
+        }
     }
 }
