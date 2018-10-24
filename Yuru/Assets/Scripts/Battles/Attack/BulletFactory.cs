@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using doma;
 using UniRx;
 using UnityEngine;
 
 namespace Battles.Attack {
-    public abstract class BulletFactory : Bullet {
+    public abstract class BulletFactory : AttackTool {
         [Serializable]
         protected struct BulletInfo {
             public Bullet Bullet;
@@ -14,19 +16,28 @@ namespace Battles.Attack {
         }
 
         [SerializeField] protected BulletInfo[] Bullets;
-        protected GameObject Target;
-        public Vector3 MyPos;
 
-        protected void Start() {
-            Target = GameObject.FindGameObjectsWithTag("Player").OrderBy(i => Vector3.Distance(i.transform.position, MyPos)).Last();
+        protected List<GameObject> currentBurret=new List<GameObject>();
+
+        private bool isActive;
+        
+        public override void On(){
+            isActive = true;
             Create();
-            Destroy(gameObject, 6f);
+        }
+
+        public override void Off(){
+            isActive = false;
+            foreach (var item in currentBurret){
+                Destroy(item);
+            }
+            currentBurret.Clear();
         }
 
         protected virtual void Create() { }
 
         public void Hit(Collider other) {
-            hitStream.OnNext(other);
+           if(isActive) hitStream.OnNext(other.gameObject);
         }
     }
 }

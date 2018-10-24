@@ -13,7 +13,8 @@ namespace Battles.Attack {
                     Observable.Timer(TimeSpan.FromSeconds(t.Delay))
                         .Subscribe(n => {
                             var a = Instantiate(t.Bullet, transform.position + transform.forward * t.SpawnLocalPos.z + transform.right * t.SpawnLocalPos.x + transform.up * t.SpawnLocalPos.y, Quaternion.Euler(transform.rotation.eulerAngles + t.SpawnLocalRota));
-                            a.GetComponent<ChaseBullet>().Setup(this, Target);
+                            a.GetComponent<ChaseBullet>().Setup(this, Target.gameObject);
+                            currentBurret.Add(a.gameObject);
                         });
                 }
             }

@@ -170,7 +170,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4007921058958268}
   - component: {fileID: 65009285530181304}
-  - component: {fileID: 114189678837363600}
   - component: {fileID: 114237042659563030}
   m_Layer: 0
   m_Name: Grab
@@ -308,7 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4856498645322608}
-  - component: {fileID: 114059511493990094}
+  - component: {fileID: 114734269304045138}
   m_Layer: 0
   m_Name: SShotTool
   m_TagString: Untagged
@@ -373,7 +372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4837113634884872}
-  - component: {fileID: 114491902016799528}
+  - component: {fileID: 114433111320033998}
   m_Layer: 0
   m_Name: ShotTool
   m_TagString: Untagged
@@ -1278,29 +1277,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114059511493990094
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1417184017682830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18cc07180dc644879175ced4eecb6e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 114447935024955096, guid: d951c97f6d0eb54428f7ec1cb9e7430c, type: 2}
---- !u!114 &114189678837363600
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1133369555164230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b5ea71047a4ee7b5eb8f8e71e2b72c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114237042659563030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1335,6 +1311,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyBufferTime: 0
+--- !u!114 &114433111320033998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491039929076222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0dad8f105d41a8af73c0f7c1a0d2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullets:
+  - Bullet: {fileID: 114466188662427040, guid: 98800569f0b98004aa9ca818978b6d56, type: 2}
+    SpawnLocalPos: {x: -1, y: 0.6, z: 0.6}
+    SpawnLocalRota: {x: -50, y: -90, z: 90}
+    Delay: 0
+  - Bullet: {fileID: 114466188662427040, guid: 98800569f0b98004aa9ca818978b6d56, type: 2}
+    SpawnLocalPos: {x: 1, y: 0.6, z: 0.6}
+    SpawnLocalRota: {x: -120, y: -90, z: 90}
+    Delay: 0
 --- !u!114 &114482414692918188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1347,18 +1343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charName: 1
---- !u!114 &114491902016799528
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1491039929076222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18cc07180dc644879175ced4eecb6e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 114064205451536184, guid: 4d7e5f564a30cca44a0dde742d3042d6, type: 2}
 --- !u!114 &114563726955007860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1417,6 +1401,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882d275f991240fdb1e3f542e2b0566e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114734269304045138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1417184017682830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5322ddb59a460f955a6c196c9d7d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullets:
+  - Bullet: {fileID: 114114663435912542, guid: abba2716d4f52a24dbcf0b2a1eff0636, type: 2}
+    SpawnLocalPos: {x: 0, y: 1.8, z: 0}
+    SpawnLocalRota: {x: 0, y: 0, z: 0}
+    Delay: 0
 --- !u!114 &114751113827152346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1580,7 +1580,7 @@ MonoBehaviour:
       commandType: 0
       applyPhase: 0
     attackTools:
-    - {fileID: 114059511493990094}
+    - {fileID: 114734269304045138}
     attackDamageBox:
       damage: 10
       attackType: 0
@@ -1594,7 +1594,7 @@ MonoBehaviour:
       commandType: 0
       applyPhase: 2
     attackTools:
-    - {fileID: 114491902016799528}
+    - {fileID: 114433111320033998}
     attackDamageBox:
       damage: 10
       attackType: 0
@@ -1608,7 +1608,7 @@ MonoBehaviour:
       commandType: 0
       applyPhase: 2
     attackTools:
-    - {fileID: 114189678837363600}
+    - {fileID: 114237042659563030}
     attackDamageBox:
       damage: 0
       attackType: 0
