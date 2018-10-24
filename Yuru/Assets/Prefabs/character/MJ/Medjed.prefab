@@ -1369,6 +1369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199dba13303a4c999c6a8a904ffaf80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blowPowerBorder: 5
   blowTime: 0.6
   reductionRate: 0
 --- !u!114 &114584703195781628
@@ -1385,6 +1386,7 @@ MonoBehaviour:
   MyDic:
     WaitName: MJ_Wait
     RunName: MJ_Run
+    JumpStartName: 
     JumpName: MJ_Jumping
     FallName: MJ_Falling
     SmallDamage: MJ_Damage1
@@ -1488,6 +1490,8 @@ MonoBehaviour:
     delayTime: 0
   - clip: {fileID: 7400000, guid: 9e3a75c794851ca4fb6eb3d6bf52b66d, type: 2}
     delayTime: 0
+  - clip: {fileID: 0}
+    delayTime: 0
   attackBoxs:
   - clip: {fileID: 7400000, guid: abfee0da440851a47a7e3276c2954e06, type: 2}
     delayTime: 0.2
@@ -1557,7 +1561,7 @@ MonoBehaviour:
     attackDamageBox:
       damage: 0
       attackType: 1
-      knockbackPower: {x: 0, y: 0, z: 0}
+      knockbackPower: {x: 0, y: 10, z: 100}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 9cf83a6bc851b0743879068705994e54, type: 2}
     delayTime: 0.2
@@ -1598,7 +1602,7 @@ MonoBehaviour:
     attackDamageBox:
       damage: 10
       attackType: 0
-      knockbackPower: {x: 0, y: 100, z: 100}
+      knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: bc6d772a3db6b5847be20256faa31438, type: 2}
     delayTime: 0

@@ -5,6 +5,7 @@ namespace Battles.Players{
 	public struct MotionDictionary{
 		public string WaitName;
 		public string RunName;
+		public string JumpStartName;
 		public string JumpName;
 		public string FallName;
 		public string SmallDamage;

@@ -69,7 +69,7 @@ namespace Battles.Players{
 		}
 
 		public void JumpKey(){
-			if(!attackControll.InAttack)CurrentMoveCotroll.Jump();
+			if(!attackControll.InAttack)CurrentMoveCotroll.JumpStart();
 			attackControll.InputKey(PlayerKeyCode.A);
 		}
 
