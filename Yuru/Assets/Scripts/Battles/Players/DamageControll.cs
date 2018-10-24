@@ -48,5 +48,10 @@ namespace Battles.Players{
 			motionAnimControll.ForceChangeAnim(motionAnimControll.MyDic.SmallDamage);
 			InDamage = true;
 		}
+
+		public void InGrabed(){
+			InDamage = true;
+			motionAnimControll.ChangeAnim(motionAnimControll.MyDic.GuardName);
+		}
 	}
 }

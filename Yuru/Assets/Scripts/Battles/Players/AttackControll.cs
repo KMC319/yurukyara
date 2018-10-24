@@ -73,16 +73,15 @@ namespace Battles.Players{
 				.Subscribe(_ => { keyBuffer = null;});
 		}
 
-		private void RecieveHit(Collider collider){
+		private void RecieveHit(GameObject other){
 			if (!(InAttack && hitEnable)) return;
-			if (collider.gameObject != TaregtPlayer.gameObject) return;
+			if (other != TaregtPlayer.gameObject) return;
 			hitEnable = false;
 
 			if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
 				ChainAttack();
 				return;
 			}
-
 			TaregtPlayer.DamageControll.Hit(currentAttack.attackDamageBox);
 		}
 

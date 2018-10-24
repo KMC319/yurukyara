@@ -15,7 +15,7 @@ namespace Battles.Attack{
 
 		private void OnTriggerEnter(Collider other){
 			if(!IsActive)return;
-			hitStream.OnNext(other);
+			hitStream.OnNext(other.gameObject);
 		}
 
 		public override void On(){
