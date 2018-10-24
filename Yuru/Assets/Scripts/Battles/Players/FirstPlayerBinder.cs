@@ -31,7 +31,6 @@ namespace Battles.Players{
 
 		public void Launch(){
 			inputRelayPoint.ChangeReciever(PlayerRoot);
-			inputRelayPoint.IsActive = true;
 		}
 
 		public void SetUp(SecondPlayerBinder second_player_binder){

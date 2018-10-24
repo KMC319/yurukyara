@@ -144,7 +144,7 @@ MonoBehaviour:
   battleTime: 5
   timer: {fileID: 392538354}
   centerMesseage: {fileID: 1736324169}
-  counters:
+  countersDisplay:
   - {fileID: 2064547044}
   - {fileID: 1812843161}
 --- !u!114 &167320468
@@ -2102,6 +2102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc80dd55d4845b286e2440ff59af714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNum: 2
 --- !u!1 &1990074308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,6 +2236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc80dd55d4845b286e2440ff59af714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNum: 1
 --- !u!1 &2088046881
 GameObject:
   m_ObjectHideFlags: 0
