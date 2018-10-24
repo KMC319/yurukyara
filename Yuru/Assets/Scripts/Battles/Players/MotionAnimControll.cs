@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Battles.Players{
 	public enum AnimResponce{
-		Wait,AttackEnd,Damaged
+		Wait,AttackEnd,Damaged,JumpLaunch
 	}
 	[RequireComponent(typeof(BoxContainer))]
 	public class MotionAnimControll : MonoBehaviour{
@@ -51,10 +51,15 @@ namespace Battles.Players{
 
 		private void FlowResponce(AnimBox anim_box){
 			AnimResponce? a = null;
-			
-			if (anim_box.clip.name == MyDic.SmallDamage||anim_box.clip.name == MyDic.BigDamage){
+			var name = anim_box.clip.name;
+			if (name == MyDic.SmallDamage||name == MyDic.BigDamage){
 				a = AnimResponce.Damaged;
 			}
+
+			if (name == MyDic.JumpStartName){
+				a = AnimResponce.JumpLaunch;
+			}
+			
 
 			if (a != null){
 				responseStream.OnNext((AnimResponce) a);

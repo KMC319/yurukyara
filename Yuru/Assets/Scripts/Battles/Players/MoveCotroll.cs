@@ -1,4 +1,5 @@
 ﻿using System;
+using doma;
 using UniRx;
 using UnityEngine;
 
@@ -19,13 +20,21 @@ namespace Battles.Players{
 		public float VerticalMovement{ get; set; }
 		public bool InJumping{ get; set; }
 		private bool inFall;
-		
+
+		private bool jumpAble = true;
 		
 		private void Start() {
 			rigid = GetComponent<Rigidbody>();
 			lookTarget = transform.Find("LookTarget");
 
 			motionAnimControll = this.transform.GetComponentInChildren<MotionAnimControll>();
+
+			motionAnimControll.ResponseStream
+				.Where(n => n == AnimResponce.JumpLaunch)
+				.Subscribe(n => {
+				DebugLogger.Log("a");
+				Jump();
+			});
 		}
 
 		
@@ -33,7 +42,7 @@ namespace Battles.Players{
 		public abstract void Move();
 		
 		public virtual void Stop() {
-			if (!InJumping){
+			if (!InJumping&&jumpAble){
 				PlayMotion(motionAnimControll.MyDic.WaitName);
 				transform.rotation = lookTarget.rotation;
 			}
@@ -48,9 +57,20 @@ namespace Battles.Players{
 			rigid.angularVelocity = Vector3.zero;
 		}
 
-		public virtual void Jump(){
-			if (InJumping) return;
-			Observable.Timer(TimeSpan.FromSeconds(jumpBuffer)).Subscribe(n=>InJumping = true);
+		public virtual void JumpStart(){
+			if (InJumping||!jumpAble) return;
+			jumpAble = false;
+			var name = motionAnimControll.MyDic.JumpStartName;
+			if (name == ""){
+				Jump();
+			} else{
+				motionAnimControll.ChangeAnim(name);
+				rigid.velocity = new Vector3(0, rigid.velocity.y, 0);	
+			}
+		}
+
+		protected virtual void Jump(){
+			InJumping = true;
 			rigid.AddForce(Vector3.up*jumpPower,ForceMode.Impulse);
 		}
 
@@ -76,6 +96,7 @@ namespace Battles.Players{
 			if (inFall && Math.Abs(rigid.velocity.y) < 0.01f){
 				inFall = false;
 				InJumping = false;
+				jumpAble = true;
 			}
 		}
 

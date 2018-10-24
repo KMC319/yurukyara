@@ -1386,7 +1386,7 @@ MonoBehaviour:
   MyDic:
     WaitName: MJ_Wait
     RunName: MJ_Run
-    JumpStartName: MJ_
+    JumpStartName: 
     JumpName: MJ_Jumping
     FallName: MJ_Falling
     SmallDamage: MJ_Damage1
