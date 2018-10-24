@@ -52,7 +52,7 @@ namespace Battles.Players{
 		private void FlowResponce(AnimBox anim_box){
 			AnimResponce? a = null;
 			
-			if (anim_box.clip.name == MyDic.SmallDamage){
+			if (anim_box.clip.name == MyDic.SmallDamage||anim_box.clip.name == MyDic.BigDamage){
 				a = AnimResponce.Damaged;
 			}
 

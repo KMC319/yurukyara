@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Battles.Players{
 	public class DamageControll : MonoBehaviour{
+		[SerializeField] private float blowPowerBorder;
 		[SerializeField] private float blowTime;
 		[SerializeField] private float reductionRate;
 		
@@ -30,6 +31,7 @@ namespace Battles.Players{
 			if(!InDamage)return;
 			if (responce == AnimResponce.Damaged){
 				InDamage = false;
+				rigid.velocity=new Vector3(rigid.velocity.x,rigid.velocity.y,0);
 			}
 		}
 
@@ -45,7 +47,11 @@ namespace Battles.Players{
 			rigid.AddForce(transform.forward+new Vector3(po.x,po.y,po.z*Math.Sign(transform.forward.z)*-1),ForceMode.Impulse);
 
 			damageStream.OnNext(attack_damage_box);
-			motionAnimControll.ForceChangeAnim(motionAnimControll.MyDic.SmallDamage);
+			if (attack_damage_box.knockbackPower.magnitude > blowPowerBorder){
+				motionAnimControll.ForceChangeAnim(motionAnimControll.MyDic.BigDamage);
+			} else{
+				motionAnimControll.ForceChangeAnim(motionAnimControll.MyDic.SmallDamage);
+			}
 			InDamage = true;
 		}
 
