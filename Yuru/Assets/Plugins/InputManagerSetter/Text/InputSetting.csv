@@ -1,0 +1,16 @@
+Horizontal1,axis,X,a,d
+Vertical1,axis,Y,s,w
+A1,A,z,,
+B1,B,x,,
+X1,X,c,,
+Y1,Y,v,,
+RB1,R1,f,,
+Horizontal2,axis,X,left,right
+Vertical2,axis,Y,down,up
+A2,A,",",,
+B2,B,.,,
+X2,X,/,,
+Y2,Y,\,,
+RB2,R1,l,,
+Submit,A,enter,,
+Cancel,B,left shift,,
