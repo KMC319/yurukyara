@@ -9,33 +9,24 @@ using UniRx;
 using UnityEngine.SceneManagement;
 
 namespace Battles.Systems{
-	[Serializable]public class WinnerCount{
-		public PlayerNum playerNum;
-		public int count;
-
-		public WinnerCount(PlayerNum player_num){
-			playerNum = player_num;
-			this.count = 0;
-		}
-	}
 	public class BattleManager : MonoBehaviour{
 
 		
 		[SerializeField] private float battleTime;
-		private static List<WinnerCount> winnerCounters=new List<WinnerCount>(){
-			new WinnerCount(PlayerNum.P1),new WinnerCount(PlayerNum.P2)
-		};
+	
 		
 		private static int round=1;
 
 		[SerializeField] private Timer timer;
 		[SerializeField] private CenterMesseage centerMesseage;
-		[SerializeField] private WinnerCounter[] counters;
+		[SerializeField] private WinnerCounterDisplay[] countersDisplay;
 
 		private List<IPlayerBinder> iplayerBinders;
 
 		private HealthManagersControll healthManagersControll;
 
+		private WinerReferee winerReferee;
+		
 		private void Start(){
 			iplayerBinders = this.transform.GetComponentsInChildren<IPlayerBinder>().ToList();
 			healthManagersControll = this.transform.GetComponentInChildren<HealthManagersControll>();
@@ -58,34 +49,51 @@ namespace Battles.Systems{
 		}
 
 		private void CountDisply(){
-			foreach (var i in Enumerable.Range(0,winnerCounters.Count)){
-				counters[i].Count = winnerCounters[i].count;
+			foreach (var item in countersDisplay){
+				item.Count = WinerReferee.GetCount(item.GetPlayerNum);
 			}
 		}
 
-		private bool WinnerProcess(PlayerNum player_num){
-			round++;
+		private void WinnerDisplay(PlayerNum winner){	
+			winerReferee=new WinerReferee(winner);
 			
 			string res;
-			if (player_num == PlayerNum.None){
+			if (winner == PlayerNum.None){
 				res = "Draw";
-				foreach (var item in winnerCounters){
-					item.count++;
-				}
 			}else{
-				res = "Winner-" + player_num;
-				winnerCounters.Find(n => n.playerNum == player_num).count++;
+				res = "Winner-" + winner;
 			}
 			CountDisply();
-			
-			var winer=winnerCounters.Find(n=>n.count==2);
-			if (winer != null){
-				centerMesseage.Display("Fight End!.Winner-"+winer.playerNum);
-				return false;
-			}
 			centerMesseage.Display(res);
-			return true;
 		}
+
+		private void CheckRoundEnd(){
+			var continue_fg=true;
+			round++;
+
+			var roundWinner=PlayerNum.None;
+
+			try{
+				roundWinner = winerReferee.GetRoundWinner();
+			} catch (Exception e){
+				centerMesseage.Display("Fight End!.Round Draw!");
+				continue_fg = false;
+			}
+			
+			if (roundWinner!=PlayerNum.None){
+				centerMesseage.Display("Fight End!.Winner-"+roundWinner);
+				continue_fg = false;
+			}
+			
+			
+			if (continue_fg){
+				SceneManager.LoadScene("TestDoma");
+			} else{
+				//終了処理
+			}
+
+		}
+		
 
 		private IEnumerator StartIvent(){
 			ChangeInputEnable(false);
@@ -99,21 +107,17 @@ namespace Battles.Systems{
 
 		private IEnumerator TimeOver(){
 			ChangeInputEnable(false);
-			var continue_fg=WinnerProcess(healthManagersControll.CheckMoreHealthPlayer());
+			WinnerDisplay(healthManagersControll.CheckMoreHealthPlayer());
 			yield return new WaitForSeconds(1);
-			if (continue_fg){
-				SceneManager.LoadScene("TestDoma");
-			}
+			CheckRoundEnd();
 		}
 
 		private IEnumerator BreakOut(PlayerRoot player_root){
 			ChangeInputEnable(false);
 			timer.Pause();
-			var continue_fg=WinnerProcess(iplayerBinders.Find(n => n.TargetPlayerRoot ==player_root).PlayerNum);
+			WinnerDisplay(iplayerBinders.Find(n => n.TargetPlayerRoot ==player_root).PlayerNum);
 			yield return new WaitForSeconds(1);
-			if (continue_fg){
-				SceneManager.LoadScene("TestDoma");
-			}
+			CheckRoundEnd();
 		}
 	}
 }
