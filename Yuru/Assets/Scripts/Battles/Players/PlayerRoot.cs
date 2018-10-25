@@ -86,6 +86,7 @@ namespace Battles.Players{
 		}
 
 		public void GuardKey(){
+			if(attackControll.InAttack)return;
 			guardControll.GuardCommand();
 			CurrentMoveCotroll.Pause();
 		}

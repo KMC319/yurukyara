@@ -16,11 +16,15 @@ namespace Battles.Players{
 
 		private void LateUpdate(){
 			if (InGuard&&(++recorder != checker)){
-				checker = 0;
-				recorder = 0;
-				InGuard = false;
 				DebugLogger.Log("a");
+				Cancel();
 			}
+		}
+
+		public void Cancel(){
+			checker = 0;
+			recorder = 0;
+			InGuard = false;
 		}
 
 		public void GuardCommand(){
