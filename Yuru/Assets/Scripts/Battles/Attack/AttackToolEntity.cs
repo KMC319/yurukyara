@@ -1,17 +1,14 @@
-﻿using System;
-using Battles.Players;
-using doma;
+﻿using Battles.Players;
 using UniRx;
 using UnityEngine;
 
 namespace Battles.Attack{
-	public abstract class AttackTool : MonoBehaviour{
+	public abstract class AttackToolEntity : IAttackTool{
 		protected Subject<GameObject> hitStream=new Subject<GameObject>();
 		public UniRx.IObservable<GameObject> HitStream=>hitStream;
 
 		private IPlayerBinder myBinder;
 
-		
 		//どうしてもキャラのコンポーネントを触る場合には使う、余り使うのはよろしくない
 		private IPlayerBinder MyBinder{
 			get{
@@ -31,9 +28,5 @@ namespace Battles.Attack{
 
 		protected PlayerRoot My => MyBinder.PlayerRoot;
 		protected PlayerRoot Target => MyBinder.TargetPlayerRoot;
-		
-		
-		public abstract void On();
-		public abstract void Off();
 	}
 }

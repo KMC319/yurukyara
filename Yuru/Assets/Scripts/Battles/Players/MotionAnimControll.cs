@@ -7,6 +7,7 @@ namespace Battles.Players{
 		Wait,AttackEnd,Damaged,JumpLaunch
 	}
 	[RequireComponent(typeof(BoxContainer))]
+	[RequireComponent(typeof(PlayAbleController))]
 	public class MotionAnimControll : MonoBehaviour{
 		[SerializeField] public MotionDictionary MyDic;
 		

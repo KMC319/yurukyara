@@ -1,10 +1,17 @@
 ﻿using System;
+using Systems.Chars;
 using Battles.Attack;
 using Battles.Systems;
 using doma.Inputs;
 using UnityEngine;
 
 namespace Battles.Players{
+	[RequireComponent(typeof(MoveCotroll3D))]
+	[RequireComponent(typeof(MoveControll2D))]
+	[RequireComponent(typeof(AttackControll))]
+	[RequireComponent(typeof(DamageControll))]
+	[RequireComponent(typeof(GuardControll))]
+	[RequireComponent(typeof(CharTag))]
 	public class PlayerRoot : MonoBehaviour,IBattleKeyReciever,IChangePhase{
 		private bool moveAble => !AttackControll.InAttack &&
 		                         !guardControll.InGuard &&

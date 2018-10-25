@@ -3,7 +3,7 @@ using UniRx;
 using UnityEngine;
 
 namespace Battles.Attack{
-	public class AttackCollider : AttackTool{
+	public class AttackCollider : AttackToolEntity{
 		private bool IsActive{ get; set; }
 		private Collider myCollider;
 

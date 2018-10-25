@@ -20,6 +20,11 @@ namespace Battles.Players{
 			}
 		}
 
+		public void Guard(){
+			checker++;
+			InGuard = true;
+		}
+		
 		public void Cancel(){
 			checker = 0;
 			recorder = 0;
@@ -27,8 +32,7 @@ namespace Battles.Players{
 		}
 
 		public void GuardCommand(){
-			checker++;
-			InGuard = true;
+			Guard();
 			motionAnimControll.ChangeAnim(motionAnimControll.MyDic.GuardName);
 		}
 	}

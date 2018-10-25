@@ -8,7 +8,6 @@ namespace Battles.Players{
 		[SerializeField] protected float speed;
 		[SerializeField] private float jumpPower;
 		[SerializeField] private float fallDouble=1f;
-		[SerializeField]private float jumpBuffer;
 		
 		protected Rigidbody rigid;
 		protected Transform lookTarget;

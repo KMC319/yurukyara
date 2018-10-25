@@ -9,7 +9,7 @@ namespace Battles.Attack{
 		public float bufferTime;
 		public AttackInputInfo attackInputInfo;
 		public float delayTimeForTools;
-		public AttackTool[] attackTools;
+		public IAttackTool[] attackTools;
 		public AttackDamageBox attackDamageBox;
 		[SerializeField]private AttackBox[] nextAttack=new AttackBox[0];
 

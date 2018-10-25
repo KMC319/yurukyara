@@ -8,7 +8,7 @@ using UniRx;
 using UnityEngine;
 
 namespace Battles.Attack {
-    public abstract class BulletFactory : AttackTool{
+    public abstract class BulletFactory : AttackToolEntity{
         [Serializable]
         protected struct BulletInfo {
             public Bullet Bullet;

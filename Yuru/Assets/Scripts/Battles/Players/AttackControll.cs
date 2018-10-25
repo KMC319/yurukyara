@@ -53,7 +53,9 @@ namespace Battles.Players{
 			
 			attackAnimControll.ResponseStream.Subscribe(RecieveResponce);
 			
-			transform.GetComponentsInChildren<AttackTool>().Select(n => n.HitStream).Merge()
+			transform.GetComponentsInChildren<AttackToolEntity>()
+				.Select(n => n.HitStream)
+				.Merge()
 				.Subscribe(RecieveHit);
 			this.ObserveEveryValueChanged(n => n.InAttack).Where(n => n)
 				.Subscribe(n => {
@@ -97,14 +99,17 @@ namespace Battles.Players{
 					AttackEnd();//相殺
 				}else if(my==AttackType.Grab&&
 				         check_normal_attack(en)&&
-				         taregtPlayer.AttackControll.AttackEnable){
+				         TaregtPlayer.AttackControll.AttackEnable){
 					return;//掴み無効化
 				}
 			}
+			
+			//連続モーションの判定
 			if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
 				ChainAttack();
 				return;
 			}
+			//ここまで行ったらダメージをコール
 			TaregtPlayer.DamageControll.Hit(currentAttack.attackDamageBox);
 		}
 
@@ -144,7 +149,7 @@ namespace Battles.Players{
 				}
 			}
 
-			if(result==null)return;
+			if(result==null)return;//ここでNullなら攻撃がないので非実行
 			currentAttack?.ToolsOff();
 			currentAttack = result;
 			Observable
@@ -157,12 +162,13 @@ namespace Battles.Players{
 				});
 			if (currentRoot == null) currentRoot = result;
 			attackAnimControll.ChangeAnim(currentAttack);
+			
 			InAttack = true;
 			hitEnable = true;
 
 		}
 
-		private void ChainAttack(){
+		private void ChainAttack(){//連続モーションの実行はここ（コンボは違う
 			currentAttack?.ToolsOff();
 			currentAttack = currentAttack.NextAttack();
 			currentAttack.ToolsOn();
