@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Linq;
+using Battles.Systems;
+using doma;
 using UnityEngine;
 
 namespace Battles.Attack {
-    public class Beam : Bullet {
+    public class Beam : Bullet,IPauseObserver {
         [SerializeField] private float speed;
         [SerializeField] private float chargeTime;
         [SerializeField] private float lifeTime;
@@ -15,6 +17,8 @@ namespace Battles.Attack {
         private LineRenderer lineRenderer;
         private CapsuleCollider col;
 
+        private IEnumerator myProcess;
+        
         public void Setup(BeamFactory factory, Vector3 pos) {
             mom = factory;
             targetPos = pos;
@@ -29,9 +33,18 @@ namespace Battles.Attack {
             col = GetComponent<CapsuleCollider>();
         }
 
-        private IEnumerator Start() {
+        private void Start(){
+            myProcess = StartProcess();
+            StartCoroutine(myProcess);
+        }
+
+        private IEnumerator StartProcess() {
             chargeParticle.Play();
-            yield return new WaitForSeconds(chargeTime);
+            var charge_count = 0.01f;
+            while (charge_count<=chargeTime){//クソ程強引なポーズ対応
+                yield return new WaitForSeconds(0.01f);
+                charge_count += 0.01f;
+            }
             chargeParticle.Stop();
             beamParticle.Play();
             lineRenderer.enabled = true;
@@ -48,12 +61,24 @@ namespace Battles.Attack {
             col.center = new Vector3(0, 0, Vector3.Distance(targetPos, transform.position) / 2f);
             col.height = Vector3.Distance(targetPos, transform.position);
             lineRenderer.SetPosition(1, targetPos);
-            yield return new WaitForSeconds(lifeTime);
+            var life_count = 0.01f;
+            while (life_count<=lifeTime){
+                yield return new WaitForSeconds(0.01f);
+                life_count += 0.01f;
+            }
             Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other) {
             mom.Hit(other);
+        }
+
+        public void Pause(){
+            StopCoroutine(myProcess);
+        }
+
+        public void Resume(){
+            StartCoroutine(myProcess);
         }
     }
 }

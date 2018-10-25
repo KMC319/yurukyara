@@ -47,10 +47,8 @@ public class Pausable : MonoBehaviour {
 	/// </summary>
 	MonoBehaviour[] pausingMonoBehaviours;
 
-	private IPauseObserver[] iPauseObservers;
 
 	private void Start(){
-		iPauseObservers=transform.GetComponentsInChildren<IPauseObserver>();
 	}
 
 	/// <summary>
@@ -96,7 +94,7 @@ public class Pausable : MonoBehaviour {
 			monoBehaviour.enabled = false;
 		}
 
-		foreach (var item in iPauseObservers){
+		foreach (var item in transform.GetComponentsInChildren<IPauseObserver>()){
 			item.Pause();
 		}
 
@@ -120,7 +118,7 @@ public class Pausable : MonoBehaviour {
 			monoBehaviour.enabled = true;
 		}
 		
-		foreach (var item in iPauseObservers){
+		foreach (var item in transform.GetComponentsInChildren<IPauseObserver>()){
 			item.Resume();
 		}
 	}
