@@ -21,14 +21,19 @@ namespace Battles.Systems{
 		[SerializeField] private CenterMesseage centerMesseage;
 		[SerializeField] private WinnerCounterDisplay[] countersDisplay;
 
+		private Pausable pausable;
+		
 		private List<IPlayerBinder> iplayerBinders;
 
 		private HealthManagersControll healthManagersControll;
-
 		private WinerReferee winerReferee;
+
+		private bool inFight;
+		
 		
 		private void Start(){
 			iplayerBinders = this.transform.GetComponentsInChildren<IPlayerBinder>().ToList();
+			pausable = this.GetComponent<Pausable>();
 			healthManagersControll = this.transform.GetComponentInChildren<HealthManagersControll>();
 			
 			if (iplayerBinders.Count != 2){
@@ -40,6 +45,14 @@ namespace Battles.Systems{
 
 			timer.EndStream.Subscribe(n =>StartCoroutine(TimeOver()));
 			healthManagersControll.DeadPlayerStream.Subscribe(n => StartCoroutine(BreakOut(n)));
+		}
+
+		private void Update(){
+			if(!inFight)return;
+			if (Input.GetButtonDown("Start")){
+				pausable.Submit();
+				timer.ReverseMoveAble();
+			}
 		}
 
 		private void ChangeInputEnable(bool f){
@@ -103,9 +116,11 @@ namespace Battles.Systems{
 			centerMesseage.Display("");
 			timer.TimerStart();
 			ChangeInputEnable(true);
+			inFight = true;
 		}
 
 		private IEnumerator TimeOver(){
+			inFight = false;
 			ChangeInputEnable(false);
 			WinnerDisplay(healthManagersControll.CheckMoreHealthPlayer());
 			yield return new WaitForSeconds(1);
@@ -113,6 +128,7 @@ namespace Battles.Systems{
 		}
 
 		private IEnumerator BreakOut(PlayerRoot player_root){
+			inFight = false;
 			ChangeInputEnable(false);
 			timer.Pause();
 			WinnerDisplay(iplayerBinders.Find(n => n.TargetPlayerRoot ==player_root).PlayerNum);

@@ -25,17 +25,12 @@ public class Pausable : MonoBehaviour {
 	/// <summary>
 	/// 現在Pause中か？
 	/// </summary>
-	public bool pausing;
+	[SerializeField]private bool pausing;
 
 	/// <summary>
 	/// 無視するGameObject
 	/// </summary>
 	public GameObject[] ignoreGameObjects;
-
-	/// <summary>
-	/// ポーズ状態が変更された瞬間を調べるため、前回のポーズ状況を記録しておく
-	/// </summary>
-	bool prevPausing;
 
 	/// <summary>
 	/// Rigidbodyのポーズ前の速度の配列
@@ -59,16 +54,16 @@ public class Pausable : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// 更新処理
+	/// アクセスポイント
 	/// </summary>
-	void Update() {
-		// ポーズ状態が変更されていたら、Pause/Resumeを呼び出す。
-		if (prevPausing != pausing)
-		{
-			if (pausing) Pause ();
-			else Resume ();
-			prevPausing = pausing;
+	public void Submit(){
+		if (pausing){
+			Resume();
+		}else{
+			Pause();
 		}
+
+		pausing = !pausing;
 	}
 
 	/// <summary>
