@@ -28,9 +28,7 @@ namespace Battles.Attack {
         public override void On(){
             isActive = true;
             foreach (var t in Bullets) {
-                var cor = Shot(t);
-                shotProceses.Add(cor);
-                StartCoroutine(cor);
+                StartCoroutine(Shot(t));
             }
         }
 
@@ -40,7 +38,6 @@ namespace Battles.Attack {
                 Destroy(item);
             }
             currentBurret.Clear();
-            shotProceses.Clear();
         }
 
         protected abstract void Create(BulletInfo t);

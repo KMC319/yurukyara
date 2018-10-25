@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Battles.Attack{
 	public class BlockShield :AttackTool{
 		[SerializeField] private float guardTime;
+		[SerializeField] private AttackTool[] attackTools;
 		
 		private GuardControll guardControll;
 
@@ -15,11 +16,19 @@ namespace Battles.Attack{
 
 		public override void On(){
 			guardControll.InGuard = true;
-			Observable.Timer(TimeSpan.FromSeconds(guardTime)).Subscribe(n => guardControll.InGuard = false);
+			Observable.Timer(TimeSpan.FromSeconds(guardTime)).Subscribe(n => {
+				guardControll.InGuard = false;
+				foreach (var item in attackTools){
+					item.On();
+				}
+			});
 		}
 
 		public override void Off(){
 			guardControll.InGuard = false;
+			foreach (var item in attackTools){
+				item.Off();
+			}
 		}
 	}
 }

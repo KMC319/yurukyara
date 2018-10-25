@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Battles.Attack{
 	public class AttackCollider : AttackTool{
-		
 		private bool IsActive{ get; set; }
 		private Collider myCollider;
 

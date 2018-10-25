@@ -16,7 +16,6 @@ namespace Battles.Players{
 
 		private void LateUpdate(){
 			if (InGuard&&(++recorder != checker)){
-				DebugLogger.Log("a");
 				Cancel();
 			}
 		}
