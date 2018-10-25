@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Battles.Attack{
 	//実装が汚い、Targetに依存しすぎ
-	public class Grab : AttackTool{
+	public class Grab : AttackToolEntity{
 		private bool grabActive;
 		private bool coliderActive; 
 		

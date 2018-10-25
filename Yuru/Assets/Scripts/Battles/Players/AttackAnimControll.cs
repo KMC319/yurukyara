@@ -6,6 +6,8 @@ using UniRx;
 using UnityEngine;
 
 namespace Battles.Players{
+	[RequireComponent(typeof(BoxContainer))]
+	[RequireComponent(typeof(PlayAbleController))]
 	public class AttackAnimControll : MonoBehaviour{
 		private PlayAbleController playAbleController;
 		private BoxContainer boxContainer;

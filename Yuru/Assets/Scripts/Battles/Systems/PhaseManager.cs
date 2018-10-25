@@ -18,7 +18,6 @@ namespace Battles.Systems {
         public static PhaseManager Instance;
 
         private void Awake() {
-            list = transform.parent.GetComponentsInChildren<IChangePhase>().ToList();
             if (Instance == null) {
                 Instance = this;
             } else {
@@ -28,6 +27,7 @@ namespace Battles.Systems {
 
         private void Start() {
             players = GameObject.FindGameObjectsWithTag("Player").Select(i => i.transform).ToArray();
+            list = transform.parent.GetComponentsInChildren<IChangePhase>().ToList();
             var key = players.Select(i => i.transform.position.z).ToArray();
             Array.Sort(key, players);
             NowPhase = Phase.P3D;

@@ -3,7 +3,7 @@ using UnityEngine;
 using UniRx;
 
 namespace Battles.Attack {
-    public class ShotTool : AttackTool {
+    public class ShotTool : AttackToolEntity{
         [SerializeField] private Bullet bullet;
 
         private void Start() {

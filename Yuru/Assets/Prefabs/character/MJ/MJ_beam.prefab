@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 500
-  chargeTime: 0.5
+  chargeTime: 0.4
   lifeTime: 1
 --- !u!120 &120238032838405700
 LineRenderer:

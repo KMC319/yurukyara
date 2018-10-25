@@ -469,8 +469,8 @@ GameObject:
   - component: {fileID: 54312314689911842}
   - component: {fileID: 136807098624763582}
   - component: {fileID: 114563726955007860}
-  - component: {fileID: 114687197290349954}
   - component: {fileID: 114873695747438188}
+  - component: {fileID: 114687197290349954}
   - component: {fileID: 114298265573569972}
   - component: {fileID: 114574708394490642}
   - component: {fileID: 114287165247976132}
@@ -1357,7 +1357,6 @@ MonoBehaviour:
   speed: 10
   jumpPower: 1500
   fallDouble: 0.5
-  jumpBuffer: 0.01
 --- !u!114 &114574708394490642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1370,7 +1369,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blowPowerBorder: 5
-  blowTime: 0.6
   reductionRate: 0
 --- !u!114 &114584703195781628
 MonoBehaviour:
@@ -1500,10 +1498,11 @@ MonoBehaviour:
       keyCodes: 02000000
       commandType: 0
       applyPhase: 1
+    delayTimeForTools: 0
     attackTools:
-    - {fileID: 114826650396584968}
+    - {fileID: 114808690174115834}
     attackDamageBox:
-      damage: 20
+      damage: 10
       attackType: 0
       knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack:
@@ -1514,6 +1513,7 @@ MonoBehaviour:
         keyCodes: 
         commandType: 0
         applyPhase: 0
+      delayTimeForTools: 0
       attackTools: []
       attackDamageBox:
         damage: 0
@@ -1527,6 +1527,7 @@ MonoBehaviour:
           keyCodes: 
           commandType: 0
           applyPhase: 0
+        delayTimeForTools: 0
         attackTools: []
         attackDamageBox:
           damage: 0
@@ -1540,6 +1541,7 @@ MonoBehaviour:
             keyCodes: 
             commandType: 0
             applyPhase: 0
+          delayTimeForTools: 0
           attackTools:
           - {fileID: 114808690174115834}
           - {fileID: 114826650396584968}
@@ -1555,11 +1557,12 @@ MonoBehaviour:
       keyCodes: 03000000
       commandType: 0
       applyPhase: 0
+    delayTimeForTools: 0.1
     attackTools:
     - {fileID: 114808690174115834}
     - {fileID: 114826650396584968}
     attackDamageBox:
-      damage: 0
+      damage: 20
       attackType: 1
       knockbackPower: {x: 0, y: 10, z: 100}
     nextAttack: []
@@ -1570,6 +1573,7 @@ MonoBehaviour:
       keyCodes: 02000000
       commandType: 1
       applyPhase: 0
+    delayTimeForTools: 0
     attackTools: []
     attackDamageBox:
       damage: 0
@@ -1583,6 +1587,7 @@ MonoBehaviour:
       keyCodes: 01000000
       commandType: 0
       applyPhase: 0
+    delayTimeForTools: 0
     attackTools:
     - {fileID: 114734269304045138}
     attackDamageBox:
@@ -1597,6 +1602,7 @@ MonoBehaviour:
       keyCodes: 02000000
       commandType: 0
       applyPhase: 2
+    delayTimeForTools: 0
     attackTools:
     - {fileID: 114433111320033998}
     attackDamageBox:
@@ -1610,7 +1616,8 @@ MonoBehaviour:
     attackInputInfo:
       keyCodes: 0200000000000000
       commandType: 0
-      applyPhase: 2
+      applyPhase: 0
+    delayTimeForTools: 0
     attackTools:
     - {fileID: 114237042659563030}
     attackDamageBox:
@@ -1625,11 +1632,12 @@ MonoBehaviour:
         keyCodes: 
         commandType: 2
         applyPhase: 0
+      delayTimeForTools: 0
       attackTools:
       - {fileID: 114237042659563030}
       attackDamageBox:
         damage: 10
-        attackType: 0
+        attackType: 4
         knockbackPower: {x: 0, y: 0, z: 0}
       nextAttack: []
   - clip: {fileID: 7400000, guid: 48b23bf82927a144ca1a9671c7baed81, type: 2}
@@ -1639,8 +1647,9 @@ MonoBehaviour:
       keyCodes: 0300000001000000
       commandType: 0
       applyPhase: 2
+    delayTimeForTools: 0
     attackTools:
-    - {fileID: 0}
+    - {fileID: 114842331969505796}
     attackDamageBox:
       damage: 0
       attackType: 0
@@ -1658,6 +1667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guardTime: 0.1
+  attackTools: []
 --- !u!114 &114873695747438188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1672,7 +1682,6 @@ MonoBehaviour:
   speed: 10
   jumpPower: 1500
   fallDouble: 0.5
-  jumpBuffer: 0
 --- !u!114 &114889797704980942
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,7 +7,6 @@ using UnityEngine;
 namespace Battles.Players{
 	public class DamageControll : MonoBehaviour{
 		[SerializeField] private float blowPowerBorder;
-		[SerializeField] private float blowTime;
 		[SerializeField] private float reductionRate;
 		
 		private Subject<AttackDamageBox> damageStream=new Subject<AttackDamageBox>();
@@ -37,16 +36,17 @@ namespace Battles.Players{
 
 		public void Hit(AttackDamageBox attack_damage_box){
 			if (guardControll.InGuard){
-				if (attack_damage_box.attackType == AttackType.Weak){//guard succeced
-					return;
+				if (attack_damage_box.attackType == AttackType.Weak){
+					return;//ガード成功
 				}else if(attack_damage_box.attackType==AttackType.Strong){
-					attack_damage_box.damage *= reductionRate;
+					attack_damage_box.damage *= reductionRate;//削り
 				}
 			}
 			var po = attack_damage_box.knockbackPower;
 			rigid.AddForce(transform.forward+new Vector3(po.x,po.y,po.z*Math.Sign(transform.forward.z)*-1),ForceMode.Impulse);
 
-			damageStream.OnNext(attack_damage_box);
+			damageStream.OnNext(attack_damage_box);//ダメージを受けた通知をするだけで計算はHealthManager任せ
+			
 			if (attack_damage_box.knockbackPower.magnitude > blowPowerBorder){
 				motionAnimControll.ForceChangeAnim(motionAnimControll.MyDic.BigDamage);
 			} else{

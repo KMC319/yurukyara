@@ -8,7 +8,8 @@ namespace Battles.Attack{
 	public class AttackBox:AnimBox{
 		public float bufferTime;
 		public AttackInputInfo attackInputInfo;
-		public AttackTool[] attackTools;
+		public float delayTimeForTools;
+		public IAttackTool[] attackTools;
 		public AttackDamageBox attackDamageBox;
 		[SerializeField]private AttackBox[] nextAttack=new AttackBox[0];
 

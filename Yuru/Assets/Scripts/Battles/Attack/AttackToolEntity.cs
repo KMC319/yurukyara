@@ -1,20 +1,18 @@
-﻿using System;
-using Battles.Players;
-using doma;
+﻿using Battles.Players;
 using UniRx;
 using UnityEngine;
 
 namespace Battles.Attack{
-	public abstract class AttackTool : MonoBehaviour{
+	public abstract class AttackToolEntity : IAttackTool{
 		protected Subject<GameObject> hitStream=new Subject<GameObject>();
 		public UniRx.IObservable<GameObject> HitStream=>hitStream;
 
-		private PlayerRoot target;
+		private IPlayerBinder myBinder;
 
-		protected PlayerRoot Target{
+		//どうしてもキャラのコンポーネントを触る場合には使う、余り使うのはよろしくない
+		private IPlayerBinder MyBinder{
 			get{
-				if (target == null){
-					IPlayerBinder myBinder;
+				if (myBinder == null){
 					myBinder = this.GetComponent<IPlayerBinder>();
 					var current = transform;
 					while (myBinder==null){
@@ -23,18 +21,12 @@ namespace Battles.Attack{
 						myBinder = parent.GetComponent<IPlayerBinder>();
 						current = parent;
 					}
-
-					try{
-						target = myBinder.TargetPlayerRoot;
-					} catch (Exception e){
-						DebugLogger.Log("Missing target");
-						throw;
-					}
 				}
-				return target;
+				return myBinder;
 			}
 		}
-		public abstract void On();
-		public abstract void Off();
+
+		protected PlayerRoot My => MyBinder.PlayerRoot;
+		protected PlayerRoot Target => MyBinder.TargetPlayerRoot;
 	}
 }

@@ -1,25 +1,32 @@
 ﻿using System;
+using Systems.Chars;
 using Battles.Attack;
 using Battles.Systems;
 using doma.Inputs;
 using UnityEngine;
 
 namespace Battles.Players{
+	[RequireComponent(typeof(MoveCotroll3D))]
+	[RequireComponent(typeof(MoveControll2D))]
+	[RequireComponent(typeof(AttackControll))]
+	[RequireComponent(typeof(DamageControll))]
+	[RequireComponent(typeof(GuardControll))]
+	[RequireComponent(typeof(CharTag))]
 	public class PlayerRoot : MonoBehaviour,IBattleKeyReciever,IChangePhase{
-		private bool moveAble => !attackControll.InAttack &&
+		private bool moveAble => !AttackControll.InAttack &&
 		                         !guardControll.InGuard &&
 		                         !DamageControll.InDamage;
 
 		public MoveCotroll CurrentMoveCotroll { get; private set; }
 		private MoveCotroll moveCotrollControll3D;
 		private MoveCotroll moveCotrollControll2D;
-		private AttackControll attackControll;
+		public AttackControll AttackControll{ get; private set; }
 		private GuardControll guardControll;
 		
 		public DamageControll DamageControll{ get; private set; }
 
 		private void Awake(){
-			attackControll = this.GetComponent<AttackControll>();
+			AttackControll = this.GetComponent<AttackControll>();
 			moveCotrollControll3D = this.GetComponent<MoveCotroll3D>();
 			moveCotrollControll2D = this.GetComponent<MoveControll2D>();
 			DamageControll = this.GetComponent<DamageControll>();
@@ -28,11 +35,11 @@ namespace Battles.Players{
 
 		private void Start(){
 			CurrentMoveCotroll = moveCotrollControll3D;
-			attackControll.iMoveCotroll = CurrentMoveCotroll;
+			AttackControll.iMoveCotroll = CurrentMoveCotroll;
 		}
 
 		private void Update() {
-			CurrentMoveCotroll.FallCheck(attackControll.InAttack||guardControll.InGuard);
+			CurrentMoveCotroll.FallCheck(AttackControll.InAttack||guardControll.InGuard);
 		}
 
 		private void FixedUpdate(){
@@ -53,39 +60,40 @@ namespace Battles.Players{
 		public void ChangeHorizontalAxis(float delta){
 			CurrentMoveCotroll.HorizontalMovement = delta;
 			if (delta > 0){
-				attackControll.InputKey(PlayerKeyCode.RArrow);
+				AttackControll.InputKey(PlayerKeyCode.RArrow);
 			}else if (delta < 0){
-				attackControll.InputKey(PlayerKeyCode.LArrow);
+				AttackControll.InputKey(PlayerKeyCode.LArrow);
 			}
 		}
 		
 		public void ChangeVerticalAxis(float delta){
 			CurrentMoveCotroll.VerticalMovement = delta;
 			if (delta > 0){
-				attackControll.InputKey(PlayerKeyCode.UArrow);
+				AttackControll.InputKey(PlayerKeyCode.UArrow);
 			}else if (delta < 0){
-				attackControll.InputKey(PlayerKeyCode.DArrow);
+				AttackControll.InputKey(PlayerKeyCode.DArrow);
 			}
 		}
 
 		public void JumpKey(){
-			if(!attackControll.InAttack)CurrentMoveCotroll.JumpStart();
-			attackControll.InputKey(PlayerKeyCode.A);
+			if(!AttackControll.InAttack)CurrentMoveCotroll.JumpStart();
+			AttackControll.InputKey(PlayerKeyCode.A);
 		}
 
 		public void RangeAtKey(){
-			attackControll.InputKey(PlayerKeyCode.B);
+			AttackControll.InputKey(PlayerKeyCode.B);
 		}
 
 		public void WeakAtKey(){
-			attackControll.InputKey(PlayerKeyCode.X);
+			AttackControll.InputKey(PlayerKeyCode.X);
 		}
 
 		public void StrongAtKey(){
-			attackControll.InputKey(PlayerKeyCode.Y);
+			AttackControll.InputKey(PlayerKeyCode.Y);
 		}
 
 		public void GuardKey(){
+			if(AttackControll.InAttack)return;
 			guardControll.GuardCommand();
 			CurrentMoveCotroll.Pause();
 		}
@@ -102,7 +110,7 @@ namespace Battles.Players{
 					throw new ArgumentOutOfRangeException(nameof(changedPhase), changedPhase, null);
 			}
 
-			attackControll.iMoveCotroll = CurrentMoveCotroll;
+			AttackControll.iMoveCotroll = CurrentMoveCotroll;
 		}
 	}
 }

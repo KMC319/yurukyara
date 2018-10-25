@@ -1,12 +1,14 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Battles.Systems;
 using doma;
 using UniRx;
 using UnityEngine;
 
 namespace Battles.Attack {
-    public abstract class BulletFactory : AttackTool {
+    public abstract class BulletFactory : AttackToolEntity{
         [Serializable]
         protected struct BulletInfo {
             public Bullet Bullet;
@@ -20,10 +22,14 @@ namespace Battles.Attack {
         protected List<GameObject> currentBurret=new List<GameObject>();
 
         private bool isActive;
+
+        private readonly List<IEnumerator> shotProceses=new List<IEnumerator>();
         
         public override void On(){
             isActive = true;
-            Create();
+            foreach (var t in Bullets) {
+                StartCoroutine(Shot(t));
+            }
         }
 
         public override void Off(){
@@ -34,10 +40,22 @@ namespace Battles.Attack {
             currentBurret.Clear();
         }
 
-        protected virtual void Create() { }
+        protected abstract void Create(BulletInfo t);
 
         public void Hit(Collider other) {
            if(isActive) hitStream.OnNext(other.gameObject);
         }
+
+        protected void RegisterBullet(GameObject bullet){
+            currentBurret.Add(bullet);
+            bullet.transform.SetParent(My.transform.parent);
+        }
+        
+                
+        private IEnumerator Shot(BulletInfo t){
+            yield return new WaitForSeconds(t.Delay);
+            Create(t);
+        }
+
     }
 }

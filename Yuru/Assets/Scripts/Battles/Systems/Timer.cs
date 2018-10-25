@@ -42,8 +42,8 @@ namespace Battles.Systems{
 			moveAble = true;
 		}
 
-		public void ReStart(){
-			moveAble = true;
+		public void ReverseMoveAble(){
+			moveAble = !moveAble;
 		}
 		public void Pause(){
 			moveAble = false;
