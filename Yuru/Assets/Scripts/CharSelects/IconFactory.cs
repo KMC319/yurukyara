@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace CharSelects{
 	public class IconFactory : MonoBehaviour{
 		[SerializeField] private CharIconPanel charIconPanel;
 		
 		private void Awake() {
+			var imgs = GetComponentsInChildren<Image>();
+			var num = 0;
 			foreach (var item in ParameterTable.Instance.CharIconInformations) {
-				var temp = Instantiate(charIconPanel);
+				var temp = Instantiate(charIconPanel, imgs[num].transform);
 				temp.SetUp(item.charName,item.IconImg);
-				temp.transform.parent = transform;
 				temp.transform.localScale = Vector3.one;
-				temp.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+				temp.transform.localPosition = Vector3.zero;
+				num++;
 			}
 		}
 	}

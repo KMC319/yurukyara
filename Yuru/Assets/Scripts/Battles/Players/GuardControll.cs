@@ -1,9 +1,11 @@
-﻿using doma;
+﻿using Battles.Attack;
+using doma;
 using UnityEngine;
 
 namespace Battles.Players{
 	public class GuardControll : MonoBehaviour{
 		public bool InGuard{ get; set; }
+		[SerializeField] private IAttackTool[] attackTools;
 
 		private MotionAnimControll motionAnimControll;
 
@@ -23,12 +25,18 @@ namespace Battles.Players{
 		public void Guard(){
 			checker++;
 			InGuard = true;
+			foreach (var item in attackTools){
+				item.On();
+			}
 		}
 		
 		public void Cancel(){
 			checker = 0;
 			recorder = 0;
 			InGuard = false;
+			foreach (var item in attackTools) {
+				item.Off();
+			}
 		}
 
 		public void GuardCommand(){

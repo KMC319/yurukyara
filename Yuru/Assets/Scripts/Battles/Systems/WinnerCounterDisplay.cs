@@ -6,15 +6,18 @@ namespace Battles.Systems{
 	public class WinnerCounterDisplay : MonoBehaviour{
 		[SerializeField] private PlayerNum playerNum;
 		public PlayerNum GetPlayerNum => playerNum;
+		[SerializeField]private Image[] imgs;
 		public int Count{ get; set; }
 
-		private Text txt;
-
-		private void Awake(){
-			txt = this.GetComponent<Text>();
-			txt.text = Count.ToString();
+		private void Awake() {
 			this.ObserveEveryValueChanged(n => n.Count)
-				.Subscribe(n => txt.text = Count.ToString());
+				.Subscribe(n => ApplyImg());
+			ApplyImg();
+		}
+
+		private void ApplyImg() {
+			if (Count < 1) return;
+			imgs[Count - 1].enabled = true;
 		}
 	}
 }

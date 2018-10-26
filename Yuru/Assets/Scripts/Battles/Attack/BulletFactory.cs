@@ -21,7 +21,7 @@ namespace Battles.Attack {
 
         protected List<GameObject> currentBurret=new List<GameObject>();
 
-        private bool isActive;
+        protected bool isActive;
 
         private readonly List<IEnumerator> shotProceses=new List<IEnumerator>();
         

@@ -20,6 +20,7 @@ namespace Battles.Systems{
 		[SerializeField] private Timer timer;
 		[SerializeField] private CenterMesseage centerMesseage;
 		[SerializeField] private WinnerCounterDisplay[] countersDisplay;
+		[SerializeField] private GameObject endGameMenu;
 
 		private Pausable pausable;
 		
@@ -81,6 +82,7 @@ namespace Battles.Systems{
 		}
 
 		private void CheckRoundEnd(){
+			ChangeInputEnable(false);
 			var continue_fg=true;
 			round++;
 
@@ -100,9 +102,9 @@ namespace Battles.Systems{
 			
 			
 			if (continue_fg){
-				SceneManager.LoadScene("TestDoma");
+				SceneManager.LoadScene("Battle");
 			} else{
-				//終了処理
+				endGameMenu.SetActive(true);
 			}
 
 		}
@@ -134,6 +136,11 @@ namespace Battles.Systems{
 			WinnerDisplay(iplayerBinders.Find(n => n.TargetPlayerRoot ==player_root).PlayerNum);
 			yield return new WaitForSeconds(1);
 			CheckRoundEnd();
+		}
+
+		public void ReGame() {
+			round = 1;
+			SceneManager.LoadScene("Battle");
 		}
 	}
 }

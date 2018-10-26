@@ -10,6 +10,8 @@ namespace CharSelects{
 
 		public CharName charName{ get; private set; }
 		private Image img;
+		private Text txt;
+		protected WorldImg WorldImg;
 
 		private void Start(){
 			try{
@@ -18,16 +20,19 @@ namespace CharSelects{
 				DebugLogger.LogError(e+"MyParent isnt CharIconPanel ");
 				throw;
 			}
-
+			WorldImg = transform.parent.parent.parent.parent.GetComponentInChildren<WorldImg>();
 			img = this.GetComponent<Image>();
+			txt = GetComponentInChildren<Text>();
 		}
 
-		public void OnSelect(){
+		public virtual void OnSelect(){
 			img.enabled = true;
+			txt.enabled = true;
 		}
 
-		public void RemoveSelect(){
+		public virtual void RemoveSelect(){
 			img.enabled = false;
+			txt.enabled = false;
 		}
 
 		public void Submit(){
