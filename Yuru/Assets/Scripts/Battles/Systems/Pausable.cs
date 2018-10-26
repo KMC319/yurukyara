@@ -47,7 +47,9 @@ public class Pausable : MonoBehaviour {
 	/// </summary>
 	MonoBehaviour[] pausingMonoBehaviours;
 
-
+	[SerializeField] private GameObject pauseMenu;
+	
+	
 	private void Start(){
 	}
 
@@ -97,13 +99,14 @@ public class Pausable : MonoBehaviour {
 		foreach (var item in transform.GetComponentsInChildren<IPauseObserver>()){
 			item.Pause();
 		}
-
+		pauseMenu.SetActive(true);
 	}
 
 	/// <summary>
 	/// 再開
 	/// </summary>
 	void Resume() {
+		pauseMenu.SetActive(false);
 		// Rigidbodyの再開
 		for(int i = 0; i < pausingRigidbodies.Length; i++)
 		{

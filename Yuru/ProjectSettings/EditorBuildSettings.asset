@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestDoma.unity
     guid: c1be79e2e2a40c946a6e9eb3db4f7e71
+  - enabled: 1
+    path: Assets/Scenes/Battle.unity
+    guid: 114b7ae61ca1f6e409e540627e777caf
   m_configObjects: {}
