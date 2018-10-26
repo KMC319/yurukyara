@@ -59,7 +59,7 @@ namespace CharSelects{
 			if (selectedChars[0] != null && selectedChars[1] != null){
 				GameStateManager.instance.player1 = (CharName)selectedChars[0];
 				GameStateManager.instance.player2 = (CharName)selectedChars[1];
-				SceneManager.LoadScene("TestDoma");
+				SceneManager.LoadScene("Battle");
 			}
 		}
 
