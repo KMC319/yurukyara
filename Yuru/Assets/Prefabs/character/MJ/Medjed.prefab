@@ -101,6 +101,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1103677447884804
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4560458441465200}
+  - component: {fileID: 33665960975565716}
+  - component: {fileID: 23625865739906066}
+  - component: {fileID: 114798805898371258}
+  m_Layer: 0
+  m_Name: Shield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1113240524717304
 GameObject:
   m_ObjectHideFlags: 1
@@ -693,6 +711,7 @@ Transform:
   - {fileID: 4362389576680024}
   - {fileID: 4251602003077732}
   - {fileID: 4573408714517258}
+  - {fileID: 4560458441465200}
   m_Father: {fileID: 4484029421083002}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -907,6 +926,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4385113814502058}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4560458441465200
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1103677447884804}
+  m_LocalRotation: {x: -0, y: 1, z: -0.000000029802322, w: 0}
+  m_LocalPosition: {x: -0.049065236, y: 1.3882568, z: -1.8209515}
+  m_LocalScale: {x: 1.3014079, y: 1.3014066, z: 0.65070343}
+  m_Children: []
+  m_Father: {fileID: 4060826299357382}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4573408714517258
 Transform:
@@ -1172,6 +1204,48 @@ Transform:
   m_Father: {fileID: 4484029421083002}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23625865739906066
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1103677447884804}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 341aca72290886f46874b1f48f123834, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33665960975565716
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1103677447884804}
+  m_Mesh: {fileID: 4300000, guid: 7895f80b45fae8e46997801398adc9f0, type: 3}
 --- !u!54 &54312314689911842
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1299,6 +1373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb1e8260345401cb2cf7f3dc76137a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackTools:
+  - {fileID: 114798805898371258}
 --- !u!114 &114298265573569972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1310,7 +1386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa50507cd06b43159005793a820cdd3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyBufferTime: 0
+  keyBufferTime: 0.3
 --- !u!114 &114433111320033998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1440,6 +1516,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transtime: 0.1
+--- !u!114 &114798805898371258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1103677447884804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3286f24430c4d2b4a92bb78941e48e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentPositions:
+  - {fileID: 4812711386483796}
+  - {fileID: 4406490243852966}
+  localPos: {x: 0, y: 0, z: 0.5}
+  lookTarget: {fileID: 114889797704980942}
 --- !u!114 &114808690174115834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1502,7 +1594,7 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114808690174115834}
     attackDamageBox:
-      damage: 10
+      damage: 5
       attackType: 0
       knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack:
@@ -1516,9 +1608,9 @@ MonoBehaviour:
       delayTimeForTools: 0
       attackTools: []
       attackDamageBox:
-        damage: 0
+        damage: 5
         attackType: 0
-        knockbackPower: {x: 0, y: 0, z: 0}
+        knockbackPower: {x: 0, y: 0, z: 100}
       nextAttack:
       - clip: {fileID: 7400000, guid: 3cc97e0a292b69b48ae8dc848d0460a1, type: 2}
         delayTime: 0
@@ -1530,9 +1622,9 @@ MonoBehaviour:
         delayTimeForTools: 0
         attackTools: []
         attackDamageBox:
-          damage: 0
+          damage: 5
           attackType: 0
-          knockbackPower: {x: 0, y: 0, z: 0}
+          knockbackPower: {x: 0, y: 0, z: 100}
         nextAttack:
         - clip: {fileID: 7400000, guid: d611da949aeb263468d1819eee89bd22, type: 2}
           delayTime: 0
@@ -1546,9 +1638,9 @@ MonoBehaviour:
           - {fileID: 114808690174115834}
           - {fileID: 114826650396584968}
           attackDamageBox:
-            damage: 0
+            damage: 7
             attackType: 2
-            knockbackPower: {x: 0, y: 0, z: 0}
+            knockbackPower: {x: 0, y: 0, z: 3000}
           nextAttack: []
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
     delayTime: 0.2
@@ -1576,9 +1668,9 @@ MonoBehaviour:
     delayTimeForTools: 0
     attackTools: []
     attackDamageBox:
-      damage: 0
+      damage: 7
       attackType: 0
-      knockbackPower: {x: 0, y: 0, z: 0}
+      knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 0ad5ecad466fe0b47b1eccb373b4730d, type: 2}
     delayTime: 0
@@ -1593,7 +1685,7 @@ MonoBehaviour:
     attackDamageBox:
       damage: 10
       attackType: 0
-      knockbackPower: {x: 0, y: 0, z: 200}
+      knockbackPower: {x: 0, y: 0, z: 3000}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 67a13c5c47cf1c240b1deabb99e2352d, type: 2}
     delayTime: 0
@@ -1606,9 +1698,9 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114433111320033998}
     attackDamageBox:
-      damage: 10
+      damage: 3
       attackType: 0
-      knockbackPower: {x: 0, y: 0, z: 0}
+      knockbackPower: {x: 0, y: 0, z: 10}
     nextAttack: []
   - clip: {fileID: 7400000, guid: bc6d772a3db6b5847be20256faa31438, type: 2}
     delayTime: 0
@@ -1651,9 +1743,9 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114842331969505796}
     attackDamageBox:
-      damage: 0
+      damage: 7
       attackType: 0
-      knockbackPower: {x: 0, y: 0, z: 0}
+      knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack: []
 --- !u!114 &114842331969505796
 MonoBehaviour:
@@ -1666,8 +1758,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ad155e36145e68a007ff318d4080c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guardTime: 0.1
-  attackTools: []
+  guardTime: 0.5
+  attackTools:
+  - {fileID: 114798805898371258}
 --- !u!114 &114873695747438188
 MonoBehaviour:
   m_ObjectHideFlags: 1
