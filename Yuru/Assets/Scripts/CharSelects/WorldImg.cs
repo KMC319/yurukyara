@@ -7,6 +7,7 @@ namespace CharSelects {
     public class WorldImg : MonoBehaviour {
         [SerializeField] private Image[] ameimg;
         [SerializeField] private Image[] egyimg;
+        [SerializeField] private Image[] chilimg;
 
         public void OnSelect(CharName name, int player) {
             switch (name) {
@@ -15,6 +16,9 @@ namespace CharSelects {
                     break;
                 case CharName.MJ:
                     egyimg[player].enabled = true;
+                    break;
+                case CharName.Moaian:
+                    chilimg[player].enabled = true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(name), name, null);
@@ -28,6 +32,9 @@ namespace CharSelects {
                     break;
                 case CharName.MJ:
                     egyimg[player].enabled = false;
+                    break;
+                case CharName.Moaian:
+                    chilimg[player].enabled = false;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(name), name, null);

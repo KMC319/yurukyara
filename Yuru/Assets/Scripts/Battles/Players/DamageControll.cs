@@ -42,7 +42,7 @@ namespace Battles.Players{
 					attack_damage_box.damage *= reductionRate;//削り
 				}
 			}
-
+			//自分から見てどれくらい吹っ飛ぶか
 			var po = -transform.forward * attack_damage_box.knockbackPower.z + transform.right * attack_damage_box.knockbackPower.x + transform.up * attack_damage_box.knockbackPower.y;
 			rigid.AddForce(transform.forward+new Vector3(po.x,po.y,po.z*Math.Sign(transform.forward.z)*-1),ForceMode.Impulse);
 

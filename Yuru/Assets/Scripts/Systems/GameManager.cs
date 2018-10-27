@@ -1,31 +1,20 @@
 using UnityEngine;
 
 namespace Systems {
-    public enum Mode {
-        VS_PLAYER, VS_CPU
-    }
-    [DefaultExecutionOrder(-100)]
     public class GameManager : MonoBehaviour {
-        public static GameManager Instance {
-            get {
-                if (Instance == null) {
-                    GameObject o = new GameObject("GameManager");
-                    Instance = o.AddComponent<GameManager>();
-                }
-
-                return Instance;
-            }
-            private set { Instance = value; }
-        }
-
+        private static GameManager instance;
         private void Awake() {
-            if (Instance == null) {
-                Instance = this;
+            if (instance == null) {
+                instance = this;
             } else {
                 Destroy(gameObject);
             }
+
+            DontDestroyOnLoad(gameObject);
         }
 
-        public Mode GameMode;
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+        }
     }
 }

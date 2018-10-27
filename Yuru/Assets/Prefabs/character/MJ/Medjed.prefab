@@ -1283,8 +1283,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 4, z: 2}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!65 &65924809587449466
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1295,8 +1295,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 4, z: 2}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!95 &95188639900330574
 Animator:
   serializedVersion: 3
@@ -1592,7 +1592,7 @@ MonoBehaviour:
       applyPhase: 1
     delayTimeForTools: 0
     attackTools:
-    - {fileID: 114808690174115834}
+    - {fileID: 114826650396584968}
     attackDamageBox:
       damage: 5
       attackType: 0
@@ -1606,7 +1606,8 @@ MonoBehaviour:
         commandType: 0
         applyPhase: 0
       delayTimeForTools: 0
-      attackTools: []
+      attackTools:
+      - {fileID: 114808690174115834}
       attackDamageBox:
         damage: 5
         attackType: 0
@@ -1620,7 +1621,8 @@ MonoBehaviour:
           commandType: 0
           applyPhase: 0
         delayTimeForTools: 0
-        attackTools: []
+        attackTools:
+        - {fileID: 114826650396584968}
         attackDamageBox:
           damage: 5
           attackType: 0
@@ -1666,7 +1668,9 @@ MonoBehaviour:
       commandType: 1
       applyPhase: 0
     delayTimeForTools: 0
-    attackTools: []
+    attackTools:
+    - {fileID: 114808690174115834}
+    - {fileID: 114826650396584968}
     attackDamageBox:
       damage: 7
       attackType: 0

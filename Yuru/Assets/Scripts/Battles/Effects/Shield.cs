@@ -1,8 +1,9 @@
 ﻿using System.Linq;
+using Battles.Attack;
 using Battles.Systems;
 using UnityEngine;
 
-namespace Battles.Attack {
+namespace Battles.Effects {
     public class Shield : IAttackTool {
         [SerializeField] private Transform[] parentPositions;
         [SerializeField] private Vector3 localPos;

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114766473729700242}
   - component: {fileID: 96154755476470218}
   - component: {fileID: 65527508090161794}
+  - component: {fileID: 54411674752718898}
   m_Layer: 0
   m_Name: drink
   m_TagString: Untagged
@@ -39,7 +40,6 @@ GameObject:
   - component: {fileID: 4581678507113276}
   - component: {fileID: 33572902527913364}
   - component: {fileID: 23131950566045954}
-  - component: {fileID: 54797127324538276}
   - component: {fileID: 114787240246518094}
   m_Layer: 0
   m_Name: drink
@@ -117,12 +117,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1952218382693422}
   m_Mesh: {fileID: 4300000, guid: e5a37cfa51831f942a0a59df5737f4bb, type: 3}
---- !u!54 &54797127324538276
+--- !u!54 &54411674752718898
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1952218382693422}
+  m_GameObject: {fileID: 1626767147577942}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -131,7 +131,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &65527508090161794
 BoxCollider:
   m_ObjectHideFlags: 1
