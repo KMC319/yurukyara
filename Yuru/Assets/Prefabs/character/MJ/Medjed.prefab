@@ -1592,7 +1592,7 @@ MonoBehaviour:
       applyPhase: 1
     delayTimeForTools: 0
     attackTools:
-    - {fileID: 114808690174115834}
+    - {fileID: 114826650396584968}
     attackDamageBox:
       damage: 5
       attackType: 0
@@ -1607,7 +1607,7 @@ MonoBehaviour:
         applyPhase: 0
       delayTimeForTools: 0
       attackTools:
-      - {fileID: 114826650396584968}
+      - {fileID: 114808690174115834}
       attackDamageBox:
         damage: 5
         attackType: 0
@@ -1622,7 +1622,7 @@ MonoBehaviour:
           applyPhase: 0
         delayTimeForTools: 0
         attackTools:
-        - {fileID: 114808690174115834}
+        - {fileID: 114826650396584968}
         attackDamageBox:
           damage: 5
           attackType: 0
@@ -1668,7 +1668,9 @@ MonoBehaviour:
       commandType: 1
       applyPhase: 0
     delayTimeForTools: 0
-    attackTools: []
+    attackTools:
+    - {fileID: 114808690174115834}
+    - {fileID: 114826650396584968}
     attackDamageBox:
       damage: 7
       attackType: 0

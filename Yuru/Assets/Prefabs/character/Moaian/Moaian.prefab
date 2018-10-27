@@ -1246,7 +1246,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550ceab57c6678147875b7a5c2d7560d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullets: []
+  Bullets:
+  - Bullet: {fileID: 114113517391106146, guid: 8fc38fde98dd23a4fbd1fa70ccac954d, type: 2}
+    SpawnLocalPos: {x: 0, y: 0, z: 5}
+    SpawnLocalRota: {x: 0, y: 0, z: 0}
+    Delay: 0
 --- !u!114 &114920789031816360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1271,7 +1275,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550ceab57c6678147875b7a5c2d7560d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullets: []
+  Bullets:
+  - Bullet: {fileID: 114113517391106146, guid: 8fc38fde98dd23a4fbd1fa70ccac954d, type: 2}
+    SpawnLocalPos: {x: -5, y: 0, z: 0}
+    SpawnLocalRota: {x: 0, y: 0, z: 0}
+    Delay: 0
+  - Bullet: {fileID: 114113517391106146, guid: 8fc38fde98dd23a4fbd1fa70ccac954d, type: 2}
+    SpawnLocalPos: {x: 0, y: 5, z: 0}
+    SpawnLocalRota: {x: 0, y: 0, z: 0}
+    Delay: 0
+  - Bullet: {fileID: 114113517391106146, guid: 8fc38fde98dd23a4fbd1fa70ccac954d, type: 2}
+    SpawnLocalPos: {x: 5, y: 0, z: 0}
+    SpawnLocalRota: {x: 0, y: 0, z: 0}
+    Delay: 0
 --- !u!136 &136721978105509396
 CapsuleCollider:
   m_ObjectHideFlags: 1
