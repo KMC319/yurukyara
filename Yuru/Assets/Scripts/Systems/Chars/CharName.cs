@@ -1,5 +1,5 @@
 ﻿namespace Systems.Chars{
 	public enum CharName{
-		AmericanHero,MJ
+		AmericanHero,MJ,Moaian
 	}
 }

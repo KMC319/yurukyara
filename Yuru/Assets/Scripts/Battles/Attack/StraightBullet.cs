@@ -10,7 +10,7 @@ namespace Battles.Attack {
 		public void Setup(StraightBulletFactory mom, GameObject targetObj) {
 			mother = mom;
 			target = targetObj;
-			transform.LookAt(targetObj.transform);
+			transform.LookAt(targetObj.transform.position + new Vector3(0, 1, 0));
 		}
 
 		private void Start() {
@@ -19,9 +19,16 @@ namespace Battles.Attack {
 			Destroy(gameObject, 5f);
 		}
 
+		private void Update() {
+			RaycastHit hit;
+			if (Physics.Raycast(transform.position, transform.forward, out hit, speed * Time.deltaTime)) {
+				OnTriggerEnter(hit.collider);
+			}
+		}
+
 		private void OnTriggerEnter(Collider other) {
+			Debug.Log(other.gameObject);
 			mother.Hit(other);
-			if (other.gameObject == target) Destroy(gameObject);
 		}
 	}
 }

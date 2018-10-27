@@ -47,7 +47,7 @@ namespace Battles.Systems {
         }
 
         private void LateUpdate() {
-            if (NowPhase == Phase.P3D) transform.LookAt(transform.position + Vector3.Cross(Vector3.up, new Vector3(players[1].transform.position.x, 1, players[1].transform.position.z) - child.transform.position));
+            transform.LookAt(transform.position + Vector3.Cross(Vector3.up, new Vector3(players[1].transform.position.x, 1, players[1].transform.position.z) - child.transform.position));
         }
 
         void PointMove() {
