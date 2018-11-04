@@ -103,7 +103,7 @@ namespace Battles.Players{
 					return;//掴み無効化
 				}
 			}
-			
+			DebugLogger.Log("s"+other);
 			//連続モーションの判定
 			if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
 				ChainAttack();
@@ -144,7 +144,9 @@ namespace Battles.Players{
 				if (currentAttack == null){
 					result = attackAnimControll.FindAttack(info);
 					var str =result+",";
-				}else if (attackAnimControll.FindAttack(info) == currentRoot && currentAttack.HasNext){
+				}else if (attackAnimControll.FindAttack(info) == currentRoot && 
+				          currentAttack.HasNext &&
+				          currentAttack.NextAttack().attackInputInfo.commandType!=CommandType.Chain){
 					result = currentAttack.NextAttack();
 				}
 			}

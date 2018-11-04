@@ -18,9 +18,11 @@ namespace Battles.Attack{
 		}
 
 		public override void Off(){
+			if (grabActive){
+				hitStream.OnNext(Target.gameObject);
+			}
 			grabActive = false;
 			coliderActive = false;
-			hitStream.OnNext(Target.gameObject);
 		}
 		
 		
