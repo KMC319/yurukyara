@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Battles.Players{
 	public class MoveControll2D :MoveCotroll{
 		public override void Move(){
-			if (Math.Abs(HorizontalMovement) < 0.01f && Math.Abs(VerticalMovement) < 0.01f){
+			if (Math.Abs(HorizontalMovement) < 0.01f ){
 				Stop();
 				return;
 			}
