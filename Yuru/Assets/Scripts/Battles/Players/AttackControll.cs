@@ -103,7 +103,6 @@ namespace Battles.Players{
 					return;//掴み無効化
 				}
 			}
-			DebugLogger.Log("s"+other);
 			//連続モーションの判定
 			if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
 				ChainAttack();
