@@ -120,13 +120,13 @@ namespace Battles.Players{
 		}
 
 		private void AttackEnd(){
-			currentAttack.ToolsOff();
-			currentAttack = null;
-			currentRoot = null;
-			keyBuffer = null;
 			InAttack = false;
 			hitEnable = false;
+			currentRoot = null;
+			keyBuffer = null;
 			AttackEnable = false;
+			currentAttack.ToolsOff();
+			currentAttack = null;
 			attackAnimControll.CashClear();
 		}
 
