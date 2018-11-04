@@ -114,9 +114,9 @@ namespace Battles.Players{
 		}
 
 		private void RecieveResponce(AnimResponce anim_responce){
-			if (anim_responce == AnimResponce.AttackEnd){
+			if (anim_responce == AnimResponce.AttackEnd||anim_responce == AnimResponce.Damaged){
 				AttackEnd();
-			}
+			}		
 		}
 
 		private void AttackEnd(){
