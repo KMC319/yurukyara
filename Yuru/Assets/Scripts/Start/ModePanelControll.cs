@@ -1,4 +1,5 @@
-﻿using Systems;
+﻿using System;
+using Systems;
 using CharSelects;
 using doma;
 using doma.Inputs;
@@ -15,18 +16,19 @@ namespace Start{
 		[SerializeField] private GameObject panelRoot;
 		
 		[Inject] private InputRelayPoint inputRelayPoint;
-		
+
+		private InterfaceEventSystem interfaceEventSystem;
 		
 		private void Start(){
-			var interface_event_system = this.GetComponent<InterfaceEventSystem>();
+			interfaceEventSystem = this.GetComponent<InterfaceEventSystem>();
 			
-			inputRelayPoint.ChangeReciever(interface_event_system);
+			inputRelayPoint.ChangeReciever(interfaceEventSystem);
 			
-			interface_event_system.CreateActiveSelectableList<ModeSelectedPanel>(ListCreateOption.Vertical);
-			interface_event_system.Launch();
+			interfaceEventSystem.CreateActiveSelectableList<ISelectablePanel>(ListCreateOption.Vertical);
+			interfaceEventSystem.Launch();
 
 			panelRoot.SetActive(false);
-			interface_event_system.EnterSelectable.Subscribe(Submit);
+			interfaceEventSystem.EnterSelectable.Subscribe(Submit);
 
 			Observable.EveryUpdate()
 				.Where(_ => Input.GetButtonDown("A1"))
@@ -43,15 +45,28 @@ namespace Start{
 		}
 
 		private void Submit(ISelectablePanel i_selectable_panel){
-			if (!(i_selectable_panel is ModeSelectedPanel)){
+			if (i_selectable_panel is ModeSelectedPanel){
+				var mode_select_panel = (ModeSelectedPanel) i_selectable_panel;
+				GameStateManager.instance.mode = mode_select_panel.GetModeName;
+				DebugLogger.Log(mode_select_panel.GetModeName);
+				SceneManager.LoadScene("CharSelect");
+			}else if (i_selectable_panel is IDisplayPanel){
+				var display_panel = (IDisplayPanel)i_selectable_panel;
+				display_panel.Launch();
+				Observable.Timer(TimeSpan.FromSeconds(0.1f))
+					.Subscribe(n => {
+						interfaceEventSystem.SubmitKey
+							.First()
+							.Subscribe(m => {
+								display_panel.Finish();
+								interfaceEventSystem.ReBoot();
+							}).AddTo(this);
+					});
+			}else{
 				DebugLogger.LogError(i_selectable_panel+" is should not be selecting");
 				return;
 			}
 
-			var mode_select_panel = (ModeSelectedPanel) i_selectable_panel;
-			GameStateManager.instance.mode = mode_select_panel.GetModeName;
-			DebugLogger.Log(mode_select_panel.GetModeName);
-			SceneManager.LoadScene("CharSelect");
 		}
 	}
 }

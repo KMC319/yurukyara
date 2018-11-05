@@ -103,7 +103,6 @@ namespace Battles.Players{
 					return;//掴み無効化
 				}
 			}
-			
 			//連続モーションの判定
 			if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
 				ChainAttack();
@@ -114,19 +113,19 @@ namespace Battles.Players{
 		}
 
 		private void RecieveResponce(AnimResponce anim_responce){
-			if (anim_responce == AnimResponce.AttackEnd){
+			if (anim_responce == AnimResponce.AttackEnd||anim_responce == AnimResponce.Damaged){
 				AttackEnd();
-			}
+			}		
 		}
 
 		private void AttackEnd(){
-			currentAttack.ToolsOff();
-			currentAttack = null;
-			currentRoot = null;
-			keyBuffer = null;
 			InAttack = false;
 			hitEnable = false;
+			currentRoot = null;
+			keyBuffer = null;
 			AttackEnable = false;
+			currentAttack.ToolsOff();
+			currentAttack = null;
 			attackAnimControll.CashClear();
 		}
 
@@ -144,7 +143,9 @@ namespace Battles.Players{
 				if (currentAttack == null){
 					result = attackAnimControll.FindAttack(info);
 					var str =result+",";
-				}else if (attackAnimControll.FindAttack(info) == currentRoot && currentAttack.HasNext){
+				}else if (attackAnimControll.FindAttack(info) == currentRoot && 
+				          currentAttack.HasNext &&
+				          currentAttack.NextAttack().attackInputInfo.commandType!=CommandType.Chain){
 					result = currentAttack.NextAttack();
 				}
 			}
