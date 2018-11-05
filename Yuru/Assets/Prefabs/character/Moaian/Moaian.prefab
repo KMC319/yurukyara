@@ -714,7 +714,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1813744750956406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -3.807}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4595167502190352}
@@ -866,7 +866,7 @@ Animator:
   m_GameObject: {fileID: 1281211855301330}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0392aff7b555ef347a953d57a6593531, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b5a5d0c3f8b4d64da02914529da7200, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guardTime: 0.5
   attackTools:
-  - {fileID: 0}
+  - {fileID: 114844043712744172}
 --- !u!114 &114278977301507350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -938,7 +938,7 @@ MonoBehaviour:
   MyDic:
     WaitName: IMoai_Wait
     RunName: IMoai_Run
-    JumpStartName: 
+    JumpStartName: IMoai_JumpStart
     JumpName: IMoai_Jumping
     FallName: IMoai_Falling
     SmallDamage: IMoai_Damage1
@@ -996,7 +996,7 @@ MonoBehaviour:
     delayTime: 0
   - clip: {fileID: 7400000, guid: 544625915b31b264c9969df5d943800f, type: 2}
     delayTime: 0
-  - clip: {fileID: 0}
+  - clip: {fileID: 7400000, guid: ea9fe6d10b5d5194aacdd52ab3781275, type: 2}
     delayTime: 0
   attackBoxs:
   - clip: {fileID: 7400000, guid: f4e4217ea128cfb4283d8d9f001cce61, type: 2}
@@ -1279,15 +1279,15 @@ MonoBehaviour:
   - Bullet: {fileID: 114113517391106146, guid: 8fc38fde98dd23a4fbd1fa70ccac954d, type: 2}
     SpawnLocalPos: {x: -5, y: 0, z: 0}
     SpawnLocalRota: {x: 0, y: 0, z: 0}
-    Delay: 0
+    Delay: 0.7
   - Bullet: {fileID: 114113517391106146, guid: 8fc38fde98dd23a4fbd1fa70ccac954d, type: 2}
     SpawnLocalPos: {x: 0, y: 5, z: 0}
     SpawnLocalRota: {x: 0, y: 0, z: 0}
-    Delay: 0
+    Delay: 0.7
   - Bullet: {fileID: 114113517391106146, guid: 8fc38fde98dd23a4fbd1fa70ccac954d, type: 2}
     SpawnLocalPos: {x: 5, y: 0, z: 0}
     SpawnLocalRota: {x: 0, y: 0, z: 0}
-    Delay: 0
+    Delay: 0.7
 --- !u!136 &136721978105509396
 CapsuleCollider:
   m_ObjectHideFlags: 1

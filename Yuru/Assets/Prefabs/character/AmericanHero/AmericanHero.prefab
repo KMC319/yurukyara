@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpPower: 1500
+  jumpPower: 500
   fallDouble: 0.5
 --- !u!114 &114151435278518124
 MonoBehaviour:
@@ -1306,6 +1306,8 @@ MonoBehaviour:
   - clip: {fileID: 7400000, guid: b1643e004586b42ab923722ad0378f3f, type: 2}
     delayTime: 0
   - clip: {fileID: 7400000, guid: 343502ceeef5144629b79b6845f63c98, type: 2}
+    delayTime: 0
+  - clip: {fileID: 7400000, guid: 4f1697b8ab408034dbd80d14b44be5c1, type: 2}
     delayTime: 0
   attackBoxs:
   - clip: {fileID: 7400000, guid: 46e0e303a5dc84b46b5ca873073213d4, type: 2}
@@ -1586,7 +1588,7 @@ MonoBehaviour:
   MyDic:
     WaitName: AmeHero_Wait
     RunName: AmeHero_Run
-    JumpStartName: 
+    JumpStartName: AmeHero_JumpStart
     JumpName: AmeHero_Jumping
     FallName: AmeHero_Falling
     SmallDamage: AmeHero_Damage1
