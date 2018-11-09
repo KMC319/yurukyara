@@ -38,8 +38,9 @@ namespace Battles.Players{
 			if (guardControll.InGuard){
 				if (attack_damage_box.attackType == AttackType.Weak){
 					return;//ガード成功
-				}else if(attack_damage_box.attackType==AttackType.Strong){
+				}else if(attack_damage_box.attackType==AttackType.Strong || attack_damage_box.attackType==AttackType.Finish){
 					attack_damage_box.damage *= reductionRate;//削り
+					attack_damage_box.attackType = AttackType.Weak;//ガードでフェイズが変わらないように
 				}
 			}
 			//自分から見てどれくらい吹っ飛ぶか
