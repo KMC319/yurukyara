@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 4376104187184344}
   - component: {fileID: 65560630040623162}
   - component: {fileID: 114602688038594344}
+  - component: {fileID: 114548205284176340}
   m_Layer: 0
   m_Name: MoaianChild
   m_TagString: Player
@@ -391,7 +392,7 @@ Transform:
   m_GameObject: {fileID: 1249432685399570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.56}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4690668635259056}
   m_Father: {fileID: 0}
@@ -588,7 +589,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1e5cc3686644c3ad947b136c2f0c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rota: {x: 10, y: 0, z: 0}
+  rota: {x: 360, y: 0, z: 0}
+--- !u!114 &114548205284176340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1249432685399570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491a56f9fbb804745a9bf8b711b91015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114602688038594344
 MonoBehaviour:
   m_ObjectHideFlags: 1

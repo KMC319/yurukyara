@@ -142,6 +142,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4386694139607620}
+  - component: {fileID: 114434311264504598}
+  - component: {fileID: 65998045456960268}
   m_Layer: 0
   m_Name: Bone_end
   m_TagString: Untagged
@@ -1297,6 +1299,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 4, z: 2}
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!65 &65998045456960268
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1122730307919718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.01, z: 0.01}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95188639900330574
 Animator:
   serializedVersion: 3
@@ -1342,7 +1356,7 @@ Animator:
   m_GameObject: {fileID: 1796064440627950}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 691b8ef681c0ee24cb4a4dbc295cc1e9, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 59c897a99c5dcf14fa192f602d622037, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1407,6 +1421,17 @@ MonoBehaviour:
     SpawnLocalPos: {x: 1, y: 0.6, z: 0.6}
     SpawnLocalRota: {x: -120, y: -90, z: 90}
     Delay: 0
+--- !u!114 &114434311264504598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1122730307919718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b5ea71047a4ee7b5eb8f8e71e2b72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114482414692918188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1444,8 +1469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199dba13303a4c999c6a8a904ffaf80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blowPowerBorder: 5
-  reductionRate: 0
+  blowPowerBorder: 300
+  reductionRate: 0.5
 --- !u!114 &114584703195781628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1585,7 +1610,7 @@ MonoBehaviour:
   attackBoxs:
   - clip: {fileID: 7400000, guid: abfee0da440851a47a7e3276c2954e06, type: 2}
     delayTime: 0.2
-    bufferTime: 0.1
+    bufferTime: 0.3
     attackInputInfo:
       keyCodes: 02000000
       commandType: 0
@@ -1599,8 +1624,8 @@ MonoBehaviour:
       knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack:
     - clip: {fileID: 7400000, guid: 57342cbc07b47a14aa17e5a85a2491e8, type: 2}
-      delayTime: 0
-      bufferTime: 0
+      delayTime: 0.2
+      bufferTime: 0.3
       attackInputInfo:
         keyCodes: 
         commandType: 0
@@ -1614,8 +1639,8 @@ MonoBehaviour:
         knockbackPower: {x: 0, y: 0, z: 100}
       nextAttack:
       - clip: {fileID: 7400000, guid: 3cc97e0a292b69b48ae8dc848d0460a1, type: 2}
-        delayTime: 0
-        bufferTime: 0
+        delayTime: 0.2
+        bufferTime: 0.3
         attackInputInfo:
           keyCodes: 
           commandType: 0
@@ -1626,11 +1651,11 @@ MonoBehaviour:
         attackDamageBox:
           damage: 5
           attackType: 0
-          knockbackPower: {x: 0, y: 0, z: 100}
+          knockbackPower: {x: 0, y: 500, z: 0}
         nextAttack:
         - clip: {fileID: 7400000, guid: d611da949aeb263468d1819eee89bd22, type: 2}
-          delayTime: 0
-          bufferTime: 0
+          delayTime: 0.2
+          bufferTime: 0.3
           attackInputInfo:
             keyCodes: 
             commandType: 0
@@ -1646,23 +1671,23 @@ MonoBehaviour:
           nextAttack: []
   - clip: {fileID: 7400000, guid: 2c9071792eb773d4c954818f8ee4141a, type: 2}
     delayTime: 0.2
-    bufferTime: 0.1
+    bufferTime: 0.3
     attackInputInfo:
       keyCodes: 03000000
       commandType: 0
       applyPhase: 0
-    delayTimeForTools: 0.1
+    delayTimeForTools: 0.25
     attackTools:
     - {fileID: 114808690174115834}
     - {fileID: 114826650396584968}
     attackDamageBox:
       damage: 20
       attackType: 1
-      knockbackPower: {x: 0, y: 10, z: 100}
+      knockbackPower: {x: 0, y: 0, z: 300}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 9cf83a6bc851b0743879068705994e54, type: 2}
     delayTime: 0.2
-    bufferTime: 0.1
+    bufferTime: 0.3
     attackInputInfo:
       keyCodes: 02000000
       commandType: 1
@@ -1674,11 +1699,11 @@ MonoBehaviour:
     attackDamageBox:
       damage: 7
       attackType: 0
-      knockbackPower: {x: 0, y: 0, z: 100}
+      knockbackPower: {x: 0, y: 0, z: 300}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 0ad5ecad466fe0b47b1eccb373b4730d, type: 2}
-    delayTime: 0
-    bufferTime: 0.1
+    delayTime: 0.2
+    bufferTime: 0.3
     attackInputInfo:
       keyCodes: 01000000
       commandType: 0
@@ -1689,11 +1714,11 @@ MonoBehaviour:
     attackDamageBox:
       damage: 10
       attackType: 0
-      knockbackPower: {x: 0, y: 0, z: 3000}
+      knockbackPower: {x: 0, y: 0, z: 1000}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 67a13c5c47cf1c240b1deabb99e2352d, type: 2}
-    delayTime: 0
-    bufferTime: 0.1
+    delayTime: 0.2
+    bufferTime: 0.3
     attackInputInfo:
       keyCodes: 02000000
       commandType: 0
@@ -1704,7 +1729,7 @@ MonoBehaviour:
     attackDamageBox:
       damage: 3
       attackType: 0
-      knockbackPower: {x: 0, y: 0, z: 10}
+      knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack: []
   - clip: {fileID: 7400000, guid: bc6d772a3db6b5847be20256faa31438, type: 2}
     delayTime: 0
@@ -1734,7 +1759,7 @@ MonoBehaviour:
       attackDamageBox:
         damage: 10
         attackType: 4
-        knockbackPower: {x: 0, y: 0, z: 0}
+        knockbackPower: {x: 0, y: 0, z: 500}
       nextAttack: []
   - clip: {fileID: 7400000, guid: 48b23bf82927a144ca1a9671c7baed81, type: 2}
     delayTime: 0
@@ -1749,7 +1774,7 @@ MonoBehaviour:
     attackDamageBox:
       damage: 7
       attackType: 0
-      knockbackPower: {x: 0, y: 0, z: 100}
+      knockbackPower: {x: 0, y: 0, z: 300}
     nextAttack: []
 --- !u!114 &114842331969505796
 MonoBehaviour:
@@ -1764,7 +1789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guardTime: 0.5
   attackTools:
-  - {fileID: 114798805898371258}
+  - {fileID: 114434311264504598}
 --- !u!114 &114873695747438188
 MonoBehaviour:
   m_ObjectHideFlags: 1

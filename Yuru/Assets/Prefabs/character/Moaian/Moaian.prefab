@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4520662871687200}
-  - component: {fileID: 114332374816568508}
+  - component: {fileID: 114239902660169410}
   m_Layer: 0
   m_Name: SShotTool
   m_TagString: Untagged
@@ -1050,6 +1050,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b5ea71047a4ee7b5eb8f8e71e2b72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114239902660169410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1446698627794076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffdc61b00304514e9ccdb491e3f8da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullets:
+  - Bullet: {fileID: 114602688038594344, guid: 8fc38fde98dd23a4fbd1fa70ccac954d, type: 2}
+    SpawnLocalPos: {x: 0, y: 2, z: 0}
+    SpawnLocalRota: {x: 0, y: 0, z: 0}
+    Delay: 0.33333334
+  releaseTime: 0.16666667
 --- !u!114 &114247565950777018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1092,22 +1109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b5ea71047a4ee7b5eb8f8e71e2b72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114332374816568508
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1446698627794076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550ceab57c6678147875b7a5c2d7560d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullets:
-  - Bullet: {fileID: 114602688038594344, guid: 8fc38fde98dd23a4fbd1fa70ccac954d, type: 2}
-    SpawnLocalPos: {x: 0, y: 5, z: 0}
-    SpawnLocalRota: {x: 0, y: 0, z: 0}
-    Delay: 0.7
 --- !u!114 &114334530480732950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1299,7 +1300,7 @@ MonoBehaviour:
       applyPhase: 0
     delayTimeForTools: 0
     attackTools:
-    - {fileID: 114332374816568508}
+    - {fileID: 114239902660169410}
     attackDamageBox:
       damage: 10
       attackType: 0
