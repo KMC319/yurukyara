@@ -18,7 +18,7 @@ namespace Battles.Systems{
 
 		// Update is called once per frame
 		void LateUpdate () {
-			if (!root.CurrentMoveCotroll.InJumping) {
+			if (!root.CurrentMoveCotroll.InJumping && transform.parent.position.y-target.transform.parent.position.y < 0.5f) {
 				targetDistance = target.transform.position - transform.position;
 			}
 			transform.LookAt(transform.position + targetDistance);

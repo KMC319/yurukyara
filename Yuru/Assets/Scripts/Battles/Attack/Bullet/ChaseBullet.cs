@@ -16,7 +16,6 @@ namespace Battles.Attack {
             rigid.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             mother = mom;
             target = targetObj;
-            transform.LookAt(targetObj.transform.position + new Vector3(0, 1, 0));
             rigid.velocity = transform.forward * speed;
             Destroy(gameObject, 5f);
             Initialized = true;

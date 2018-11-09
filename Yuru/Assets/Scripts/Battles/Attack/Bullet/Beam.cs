@@ -28,7 +28,7 @@ namespace Battles.Attack {
             Initialized = true;
         }
 
-        private void Start() {
+        private void Awake() {
             var temp = GetComponentsInChildren<ParticleSystem>();
             beamParticle = temp.First();
             chargeParticle = temp.Last();
