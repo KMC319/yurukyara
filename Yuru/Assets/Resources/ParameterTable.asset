@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Name: ParameterTable
   m_EditorClassIdentifier: 
   CharIconInformations:
-  - charName: 1
-    CharObj: {fileID: 1811438685912054, guid: aab36521580da5a4293f6061c1525481, type: 2}
-    IconImg: {fileID: 21300000, guid: b50558a06440e16408a0457551dd7d4a, type: 3}
+  - charName: 3
+    CharObj: {fileID: 1245753657550288, guid: 74e2dfbadf8237c4a87f96e95febff3c, type: 2}
+    IconImg: {fileID: 21300000, guid: d9583171734285a48807fd606c1e9418, type: 3}
   - charName: 0
     CharObj: {fileID: 1099394053116816, guid: 59498de3fc6f5f94cb23ad5c43cc16dc, type: 2}
     IconImg: {fileID: 21300000, guid: 94129acaa3145254cb78b5b4a0e0f3a4, type: 3}
+  - charName: 1
+    CharObj: {fileID: 1811438685912054, guid: aab36521580da5a4293f6061c1525481, type: 2}
+    IconImg: {fileID: 21300000, guid: b50558a06440e16408a0457551dd7d4a, type: 3}
   - charName: 2
     CharObj: {fileID: 1546481714319396, guid: 83a9d155685b2f94a9ee288e67a2bcfa, type: 2}
     IconImg: {fileID: 21300000, guid: bcdf1c6ac9bd7fb4b8a069392db59902, type: 3}

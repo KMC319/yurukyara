@@ -80,6 +80,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4690668635259056}
+  - component: {fileID: 114169894926584254}
   m_Layer: 0
   m_Name: moaian12
   m_TagString: Untagged
@@ -110,9 +111,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4376104187184344}
-  - component: {fileID: 54080135094751336}
   - component: {fileID: 65560630040623162}
-  - component: {fileID: 114113517391106146}
+  - component: {fileID: 114602688038594344}
+  - component: {fileID: 114548205284176340}
   m_Layer: 0
   m_Name: MoaianChild
   m_TagString: Player
@@ -391,7 +392,7 @@ Transform:
   m_GameObject: {fileID: 1249432685399570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.56}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4690668635259056}
   m_Father: {fileID: 0}
@@ -487,8 +488,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1165955178631222}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -1.5}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4550145092883354}
@@ -565,21 +566,6 @@ Transform:
   m_Father: {fileID: 4530225243234598}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54080135094751336
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1249432685399570}
-  serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
 --- !u!65 &65560630040623162
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -590,9 +576,32 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114113517391106146
+  m_Size: {x: 1.5, y: 1.5, z: 2.5}
+  m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &114169894926584254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1165955178631222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd1e5cc3686644c3ad947b136c2f0c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rota: {x: 360, y: 0, z: 0}
+--- !u!114 &114548205284176340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1249432685399570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491a56f9fbb804745a9bf8b711b91015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114602688038594344
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -603,6 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f941d92193cb06345b11e37ffe122064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Initialized: 0
   speed: 80
 --- !u!137 &137107613090707914
 SkinnedMeshRenderer:
@@ -619,7 +629,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 33dd188cfdc07af499403e3d6fa40168, type: 2}
+  - {fileID: 2100000, guid: 0873e1a4410ba324a96d9cf5bd35ed6f, type: 2}
   - {fileID: 2100000, guid: c9223ff6e3fbd5048af56e4a0bff0146, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
