@@ -5,12 +5,12 @@ using doma;
 using UnityEngine;
 
 namespace Battles.Attack {
-    public class Beam : Bullet,IPauseObserver {
+    public class Beam : Bullet {
         [SerializeField] private float speed;
         [SerializeField] private float chargeTime;
         [SerializeField] private float lifeTime;
         private Vector3 targetPos;
-        private BeamFactory mom;
+        private BulletFactory mom;
 
         private ParticleSystem beamParticle;
         private ParticleSystem chargeParticle;
@@ -19,23 +19,21 @@ namespace Battles.Attack {
 
         private IEnumerator myProcess;
         
-        public void Setup(BeamFactory factory, Vector3 pos) {
+        public override void Setup(BulletFactory factory, GameObject targetObj) {
             mom = factory;
-            targetPos = pos;
+            targetPos = targetObj.transform.position + new Vector3(0, 1, 0);
             transform.LookAt(targetPos);
+            myProcess = StartProcess();
+            StartCoroutine(myProcess);
+            Initialized = true;
         }
 
-        private void Awake() {
+        private void Start() {
             var temp = GetComponentsInChildren<ParticleSystem>();
             beamParticle = temp.First();
             chargeParticle = temp.Last();
             lineRenderer = GetComponent<LineRenderer>();
             col = GetComponent<CapsuleCollider>();
-        }
-
-        private void Start(){
-            myProcess = StartProcess();
-            StartCoroutine(myProcess);
         }
 
         private IEnumerator StartProcess() {
@@ -70,14 +68,15 @@ namespace Battles.Attack {
         }
 
         private void OnTriggerEnter(Collider other) {
+            if (!Initialized) return;
             mom.Hit(other);
         }
 
-        public void Pause(){
+        public override void Pause(){
             StopCoroutine(myProcess);
         }
 
-        public void Resume(){
+        public override void Resume(){
             StartCoroutine(myProcess);
         }
     }

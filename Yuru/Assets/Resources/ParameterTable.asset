@@ -14,7 +14,7 @@ MonoBehaviour:
   CharIconInformations:
   - charName: 3
     CharObj: {fileID: 1245753657550288, guid: 74e2dfbadf8237c4a87f96e95febff3c, type: 2}
-    IconImg: {fileID: 21300000, guid: b50558a06440e16408a0457551dd7d4a, type: 3}
+    IconImg: {fileID: 21300000, guid: d9583171734285a48807fd606c1e9418, type: 3}
   - charName: 0
     CharObj: {fileID: 1099394053116816, guid: 59498de3fc6f5f94cb23ad5c43cc16dc, type: 2}
     IconImg: {fileID: 21300000, guid: 94129acaa3145254cb78b5b4a0e0f3a4, type: 3}

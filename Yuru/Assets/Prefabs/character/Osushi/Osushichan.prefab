@@ -1197,7 +1197,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &65177480439153320
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1596,7 +1596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpPower: 1500
+  jumpPower: 500
   fallDouble: 0.5
 --- !u!114 &114699015506669786
 MonoBehaviour:
