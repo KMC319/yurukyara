@@ -13,7 +13,7 @@ namespace Battles.Attack{
 			sound.Play();	
 		}
 
-		public override void Off(){
+		public override void Off(bool cancel = false){
 			sound.Stop();
 		}
 	}
