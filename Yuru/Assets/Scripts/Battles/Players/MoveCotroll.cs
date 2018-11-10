@@ -20,7 +20,7 @@ namespace Battles.Players{
 		public bool InJumping{ get; set; }
 		private bool inFall;
 
-		private bool jumpAble = true;
+		protected bool jumpAble = true;
 		
 		private void Start() {
 			rigid = GetComponent<Rigidbody>();
