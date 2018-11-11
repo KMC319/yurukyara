@@ -45,7 +45,7 @@ namespace Battles.Players{
 			}
 			//自分から見てどれくらい吹っ飛ぶか
 			var po = -transform.forward * attack_damage_box.knockbackPower.z + transform.right * attack_damage_box.knockbackPower.x + transform.up * attack_damage_box.knockbackPower.y;
-			rigid.AddForce(transform.forward+new Vector3(po.x,po.y,po.z*Math.Sign(transform.forward.z)*-1),ForceMode.Impulse);
+			rigid.AddForce(new Vector3(po.x, po.y, po.z), ForceMode.Impulse);
 
 			damageStream.OnNext(attack_damage_box);//ダメージを受けた通知をするだけで計算はHealthManager任せ
 			

@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpPower: 500
+  jumpPower: 1500
   fallDouble: 0.5
 --- !u!114 &114296160936026194
 MonoBehaviour:
@@ -1621,7 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpPower: 500
+  jumpPower: 1500
   fallDouble: 0.5
 --- !u!114 &114696813770468288
 MonoBehaviour:
