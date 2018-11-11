@@ -26,6 +26,8 @@ namespace Battles.Attack {
         private readonly List<IEnumerator> shotProceses = new List<IEnumerator>();
 
         public override void On() {
+            currentBurret.Clear();
+
             isActive = true;
             foreach (var t in Bullets) {
                 var coroutine = Shot(t);
@@ -34,12 +36,12 @@ namespace Battles.Attack {
             }
         }
 
-        public override void Off() {
+        public override void Off(bool cancel = false){
+            if (cancel) return;
             isActive = false;
             foreach (var item in currentBurret) {
                 Destroy(item);
             }
-
             currentBurret.Clear();
         }
 

@@ -31,7 +31,7 @@ namespace Battles.Attack{
 			});
 		}
 
-		public override void Off(){
+		public override void Off(bool cancel = false){
 			isActive = false;
 			foreach (var item in attackTools){
 				item.Off();

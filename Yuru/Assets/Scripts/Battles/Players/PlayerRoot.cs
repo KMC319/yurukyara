@@ -35,6 +35,7 @@ namespace Battles.Players{
 
 		private void Start(){
 			CurrentMoveCotroll = moveCotrollControll3D;
+			moveCotrollControll3D.IsActive = true;
 			AttackControll.iMoveCotroll = CurrentMoveCotroll;
 		}
 
@@ -99,12 +100,15 @@ namespace Battles.Players{
 		}
 		
 		public void ChangePhase(Phase changedPhase){
+			CurrentMoveCotroll.IsActive = false;
 			switch (changedPhase){
 				case Phase.P3D:
 					CurrentMoveCotroll = moveCotrollControll3D;
+					moveCotrollControll3D.IsActive = true;
 					break;
 				case Phase.P2D:
 					CurrentMoveCotroll = moveCotrollControll2D;
+					moveCotrollControll2D.IsActive = true;
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(changedPhase), changedPhase, null);

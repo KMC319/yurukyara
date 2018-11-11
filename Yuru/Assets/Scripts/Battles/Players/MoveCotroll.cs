@@ -8,7 +8,8 @@ namespace Battles.Players{
 		[SerializeField] protected float speed;
 		[SerializeField] private float jumpPower;
 		[SerializeField] private float fallDouble=1f;
-		
+
+		public bool IsActive{ get; set; }
 		protected Rigidbody rigid;
 		protected Transform lookTarget;
 
@@ -20,7 +21,7 @@ namespace Battles.Players{
 		public bool InJumping{ get; set; }
 		private bool inFall;
 
-		private bool jumpAble = true;
+		protected bool jumpAble = true;
 		
 		private void Start() {
 			rigid = GetComponent<Rigidbody>();
@@ -29,10 +30,10 @@ namespace Battles.Players{
 			motionAnimControll = this.transform.GetComponentInChildren<MotionAnimControll>();
 
 			motionAnimControll.ResponseStream
+				.Where(n=>this.IsActive)
 				.Where(n => n == AnimResponce.JumpLaunch)
 				.Subscribe(n => {
-				DebugLogger.Log("a");
-				Jump();
+					Jump();
 			});
 		}
 
@@ -69,6 +70,7 @@ namespace Battles.Players{
 		}
 
 		protected virtual void Jump(){
+			if(InJumping)return;
 			InJumping = true;
 			rigid.AddForce(Vector3.up*jumpPower,ForceMode.Impulse);
 		}

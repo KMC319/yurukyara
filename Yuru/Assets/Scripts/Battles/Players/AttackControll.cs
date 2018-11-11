@@ -113,9 +113,15 @@ namespace Battles.Players{
 		}
 
 		private void RecieveResponce(AnimResponce anim_responce){
-			if (anim_responce == AnimResponce.AttackEnd||anim_responce == AnimResponce.Damaged){
+			if (anim_responce == AnimResponce.AttackEnd){
+				currentAttack.ToolsOff();
 				AttackEnd();
-			}		
+			}
+
+			if (anim_responce == AnimResponce.Damaged){
+				currentAttack.ToolsCancel();
+				AttackEnd();
+			}
 		}
 
 		private void AttackEnd(){
@@ -124,7 +130,6 @@ namespace Battles.Players{
 			currentRoot = null;
 			keyBuffer = null;
 			AttackEnable = false;
-			currentAttack.ToolsOff();
 			currentAttack = null;
 			attackAnimControll.CashClear();
 		}
@@ -151,7 +156,7 @@ namespace Battles.Players{
 			}
 
 			if(result==null)return;//ここでNullなら攻撃がないので非実行
-			currentAttack?.ToolsOff();
+			currentAttack?.ToolsCancel();
 			currentAttack = result;
 			Observable
 				.Timer(TimeSpan.FromSeconds(result.delayTimeForTools))

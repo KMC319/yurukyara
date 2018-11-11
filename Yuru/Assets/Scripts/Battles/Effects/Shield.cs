@@ -18,7 +18,7 @@ namespace Battles.Effects {
             gameObject.SetActive(true);
         }
 
-        public override void Off() {
+        public override void Off(bool cancel=false) {
             gameObject.SetActive(false);
         }
 

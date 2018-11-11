@@ -22,7 +22,7 @@ namespace Battles.Attack{
 			myCollider.enabled = true;
 		}
 
-		public override void Off(){
+		public override void Off(bool cancel = false){
 			IsActive = false;
 			myCollider.enabled = false;
 		}

@@ -15,8 +15,8 @@ namespace Battles.Attack {
             obj.HitStream.Subscribe(n => hitStream.OnNext(n.gameObject)).AddTo(obj);
         }
 
-        public override void Off(){
-           
+        public override void Off(bool cancel = false){
+            
         }
     }
 }
