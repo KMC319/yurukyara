@@ -3,26 +3,30 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Start {
-    public class ExitPanel : MonoBehaviour, ISelectablePanel {
+    public class ExitPanel : MonoBehaviour, IDisplayPanel {
         private Image myimg;
 
-        private void Awake(){
+        private void Awake() {
             myimg = this.GetComponent<Image>();
             myimg.enabled = false;
         }
 
-        public void OnSelect(){
+        public void OnSelect() {
             myimg.enabled = true;
         }
 
-        public void RemoveSelect(){
+        public void RemoveSelect() {
             myimg.enabled = false;
         }
 
-        public void Submit(){
+        public void Submit() {
             Application.Quit();
         }
 
-        public bool IsActive{ get; set; }
+        public bool IsActive { get; set; }
+
+        public void Launch() { }
+
+        public void Finish() { }
     }
 }

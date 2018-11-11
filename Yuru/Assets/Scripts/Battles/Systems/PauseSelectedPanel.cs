@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace Battles.Systems {
     public class PauseSelectedPanel : MonoBehaviour, ISelectablePanel {
         [SerializeField] private Pmenu menu;
-        
+
         private Pausable pausable;
         private Text text;
 
@@ -35,11 +35,11 @@ namespace Battles.Systems {
                     break;
                 case Pmenu.ToChar:
                     BGMer.Instance.Delete();
-                    SceneManager.LoadScene("CharSelect");
+                    GameObject.Find("root").GetComponent<BattleManager>().BreakGame("CharSelect");
                     break;
                 case Pmenu.ToTitle:
                     BGMer.Instance.Delete();
-                    SceneManager.LoadScene("Start");
+                    GameObject.Find("root").GetComponent<BattleManager>().BreakGame("Start");
                     break;
                 case Pmenu.EndGame:
                     Application.Quit();

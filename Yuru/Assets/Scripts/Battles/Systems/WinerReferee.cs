@@ -55,7 +55,12 @@ namespace Battles.Systems{
 		public static int GetCount(PlayerNum player_num){
 			return winnerCounters.Find(n => n.playerNum == player_num).count;
 		}
-		
+
+		public static void Reset() {
+			foreach (var item in winnerCounters){
+				item.Reset();
+			}
+		}
 		
 	}
 }
