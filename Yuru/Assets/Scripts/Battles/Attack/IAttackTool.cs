@@ -8,6 +8,6 @@ namespace Battles.Attack{
 	//用途はInterFaceだけどシリアライズのためにabstructになってます
 	public abstract class IAttackTool:MonoBehaviour{
 		public abstract void On();
-		public abstract void Off();
+		public abstract void Off(bool cancel=false);
 	}
 }

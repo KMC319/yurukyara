@@ -13,7 +13,7 @@ namespace Battles.Players{
 			var x = lookTarget.right * HorizontalMovement * speed;
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0) + z + x;
 			transform.LookAt(transform.position + z + x);
-			if (!InJumping){
+			if (!InJumping&&jumpAble){
 				PlayMotion(motionAnimControll.MyDic.RunName);
 			}
 		}
