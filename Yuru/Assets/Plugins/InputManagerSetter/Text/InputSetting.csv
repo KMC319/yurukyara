@@ -1,20 +1,20 @@
-Horizontal1,axis,X,a,d
-Vertical1,axis,Y,s,w
+Horizontal!1,axis,X,a,d
+Vertical!1,axis,!Y,s,w
 A1,A,z,,
 B1,B,x,,
 X1,X,c,,
 Y1,Y,v,,
 RB1,R1,f,,
 Horizontal2,axis,X,left,right
-Vertical2,axis,Y,down,up
-A2,A,m,,
+Vertical2,axis,!Y,down,up
+A2,A,..,,
 B2,B,.,,
 X2,X,/,,
 Y2,Y,\,,
 RB2,R1,l,,
-Submit1,A,enter,,
-Cancel1,B,left shift,,
-Submit2,A,m,,
+Submit!1,A,enter,,
+Cancel!1,B,left shift,,
+Submit2,A,..,,
 Cancel2,B,.,,
-Start1,A,space,,
-Start2,A,space,,
+Start!1,Start,space,,
+Start2,Start,space,,
