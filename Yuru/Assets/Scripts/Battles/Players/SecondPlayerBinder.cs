@@ -5,20 +5,20 @@ using UnityEngine;
 
 namespace Battles.Players{
 	public class SecondPlayerBinder : MonoBehaviour,IPlayerBinder{
-		private FirstPlayerBinder target;
+		protected FirstPlayerBinder target;
 
 		public PlayerRoot TargetPlayerRoot => target.PlayerRoot;
 		public PlayerNum PlayerNum => PlayerNum.P2;
 
-		public void SetInputEnable(bool en){
+		public virtual void SetInputEnable(bool en){
 			instantBattleInput.IsActive = en;
 		}
 
 		private InstantBattleInput instantBattleInput;
-		public PlayerRoot PlayerRoot{ get; private set; }
+		public PlayerRoot PlayerRoot{ get; protected set; }
 		
 
-		private void Awake(){
+		protected void Awake(){
 			PlayerRoot = this.GetComponent<PlayerRoot>();
 			instantBattleInput = gameObject.AddComponent<InstantBattleInput>();
 			instantBattleInput.iBattleKeyReciever=this.GetComponent<IBattleKeyReciever>();

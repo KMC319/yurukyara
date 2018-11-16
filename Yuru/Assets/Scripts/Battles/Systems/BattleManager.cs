@@ -142,5 +142,11 @@ namespace Battles.Systems{
 			round = 1;
 			SceneManager.LoadScene("Battle");
 		}
+
+		public void BreakGame(string Scene) {
+			round = 1;
+			WinerReferee.Reset();
+			SceneManager.LoadScene(Scene);
+		}
 	}
 }

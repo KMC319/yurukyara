@@ -18,62 +18,58 @@ namespace InputManagerSetter.Editor {
 				string line = sr.ReadLine ();
 				string[] csvDatas = line.Split(',');
 				var joynum = csvDatas[0].Contains("1") ? 1 : csvDatas[0].Contains("2") ? 2 : 0;
+				var name = csvDatas[0].Split('!').First();
 				if (csvDatas[1] != "axis") {
-					string directAxis = "";
-					string xAxis = "";
+					string xAxis = "joystick " + (joynum != 0 ? joynum + " " : "");
 					switch (csvDatas[1]) {
 						case "A":
-							directAxis = "joystick button 1";
-							xAxis = "joystick button 0";
+							xAxis += "button 0";
 							break;
 						case "B":
-							directAxis = "joystick button 2";
-							xAxis = "joystick button 1";
+							xAxis += "button 1";
 							break;
 						case "X":
-							directAxis = "joystick button 0";
-							xAxis = "joystick button 2";
+							xAxis += "button 2";
 							break;
 						case "Y":
-							directAxis = "joystick button 3";
-							xAxis = "joystick button 3";
+							xAxis += "button 3";
 							break;
 						case "L1":
-							directAxis = "joystick button 4";
-							xAxis = "joystick button 4";
+							xAxis += "button 4";
 							break;
 						case "R1":
-							directAxis = "joystick button 5";
-							xAxis = "joystick button 5";
+							xAxis += "button 5";
 							break;
 						case "L2":
-							directAxis = "joystick button 6";
 							//3rdaxis>0
 							break;
 						case "R2":
-							directAxis = "joystick button 7";
 							//3rdaxis<0
+							break;
+						case "Start":
+							xAxis += "button 7";
 							break;
 					}
 					if (csvDatas[1] == "L2" || csvDatas[1] == "R2") {
-						inputManagerGenerator.AddAxis(InputAxis.PadAxisSetting(csvDatas[0], 3,joynum));
+						inputManagerGenerator.AddAxis(InputAxis.PadAxisSetting(name, 3,joynum));
 					} else {
-						inputManagerGenerator.AddAxis(InputAxis.ButtonSetting(csvDatas[0], xAxis,joynum));
+						inputManagerGenerator.AddAxis(InputAxis.ButtonSetting(name, xAxis,joynum));
 					}
 
-					if (csvDatas[2] != "axis") inputManagerGenerator.AddAxis(InputAxis.KeySetting(csvDatas[0], csvDatas[2]));
+					if (csvDatas[2] == "..") inputManagerGenerator.AddAxis(InputAxis.KeySetting(name, ","));
+					else if (csvDatas[2] != "axis") inputManagerGenerator.AddAxis(InputAxis.KeySetting(name, csvDatas[2]));
 					else {
 						int num = csvDatas[3].Contains("X") ? 1 : csvDatas[3].Contains("Y") ? 2 : int.Parse(csvDatas[3].Substring(0, 1));
-						inputManagerGenerator.AddAxis(InputAxis.MouseAxisSetting(csvDatas[0], num));
+						inputManagerGenerator.AddAxis(InputAxis.MouseAxisSetting(name, num));
 					}
 				} else {
 					int num = csvDatas[2].Contains("X") ? 1 : csvDatas[2].Contains("Y") ? 2 : int.Parse(csvDatas[2].Substring(0, 1));
-					inputManagerGenerator.AddAxis(InputAxis.PadAxisSetting(csvDatas[0], csvDatas[2].Contains("!"), num, joynum));
+					inputManagerGenerator.AddAxis(InputAxis.PadAxisSetting(name, csvDatas[2].Contains("!"), num, joynum));
 					if (num > 3) num--;
-					if (csvDatas[3] != "axis") inputManagerGenerator.AddAxis(InputAxis.KeySetting(csvDatas[0], csvDatas[3], csvDatas[4]));
+					if (csvDatas[3] != "axis") inputManagerGenerator.AddAxis(InputAxis.KeySetting(name, csvDatas[3], csvDatas[4]));
 					else {
 						num = csvDatas[4].Contains("X") ? 1 : csvDatas[4].Contains("Y") ? 2 : int.Parse(csvDatas[4].Substring(0, 1));
-						inputManagerGenerator.AddAxis(InputAxis.MouseAxisSetting(csvDatas[0], num));
+						inputManagerGenerator.AddAxis(InputAxis.MouseAxisSetting(name, num));
 					}
 				}
 			}

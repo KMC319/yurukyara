@@ -1,4 +1,5 @@
-﻿using doma;
+﻿using System.Linq;
+using doma;
 using doma.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,10 +7,12 @@ using UnityEngine.UI;
 namespace Start{
 	public class KeyDisplay : MonoBehaviour,IDisplayPanel{
 		private Image myimg;
+		[SerializeField]private Image childimg;
 
-		private void Awake(){
+		private void Awake() {
 			myimg = this.GetComponent<Image>();
 			myimg.enabled = false;
+			childimg.enabled = false;
 		}
 
 		public void OnSelect(){
@@ -28,11 +31,13 @@ namespace Start{
 		public void Launch(){
 			//起動処理
 			DebugLogger.Log("launch");
+			childimg.enabled = true;
 		}
 
 		public void Finish(){
 			//終了処理
 			DebugLogger.Log("finish");
+			childimg.enabled = false;
 		}
 	}
 }

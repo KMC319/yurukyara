@@ -29,6 +29,8 @@ namespace Battles.Attack {
 		}
 
 		private void FixedUpdate() {
+			if (!Initialized) return;
+			if (isPausing) return;
 			RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, speed * Time.deltaTime);
 			if(hits.Length <= 0) return;
 			foreach (var hit in hits) {

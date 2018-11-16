@@ -83,7 +83,7 @@ namespace Battles.Attack {
             }
 
             foreach (var item in currentBurret) {
-                item.GetComponent<Bullet>().Resume();
+                if(item != null) item.GetComponent<Bullet>().Resume();
             }
         }
     }
