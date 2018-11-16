@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 
 namespace Battles.Players{
-	public abstract class MoveCotroll:MonoBehaviour{
+	public abstract class MoveCotroll:MonoBehaviour,IPlayerCancelProcess{
 		[SerializeField] protected float speed;
 		[SerializeField] private float jumpPower;
 		[SerializeField] private float fallDouble=1f;
@@ -103,6 +103,13 @@ namespace Battles.Players{
 
 		protected void PlayMotion(string name){
 			motionAnimControll.ChangeAnim(name);
+		}
+
+		public void Cancel(){
+			inFall = false;
+			InJumping = false;
+			jumpAble = true;
+			ForceFall();
 		}
 	}
 }

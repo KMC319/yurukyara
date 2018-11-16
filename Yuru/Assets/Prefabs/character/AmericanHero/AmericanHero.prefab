@@ -1359,10 +1359,10 @@ MonoBehaviour:
       applyPhase: 0
     delayTimeForTools: 0.25
     attackTools:
-    - {fileID: 114523332088774924}
+    - {fileID: 114866658579530366}
     attackDamageBox:
       damage: 7
-      attackType: 0
+      attackType: 4
       knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack:
     - clip: {fileID: 7400000, guid: 4b3d8fa9b7b324f4ab3bae664087eafb, type: 2}
@@ -1374,7 +1374,7 @@ MonoBehaviour:
         applyPhase: 0
       delayTimeForTools: 0
       attackTools:
-      - {fileID: 0}
+      - {fileID: 114866658579530366}
       attackDamageBox:
         damage: 10
         attackType: 4

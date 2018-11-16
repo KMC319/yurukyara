@@ -45,6 +45,7 @@ namespace Battles.Systems{
 				case Phase.P3D:
 					stackHealth = 0;
 					if (attack_type == AttackType.Strong || attack_type == AttackType.Grab){
+						DebugLogger.Log("to 2D phase by"+attack_damage_box.attackType);
 						PhaseManager.Instance.NowPhase = Phase.P2D;
 					}
 					break;

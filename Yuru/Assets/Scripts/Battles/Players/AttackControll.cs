@@ -8,7 +8,7 @@ using UniRx;
 using UnityEngine;
 
 namespace Battles.Players{
-	public class AttackControll : MonoBehaviour{
+	public class AttackControll : MonoBehaviour,IPlayerCancelProcess{
 		[SerializeField] private float keyBufferTime;
 		private AttackBox currentAttack;
 		private AttackBox currentRoot;
@@ -117,11 +117,11 @@ namespace Battles.Players{
 				currentAttack.ToolsOff();
 				AttackEnd();
 			}
+		}
 
-			if (anim_responce == AnimResponce.Damaged){
-				currentAttack.ToolsCancel();
-				AttackEnd();
-			}
+		public void Cancel(){
+			currentAttack?.ToolsCancel();
+			AttackEnd();
 		}
 
 		private void AttackEnd(){
@@ -160,6 +160,7 @@ namespace Battles.Players{
 			currentAttack = result;
 			Observable
 				.Timer(TimeSpan.FromSeconds(result.delayTimeForTools))
+				.Where(n=>this.InAttack)
 				.Subscribe(n => {
 					if (result == currentAttack){
 						currentAttack.ToolsOn();

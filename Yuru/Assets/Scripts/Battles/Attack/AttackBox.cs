@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Battles.Animations;
+using doma;
 using UnityEngine;
 
 namespace Battles.Attack{
@@ -23,20 +24,32 @@ namespace Battles.Attack{
 		public bool HasNext => nextAttack != null &&nextAttack.Length == 1 &&nextAttack.First().clip != null;
 
 		public void ToolsOn(){
-			foreach (var item in attackTools){
-				item.On();
+			try{
+				foreach (var item in attackTools){
+					item.On();
+				}
+			}catch (Exception e){
+				DebugLogger.LogError(e+",in "+clip.name);
 			}
 		}
 		
 		public void ToolsOff(){
-			foreach (var item in attackTools){
-				item.Off();
+			try{
+				foreach (var item in attackTools){
+					item.Off();
+				}
+			}catch (Exception e){
+				DebugLogger.LogError(e+",in "+clip.name);
 			}
 		}
 
 		public void ToolsCancel(){
-			foreach (var item in attackTools){
-				item.Off(true);
+			try{
+				foreach (var item in attackTools){
+					item.Off(true);
+				}
+			}catch (Exception e){
+				DebugLogger.LogError(e+",in "+clip.name);
 			}
 		}
 	}
