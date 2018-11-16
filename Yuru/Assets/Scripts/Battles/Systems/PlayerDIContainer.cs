@@ -13,7 +13,7 @@ namespace Battles.Systems{
 		
 		public void Launch(GameObject p1,GameObject p2){
 			var p1fb = p1.AddComponent<FirstPlayerBinder>();
-			var p2fb = GameStateManager.instance.mode == ModeName.VsCom ? p2.AddComponent<ComBinder>() : p2.AddComponent<SecondPlayerBinder>();
+			var p2fb = GameStateManager.instance != null && GameStateManager.instance.mode == ModeName.VsCom ? p2.AddComponent<ComBinder>() : p2.AddComponent<SecondPlayerBinder>();
 			p1fb.SetUp(p2fb);
 			p2fb.SerUp(p1fb);
 			
