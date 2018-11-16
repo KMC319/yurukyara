@@ -8,6 +8,7 @@ namespace Battles.Systems{
 	public class PlayerDIContainer : MonoBehaviour{
 		[SerializeField] private CinemachineVirtualCamera p1Vcam;
 		[SerializeField] private CinemachineVirtualCamera p2Vcam;
+		[SerializeField] private CinemachineTargetGroup targetGroup;
 
 		[Inject] private DiContainer diContainer;
 		
@@ -26,10 +27,13 @@ namespace Battles.Systems{
 			lt1.target = lt2.gameObject;
 			lt2.target = lt1.gameObject;
 
+			targetGroup.m_Targets[0].target = p1.transform;
+			targetGroup.m_Targets[1].target = p2.transform;
+
 			p1Vcam.Follow = lt1.transform;
-			p1Vcam.LookAt= lt2.transform;
+			//p1Vcam.LookAt= lt2.transform;
 			p2Vcam.Follow = lt2.transform;
-			p2Vcam.LookAt = lt1.transform;
+			//p2Vcam.LookAt = lt1.transform;
 		}
 	}
 }
