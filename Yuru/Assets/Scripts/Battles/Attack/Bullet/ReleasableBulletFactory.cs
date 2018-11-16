@@ -25,7 +25,6 @@ namespace Battles.Attack {
                 time += Time.deltaTime;
             }
             if (!isActive) yield break;
-            bullet.gameObject.transform.parent = null;
             bullet.GetComponent<Bullet>().Setup(this, Target.gameObject);
         }
 
