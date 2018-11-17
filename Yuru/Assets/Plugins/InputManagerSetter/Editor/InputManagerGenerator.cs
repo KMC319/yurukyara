@@ -66,6 +66,7 @@ namespace InputManagerSetter.Editor {
 					int num = csvDatas[2].Contains("X") ? 1 : csvDatas[2].Contains("Y") ? 2 : int.Parse(csvDatas[2].Substring(0, 1));
 					inputManagerGenerator.AddAxis(InputAxis.PadAxisSetting(name, csvDatas[2].Contains("!"), num, joynum));
 					if (num > 3) num--;
+					if (csvDatas[3] == null || csvDatas[3] == "") continue;
 					if (csvDatas[3] != "axis") inputManagerGenerator.AddAxis(InputAxis.KeySetting(name, csvDatas[3], csvDatas[4]));
 					else {
 						num = csvDatas[4].Contains("X") ? 1 : csvDatas[4].Contains("Y") ? 2 : int.Parse(csvDatas[4].Substring(0, 1));
