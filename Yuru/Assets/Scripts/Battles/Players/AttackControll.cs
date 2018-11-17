@@ -104,12 +104,18 @@ namespace Battles.Players{
 				}
 			}
 			//連続モーションの判定
-			if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
-				ChainAttack();
+			try{
+				if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
+					ChainAttack();
+					return;
+				}
+				//ここまで行ったらダメージをコール
+				TaregtPlayer.DamageControll.Hit(currentAttack.attackDamageBox);
+			}
+			catch (Exception e){
+				DebugLogger.LogError(e);
 				return;
 			}
-			//ここまで行ったらダメージをコール
-			TaregtPlayer.DamageControll.Hit(currentAttack.attackDamageBox);
 		}
 
 		private void RecieveResponce(AnimResponce anim_responce){

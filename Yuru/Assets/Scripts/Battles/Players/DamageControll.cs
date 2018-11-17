@@ -29,7 +29,6 @@ namespace Battles.Players{
 		}
 		
 		private void RecieveResponce(AnimResponce responce){
-			if(!InDamage)return;
 			if (responce == AnimResponce.Damaged){
 				InDamage = false;
 				rigid.velocity=new Vector3(rigid.velocity.x,rigid.velocity.y,0);

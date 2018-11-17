@@ -1,4 +1,5 @@
-﻿using doma;
+﻿using System;
+using doma;
 using UnityEngine;
 
 namespace Battles.Attack{
@@ -10,8 +11,13 @@ namespace Battles.Attack{
 		private Collider myCollider;
 
 		private void Awake(){
-			myCollider = this.GetComponent<Collider>();
-			myCollider.enabled = false;
+			try{
+				myCollider = this.GetComponent<Collider>();
+				myCollider.enabled = false;
+			}catch (Exception e){
+				DebugLogger.LogError(e+".in "+gameObject.name);
+				throw;
+			}
 		}
 
 		private void Update(){
