@@ -77,24 +77,28 @@ namespace Battles.Players{
 		}
 
 		public void JumpKey(){
+			if(guardControll.InGuard||DamageControll.InDamage)return;
 			if(!AttackControll.InAttack)CurrentMoveCotroll.JumpStart();
 			AttackControll.InputKey(PlayerKeyCode.A);
 		}
 
 		public void RangeAtKey(){
+			if(guardControll.InGuard||DamageControll.InDamage)return;
 			AttackControll.InputKey(PlayerKeyCode.B);
 		}
 
 		public void WeakAtKey(){
+			if(guardControll.InGuard||DamageControll.InDamage)return;
 			AttackControll.InputKey(PlayerKeyCode.X);
 		}
 
 		public void StrongAtKey(){
+			if(guardControll.InGuard||DamageControll.InDamage)return;
 			AttackControll.InputKey(PlayerKeyCode.Y);
 		}
 
 		public void GuardKey(){
-			if(AttackControll.InAttack)return;
+			if(AttackControll.InAttack||DamageControll.InDamage)return;
 			guardControll.GuardCommand();
 			CurrentMoveCotroll.Pause();
 		}

@@ -40,6 +40,7 @@ namespace Battles.Attack {
             if (cancel) return;
             isActive = false;
             foreach (var item in currentBurret) {
+                if(item==null)continue;
                 Destroy(item);
             }
             currentBurret.Clear();

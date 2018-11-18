@@ -1,12 +1,25 @@
-﻿using doma;
+﻿using System;
+using doma;
 using UnityEngine;
 
 namespace Battles.Attack{
 	//実装が汚い、Targetに依存しすぎ
 	public class Grab : AttackToolEntity{
 		private bool grabActive;
-		private bool coliderActive; 
-		
+		private bool coliderActive;
+
+		private Collider myCollider;
+
+		private void Awake(){
+			try{
+				myCollider = this.GetComponent<Collider>();
+				myCollider.enabled = false;
+			}catch (Exception e){
+				DebugLogger.LogError(e+".in "+gameObject.name);
+				throw;
+			}
+		}
+
 		private void Update(){
 			if(!grabActive)return;
 			Target.gameObject.transform.position = transform.position;
@@ -15,6 +28,7 @@ namespace Battles.Attack{
 
 		public override void On(){
 			coliderActive = true;
+			myCollider.enabled = true;
 		}
 
 		public override void Off(bool cancel = false){
@@ -23,6 +37,7 @@ namespace Battles.Attack{
 			}
 			grabActive = false;
 			coliderActive = false;
+			myCollider.enabled = false;
 		}
 		
 		

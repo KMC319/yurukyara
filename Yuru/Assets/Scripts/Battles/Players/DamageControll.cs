@@ -16,18 +16,19 @@ namespace Battles.Players{
 
 		private Rigidbody rigid;
 		private MotionAnimControll motionAnimControll;
+		private IPlayerCancelProcess[] playerCancelProcesses;
 		private GuardControll guardControll;
 		
 		private void Start(){
 			motionAnimControll = this.GetComponentInChildren<MotionAnimControll>();
 			guardControll=this.GetComponent<GuardControll>();
-
+			playerCancelProcesses = transform.GetComponentsInChildren<IPlayerCancelProcess>();
+			
 			rigid = this.GetComponent<Rigidbody>();
 			motionAnimControll.ResponseStream.Subscribe(RecieveResponce);
 		}
 		
 		private void RecieveResponce(AnimResponce responce){
-			if(!InDamage)return;
 			if (responce == AnimResponce.Damaged){
 				InDamage = false;
 				rigid.velocity=new Vector3(rigid.velocity.x,rigid.velocity.y,0);
@@ -35,12 +36,18 @@ namespace Battles.Players{
 		}
 
 		public void Hit(AttackDamageBox attack_damage_box){
+			if(InDamage)return;
+			foreach (var item in playerCancelProcesses){
+				item.Cancel();
+			}
 			if (guardControll.InGuard){
 				if (attack_damage_box.attackType == AttackType.Weak){
 					return;//ガード成功
 				}else if(attack_damage_box.attackType==AttackType.Strong || attack_damage_box.attackType==AttackType.Finish){
 					attack_damage_box.damage *= reductionRate;//削り
 					attack_damage_box.attackType = AttackType.Weak;//ガードでフェイズが変わらないように
+					damageStream.OnNext(attack_damage_box);
+					return;
 				}
 			}
 			//自分から見てどれくらい吹っ飛ぶか
@@ -51,10 +58,10 @@ namespace Battles.Players{
 			
 			if (attack_damage_box.knockbackPower.magnitude > blowPowerBorder){
 				motionAnimControll.ForceChangeAnim(motionAnimControll.MyDic.BigDamage);
+				InDamage = true;
 			} else{
 				motionAnimControll.ForceChangeAnim(motionAnimControll.MyDic.SmallDamage);
 			}
-			InDamage = true;
 		}
 
 		public void InGrabed(){
