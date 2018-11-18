@@ -31,7 +31,7 @@ namespace Battles.Effects {
                 sum = parentPositions[0].position;
             }
 
-            transform.position = sum / parentPositions.Length + transform.forward * localPos.z;
+            transform.position = sum / parentPositions.Length + transform.forward * localPos.z + transform.up * localPos.y + transform.right * localPos.x;
         }
     }
 }
