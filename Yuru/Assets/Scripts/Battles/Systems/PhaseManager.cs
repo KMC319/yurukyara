@@ -30,7 +30,7 @@ namespace Battles.Systems {
             players = GameObject.FindGameObjectsWithTag("Player").Select(i => i.transform).ToArray();
             list = transform.parent.GetComponentsInChildren<IChangePhase>().ToList();
             var key = players.Select(i => i.transform.position.z).ToArray();
-            Array.Sort(key, players); 
+            Array.Sort(key, players);
             NowPhase = Phase.P3D;
             child = transform.Find("child").gameObject;
             Observable.EveryUpdate()
@@ -44,12 +44,13 @@ namespace Battles.Systems {
         }
 
         private void Update() {
-            if(NowPhase == Phase.P3D) UpdateBasePoint();
+            if (NowPhase == Phase.P3D) UpdateBasePoint();
             PointMove();
         }
 
         private void LateUpdate() {
-            transform.LookAt(transform.position + Vector3.Cross(Vector3.up, new Vector3(players[1].transform.position.x, 1, players[1].transform.position.z) - child.transform.position));
+            int num = Vector3.Magnitude(players[0].position - basePoint) > Vector3.Magnitude(players[1].position - basePoint) ? 0 : 1;
+            transform.LookAt(transform.position + Vector3.Cross(Vector3.up, new Vector3(players[num].position.x, 1, players[num].position.z) - child.transform.position));
         }
 
         void PointMove() {
