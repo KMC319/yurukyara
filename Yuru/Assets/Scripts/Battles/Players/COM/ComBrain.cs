@@ -6,8 +6,8 @@ namespace Battles.Players {
 		public IBattleKeyReciever iBattleKeyReciever;
 		[SerializeField] private bool isActive;public bool IsActive{set{ isActive = value; }}
 
-		private float minInterval = 0.1f;
-		private float maxInterval = 0.5f;
+		private float minInterval = 0.25f;
+		private float maxInterval = 0.75f;
 		private int jump = 0;
 		private int rangeAt = 50;
 		private int weakAt = 50;

@@ -1292,7 +1292,7 @@ MonoBehaviour:
       knockbackPower: {x: 0, y: 0, z: 250}
     nextAttack: []
   - clip: {fileID: 7400000, guid: d8c400fb84c59ea4b887f711251c9116, type: 2}
-    delayTime: 0.2
+    delayTime: 0.5
     bufferTime: 0.3
     attackInputInfo:
       keyCodes: 01000000
