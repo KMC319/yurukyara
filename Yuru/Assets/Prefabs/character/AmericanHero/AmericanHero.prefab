@@ -1147,7 +1147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020d1d00c2f64300aceb458e4924f5ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   jumpPower: 1500
   fallDouble: 0.5
 --- !u!114 &114151435278518124
@@ -1331,7 +1331,7 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114657321444453100}
     attackDamageBox:
-      damage: 13
+      damage: 5
       attackType: 0
       knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack: []

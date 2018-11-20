@@ -981,7 +981,7 @@ Animator:
   m_GameObject: {fileID: 1281211855301330}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0392aff7b555ef347a953d57a6593531, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8b5a5d0c3f8b4d64da02914529da7200, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020d1d00c2f64300aceb458e4924f5ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 10
   jumpPower: 1300
   fallDouble: 1
 --- !u!114 &114427735266319558
@@ -1302,7 +1302,7 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114239902660169410}
     attackDamageBox:
-      damage: 10
+      damage: 5
       attackType: 0
       knockbackPower: {x: 0, y: 0, z: 500}
     nextAttack: []
@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdf1aee70c64ba9a14d3f043cef6ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 10
   jumpPower: 1300
   fallDouble: 1
 --- !u!114 &114880711297474896
