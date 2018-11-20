@@ -48,17 +48,13 @@ namespace Battles.Attack {
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, transform.position);
             var nowPos = transform.position;
-            while (Vector3.Distance(nowPos, targetPos) > speed * Time.deltaTime) {
+            while (nowPos.y > 0) {
                 lineRenderer.SetPosition(1, nowPos + transform.forward * speed * Time.deltaTime);
                 nowPos += transform.forward * speed * Time.deltaTime;
                 col.center = new Vector3(0, 0, Vector3.Distance(nowPos, transform.position) / 2f);
                 col.height = Vector3.Distance(nowPos, transform.position);
                 yield return null;
             }
-
-            col.center = new Vector3(0, 0, Vector3.Distance(targetPos, transform.position) / 2f);
-            col.height = Vector3.Distance(targetPos, transform.position);
-            lineRenderer.SetPosition(1, targetPos);
             var life_count = 0.01f;
             while (life_count<=lifeTime){
                 yield return new WaitForSeconds(0.01f);

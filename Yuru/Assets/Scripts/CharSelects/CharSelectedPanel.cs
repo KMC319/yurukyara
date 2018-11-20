@@ -27,6 +27,7 @@ namespace CharSelects{
 
 		public virtual void OnSelect(){
 			img.enabled = true;
+			img.color = new Color(111 / 255f, 198 / 255f, 164 / 255f);
 			txt.enabled = true;
 		}
 
@@ -36,7 +37,7 @@ namespace CharSelects{
 		}
 
 		public void Submit(){
-		
+			img.color = Color.red;
 		}
 
 		public bool IsActive{ get; set; }

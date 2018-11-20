@@ -8,7 +8,7 @@ namespace Battles.Players {
 
 		private float minInterval = 0.1f;
 		private float maxInterval = 0.5f;
-		private int jump = 50;
+		private int jump = 0;
 		private int rangeAt = 50;
 		private int weakAt = 50;
 		private int strongAt = 50;
@@ -39,7 +39,7 @@ namespace Battles.Players {
 		private void UpdateMove() {
 			horizontal = Random.Range(-1f, 1f);
 			var rand = Random.Range(0, 100);
-			vertical = rand < 20 ? -1 : rand < 60 ? 0 : 1;
+			vertical = rand < 20 ? -1 : rand < 40 ? 0 : 1;
 			if (Random.Range(0, 100) < jump) iBattleKeyReciever.JumpKey();
 			if (Random.Range(0, 100) < rangeAt) iBattleKeyReciever.RangeAtKey();
 			if (Random.Range(0, 100) < weakAt) iBattleKeyReciever.WeakAtKey();

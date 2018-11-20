@@ -23,7 +23,7 @@ namespace Battles.Players{
 
 		protected bool jumpAble = true;
 		
-		private void Start() {
+		protected virtual void Start() {
 			rigid = GetComponent<Rigidbody>();
 			lookTarget = transform.Find("LookTarget");
 

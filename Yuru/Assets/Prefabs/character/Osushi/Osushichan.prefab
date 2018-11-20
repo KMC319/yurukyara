@@ -1334,7 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020d1d00c2f64300aceb458e4924f5ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   jumpPower: 1500
   fallDouble: 0.5
 --- !u!114 &114296160936026194
@@ -1545,7 +1545,7 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114421825826371420}
     attackDamageBox:
-      damage: 10
+      damage: 5
       attackType: 0
       knockbackPower: {x: 0, y: 0, z: 1000}
     nextAttack: []
@@ -1620,7 +1620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdf1aee70c64ba9a14d3f043cef6ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   jumpPower: 1500
   fallDouble: 0.5
 --- !u!114 &114696813770468288
