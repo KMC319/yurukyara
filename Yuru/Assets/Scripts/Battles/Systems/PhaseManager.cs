@@ -17,6 +17,7 @@ namespace Battles.Systems {
         private Transform[] players;
         private GameObject child;
         public static PhaseManager Instance;
+        private int basePlayerNum;
 
         private void Awake() {
             if (Instance == null) {
@@ -45,12 +46,15 @@ namespace Battles.Systems {
 
         private void Update() {
             if (NowPhase == Phase.P3D) UpdateBasePoint();
+            else if (Vector3.SqrMagnitude(XZVector3(players[0].position) - XZVector3(players[1].position)) > 1) UpdateBasePoint(basePlayerNum);
             PointMove();
         }
 
         private void LateUpdate() {
-            int num = Vector3.Magnitude(players[0].position - basePoint) > Vector3.Magnitude(players[1].position - basePoint) ? 0 : 1;
-            transform.LookAt(transform.position + Vector3.Cross(Vector3.up, new Vector3(players[num].position.x, 1, players[num].position.z) - child.transform.position));
+            int rightPlayer = Vector3.SqrMagnitude(players[0].position - basePoint) > Vector3.SqrMagnitude(players[1].position - basePoint) ? 0 : 1;
+            if (NowPhase == Phase.P3D || Vector3.SqrMagnitude(XZVector3(players[0].position) - XZVector3(players[1].position)) > 1 || Mathf.Abs(players[0].position.y - players[1].position.y) < 0.5f) {
+                transform.LookAt(transform.position + Vector3.Cross(Vector3.up, XZVector3(players[rightPlayer].position) + new Vector3(0, 1, 0) - child.transform.position));
+            }
         }
 
         void PointMove() {
@@ -59,8 +63,20 @@ namespace Battles.Systems {
             child.transform.position = new Vector3(avePoint.x, 1, avePoint.z);
         }
 
-        void UpdateBasePoint() {
-            basePoint = players[1].position + (players[0].position - players[1].position).normalized * 50f;
+        void UpdateBasePoint(int _base = 1) {
+            basePlayerNum = _base;
+            var target = _base == 1 ? 0 : 1;
+            if (NowPhase == Phase.P2D && Vector3.SqrMagnitude(XZVector3(players[target].position) - basePoint) > Vector3.SqrMagnitude(XZVector3(players[_base].position) - basePoint)) {
+                _base = target;
+                target = basePlayerNum;
+                basePlayerNum = _base;
+            }
+
+            basePoint = XZVector3(players[_base].position) + XZVector3(players[target].position - players[_base].position).normalized * 50f;
+        }
+
+        Vector3 XZVector3(Vector3 vector3) {
+            return new Vector3(vector3.x, 0, vector3.z);
         }
     }
 }
