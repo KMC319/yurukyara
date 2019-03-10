@@ -807,7 +807,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100030, guid: a45ee4a09fc6e4fb0a3aa01c2aac09b7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400028, guid: a45ee4a09fc6e4fb0a3aa01c2aac09b7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1653,7 +1653,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4c008295a96378c4aa1398413154e46b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c008295a96378c4aa1398413154e46b, type: 3}
