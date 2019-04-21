@@ -11,10 +11,11 @@ namespace Battles.Players{
 
 		public bool IsActive{ get; set; }
 		protected Rigidbody rigid;
-		protected Transform lookTarget;
+		public Transform lookTarget;
 
 		protected MotionAnimControll motionAnimControll;
 
+		public bool LookLock { get; set; }
 
 		public float HorizontalMovement{ get; set; }
 		public float VerticalMovement{ get; set; }
@@ -37,7 +38,6 @@ namespace Battles.Players{
 			});
 		}
 
-		
 
 		public abstract void Move();
 		

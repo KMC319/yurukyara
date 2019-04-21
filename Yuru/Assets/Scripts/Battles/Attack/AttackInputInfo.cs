@@ -16,7 +16,7 @@ namespace Battles.Attack{
 	}
 	
 	public enum PlayerKeyCode{
-		A,B,X,Y,RArrow,LArrow,UArrow,DArrow
+		A,B,X,Y,RArrow,LArrow,UArrow,DArrow,Horizontal
 	}
 	public enum CommandType{
 		Normal,Jump,Chain

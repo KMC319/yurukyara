@@ -18,7 +18,7 @@ namespace Battles.Players{
 
 			var z = vcam2d.transform.right * HorizontalMovement * speed;
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0) + z ;
-			transform.LookAt(transform.position + z );
+			if(!LookLock)transform.LookAt(transform.position + z );
 			if (!InJumping&&jumpAble){
 				PlayMotion(motionAnimControll.MyDic.RunName);
 			}
