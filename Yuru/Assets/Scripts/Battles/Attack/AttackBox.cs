@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Battles.Animations;
 using doma;
@@ -16,6 +17,16 @@ namespace Battles.Attack{
 
 		public AttackBox NextAttack(int num=0){
 			return HasNext ? nextAttack[num] : null;
+		}
+
+		public AttackBox[] GetTree() {
+			var res = new List<AttackBox>() {this};
+			var target= this.NextAttack();
+			while (target!=null) {
+				res.Add(target);
+				target = target.NextAttack();
+			}
+			return res.ToArray();
 		}
 
 		public AttackBox(AnimationClip anim_clip) : base(anim_clip){

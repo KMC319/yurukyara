@@ -23,7 +23,7 @@ namespace Battles.Attack{
 		private void Update(){
 			if(!grabActive)return;
 			Target.gameObject.transform.position = transform.position;
-			Target.DamageControll.InGrabed();
+			Target.DamageControll.Grabed();
 		}
 
 		public override void On(){
@@ -33,6 +33,7 @@ namespace Battles.Attack{
 
 		public override void Off(bool cancel = false){
 			if (grabActive){
+				Target.DamageControll.GrabRelease();
 				hitStream.OnNext(Target.gameObject);
 			}
 			grabActive = false;

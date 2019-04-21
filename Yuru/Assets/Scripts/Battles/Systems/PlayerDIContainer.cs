@@ -1,4 +1,5 @@
 ﻿using Systems;
+using Battles.Attack;
 using Battles.Players;
 using Cinemachine;
 using UnityEngine;
@@ -9,7 +10,8 @@ namespace Battles.Systems{
 		[SerializeField] private CinemachineVirtualCamera p1Vcam;
 		[SerializeField] private CinemachineVirtualCamera p2Vcam;
 		[SerializeField] private CinemachineTargetGroup targetGroup;
-
+		
+		[Inject]private AttackJudge attackJudge;
 		[Inject] private DiContainer diContainer;
 		
 		public void Launch(GameObject p1,GameObject p2){
@@ -19,7 +21,7 @@ namespace Battles.Systems{
 			p2fb.SerUp(p1fb);
 			
 			diContainer.InjectGameObject(p1);
-			
+			diContainer.InjectGameObject(p2);
 
 			var lt1 = p1.GetComponentInChildren<LookTarget>();
 			var lt2 = p2.GetComponentInChildren<LookTarget>();
@@ -34,6 +36,8 @@ namespace Battles.Systems{
 			//p1Vcam.LookAt= lt2.transform;
 			p2Vcam.Follow = lt2.transform;
 			//p2Vcam.LookAt = lt1.transform;
+			
+			attackJudge.Set(p1fb,p2fb);
 		}
 	}
 }

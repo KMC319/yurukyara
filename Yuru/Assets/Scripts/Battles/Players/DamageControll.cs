@@ -64,9 +64,13 @@ namespace Battles.Players{
 			}
 		}
 
-		public void InGrabed(){
+		public void Grabed(){
 			InDamage = true;
 			motionAnimControll.ChangeAnim(motionAnimControll.MyDic.GuardName);
+		}
+
+		public void GrabRelease() {
+			InDamage = false;
 		}
 	}
 }

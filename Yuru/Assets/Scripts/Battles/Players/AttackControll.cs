@@ -6,6 +6,7 @@ using Battles.Systems;
 using doma;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace Battles.Players{
 	public class AttackControll : MonoBehaviour,IPlayerCancelProcess{
@@ -16,7 +17,12 @@ namespace Battles.Players{
 		
 		private AttackAnimControll attackAnimControll;
 		[NonSerialized]public MoveCotroll iMoveCotroll;
+		
+		private readonly Subject<AttackDamageBox> onAttackHit=new Subject<AttackDamageBox>();
+		public UniRx.IObservable<AttackDamageBox> OnAttackHit => onAttackHit;
 
+		private AttackBox[] AttackBoxs;
+		
 		private PlayerRoot taregtPlayer;
 
 		private PlayerRoot TaregtPlayer{
@@ -46,17 +52,31 @@ namespace Battles.Players{
 		public bool InAttack{ get; private set; }
 		public bool AttackEnable{ get; private set; }
 		public AttackType? GetCurrentType => currentAttack?.attackDamageBox.attackType;
-		private bool hitEnable;
-
-		private void Start(){
+	
+		private void Start() {
+			AttackBoxs = transform.GetComponentInChildren<BoxContainer>().AttackBoxs.ToArray();
 			attackAnimControll = this.GetComponentInChildren<AttackAnimControll>();
-			
+		
 			attackAnimControll.ResponseStream.Subscribe(RecieveResponce);
-			
-			transform.GetComponentsInChildren<AttackToolEntity>()
-				.Select(n => n.HitStream)
-				.Merge()
-				.Subscribe(RecieveHit);
+
+			AttackBoxs.SelectMany(n=>n.GetTree()).ToList()
+				.ForEach(n => {
+					foreach (var item in n.attackTools.OfType<AttackToolEntity>()) {
+						item.HitStream
+							.Where(m=>m==TaregtPlayer.gameObject)
+							.Where(m=>n.attackDamageBox.attackType==AttackType.Shot||
+							          n==currentAttack)
+							.ThrottleFirst(TimeSpan.FromSeconds(1f))
+							.Subscribe(m => {
+								onAttackHit.OnNext(n.attackDamageBox);
+								if (currentAttack.HasNext &&
+								    currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
+									ChainAttack();
+								}
+							});
+					}
+				});
+
 			this.ObserveEveryValueChanged(n => n.InAttack).Where(n => n)
 				.Subscribe(n => {
 					if (currentAttack.attackInputInfo.commandType != CommandType.Jump){
@@ -77,47 +97,6 @@ namespace Battles.Players{
 				.Subscribe(_ => { keyBuffer = null;});
 		}
 
-		private void RecieveHit(GameObject other){
-			if (!(InAttack && hitEnable)) return;
-			if (other != TaregtPlayer.gameObject) return;
-			
-			hitEnable = false;
-
-			//相殺処理。汚い
-			if (TaregtPlayer.AttackControll.GetCurrentType != null){
-				var check_normal_attack=new Func<AttackType,bool>(
-					(n)=>n==AttackType.Weak||n==AttackType.Strong);
-				var my = (AttackType) GetCurrentType;
-				var en = (AttackType) TaregtPlayer.AttackControll.GetCurrentType;
-				
-				if ((check_normal_attack(my)&&
-				     en==AttackType.Grab&&
-				    !AttackEnable)||
-				    (my==AttackType.Grab&&
-				     check_normal_attack(en) &&
-				     !TaregtPlayer.AttackControll.AttackEnable)){
-					AttackEnd();//相殺
-				}else if(my==AttackType.Grab&&
-				         check_normal_attack(en)&&
-				         TaregtPlayer.AttackControll.AttackEnable){
-					return;//掴み無効化
-				}
-			}
-			//連続モーションの判定
-			try{
-				if (currentAttack.HasNext && currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
-					ChainAttack();
-					return;
-				}
-				//ここまで行ったらダメージをコール
-				TaregtPlayer.DamageControll.Hit(currentAttack.attackDamageBox);
-			}
-			catch (Exception e){
-				DebugLogger.LogError(e);
-				return;
-			}
-		}
-
 		private void RecieveResponce(AnimResponce anim_responce){
 			if (anim_responce == AnimResponce.AttackEnd){
 				currentAttack.ToolsOff();
@@ -130,9 +109,8 @@ namespace Battles.Players{
 			AttackEnd();
 		}
 
-		private void AttackEnd(){
+		public void AttackEnd(){
 			InAttack = false;
-			hitEnable = false;
 			currentRoot = null;
 			keyBuffer = null;
 			AttackEnable = false;
@@ -147,14 +125,14 @@ namespace Battles.Players{
 			if (keyBuffer != null){
 				var duo_info=info;
 				duo_info.keyCodes = new List<PlayerKeyCode>(info.keyCodes){(PlayerKeyCode) keyBuffer};
-				result = attackAnimControll.FindAttack(duo_info);
+				result = FindAttack(duo_info);
 			}
 			
 			if (result == null){
 				if (currentAttack == null){
-					result = attackAnimControll.FindAttack(info);
+					result = FindAttack(info);
 					var str =result+",";
-				}else if (attackAnimControll.FindAttack(info) == currentRoot && 
+				}else if (FindAttack(info) == currentRoot && 
 				          currentAttack.HasNext &&
 				          currentAttack.NextAttack().attackInputInfo.commandType!=CommandType.Chain){
 					result = currentAttack.NextAttack();
@@ -177,8 +155,6 @@ namespace Battles.Players{
 			attackAnimControll.ChangeAnim(currentAttack);
 			
 			InAttack = true;
-			hitEnable = true;
-
 		}
 
 		private void ChainAttack(){//連続モーションの実行はここ（コンボは違う
@@ -187,7 +163,16 @@ namespace Battles.Players{
 			currentAttack.ToolsOn();
 			attackAnimControll.ChangeAnim(currentAttack);
 			InAttack = true;
-			hitEnable = true;
+		}
+		
+		private AttackBox FindAttack(AttackInputInfo info){
+			return  AttackBoxs
+				.Where(n => n.attackInputInfo.keyCodes.Count == info.keyCodes.Count)
+				.Where(n=>n.attackInputInfo.applyPhase==ApplyPhase.Both||n.attackInputInfo.applyPhase == info.applyPhase)
+				.Where(n => n.attackInputInfo.commandType == info.commandType)
+				.ToList()
+				.Find(n =>n.attackInputInfo.keyCodes.OrderBy(v=>v)
+					.SequenceEqual(info.keyCodes.OrderBy(w=>w)));
 		}
 	}
 }
