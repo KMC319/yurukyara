@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 namespace Tutorial {
     public class CheckListManager : MonoBehaviour {
-        [SerializeField] private Image[] imgs;
+        private Image[] imgs;
         [SerializeField] private CheckList[] checkList;
 
         private Text[] texts;
 
         private void Start() {
+            imgs = GetComponentsInChildren<Image>().OrderByDescending(i => i.transform.position.y).ToArray();
             texts = imgs.Select(i => i.GetComponentInChildren<Text>()).ToArray();
             gameObject.SetActive(false);
         }

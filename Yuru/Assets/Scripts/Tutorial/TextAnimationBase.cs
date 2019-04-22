@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -8,24 +9,34 @@ namespace Tutorial {
         protected List<string> messageList = new List<string>();
         [SerializeField] private Text text;
         [SerializeField, Range(0.001f, 0.3f)] private float interval = 0.05f;
+        private readonly float blankTime = 1.5f;
         private float time;
 
         private Subject<Unit> endStream = new Subject<Unit>();
-        public IObservable<Unit> EndStream => endStream;
-        public bool IsPlaying { get; protected set; }
+        public UniRx.IObservable<Unit> EndStream => endStream;
+        private bool isActive;
 
         protected virtual void Update() {
-            if (!IsPlaying) return;
+            if (!isActive) return;
             Play();
         }
 
         private void Play() {
-            if (messageList.Count < 1) return;
+            if (messageList.Count < 1) {
+                isActive = false;
+                return;
+            }
+
             bool isEnd = messageList[0].Length < 1;
             if (isEnd) {
-                messageList.RemoveAt(0);
-                IsPlaying = false;
-                endStream.OnNext(Unit.Default);
+                isActive = false;
+                if (messageList.Count > 1) {
+                    PlayNext();
+                } else {
+                    messageList.RemoveAt(0);
+                    Observable.Timer(TimeSpan.FromSeconds(blankTime))
+                        .Subscribe(_ => endStream.OnNext(Unit.Default));
+                }
             } else {
                 time -= Time.deltaTime;
                 if (time < 0) {
@@ -35,9 +46,19 @@ namespace Tutorial {
                 }
             }
         }
-        
+
+        private void PlayNext() {
+            Debug.Log(messageList[1]);
+            messageList.RemoveAt(0);
+            Observable.Timer(TimeSpan.FromSeconds(blankTime))
+                .Subscribe(_ => {
+                    isActive = true;
+                    text.text = "";
+                });
+        }
+
         public void PlayStart(string message) {
-            IsPlaying = true;
+            isActive = true;
             messageList.Add(message);
             text.text = "";
         }

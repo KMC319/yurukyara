@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Systems.Chars;
 using Battles.Players;
 using UnityEngine;
 using UniRx;
@@ -11,33 +12,24 @@ namespace Tutorial {
         [SerializeField] private TutorialTimer tutorialTimer;
         [SerializeField] private CheckListManager checkListManager;
         [SerializeField] private TutorialData[] datas;
+        [SerializeField] private GameObject root;
 
-        private TutorialFlgCollider[] flgColliders;
         private Pausable pausable;
         private List<IPlayerBinder> iplayerBinders;
 
-        private int state = 0;
+        private int state;
 
         private void Start() {
             iplayerBinders = this.transform.GetComponentsInChildren<IPlayerBinder>().ToList();
-            flgColliders = transform.GetComponentsInChildren<TutorialFlgCollider>();
-            foreach (var flgCollider in flgColliders) {
-                flgCollider.HitStream
-                    .First()
-                    .Subscribe(_ => NextTutorial());
-            }
-
             pausable = this.GetComponent<Pausable>();
 
-            tutorialTimer.EndStream.Subscribe(_ => NextTutorial());
+            Observable.Zip(tutorialText.EndStream, tutorialTimer.EndStream)
+                .Subscribe(_ => NextTutorial());
+            state = -1;
             Observable.Timer(TimeSpan.FromSeconds(1))
                 .Subscribe(_ => {
-                    tutorialText.PlayStart(datas[state].Message);
-                    Observable.Timer(TimeSpan.FromSeconds(1.5))
-                        .Subscribe(__ => {
-                            NextTutorial();
-                            ChangeInputEnable(true);
-                        });
+                    ChangeInputEnable(true);
+                    NextTutorial();
                 });
         }
 
@@ -49,19 +41,18 @@ namespace Tutorial {
         }
 
         private void NextTutorial() {
-            checkListManager.DisplayCheckList(state);
             state++;
-            if (datas[state].Time > 0) {
-                tutorialTimer.ResetTimer(datas[state].Time);
-            } else {
-                tutorialTimer.Pause();
+            checkListManager.DisplayCheckList(state);
+            tutorialTimer.ResetTimer(datas[state].Time);
+
+            foreach (var message in datas[state].Messages) {
+                tutorialText.PlayStart(message);
             }
-            tutorialText.PlayStart(datas[state].Message);
         }
 
         [Serializable]
         private struct TutorialData {
-            [MultilineAttribute(2)] public string Message;
+            [MultilineAttribute(2)] public string[] Messages;
             public float Time;
         }
     }
