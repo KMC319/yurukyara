@@ -1,0 +1,24 @@
+Horizontal!1,axis,X,a,d
+Horizontal!1,axis,6,,
+Vertical!1,axis,Y!,s,w
+Vertical!1,axis,7,,
+A1,A,z,,
+B1,B,x,,
+X1,X,c,,
+Y1,Y,v,,
+RB1,R1,f,,
+Horizontal2,axis,X,left,right
+Horizontal2,axis,6,,
+Vertical2,axis,Y!,down,up
+Vertical2,axis,7,,
+A2,A,..,,
+B2,B,.,,
+X2,X,/,,
+Y2,Y,\,,
+RB2,R1,l,,
+Submit!1,A,enter,,
+Cancel!1,B,left shift,,
+Submit2,A,..,,
+Cancel2,B,.,,
+Start!1,Start,space,,
+Start2,Start,space,,

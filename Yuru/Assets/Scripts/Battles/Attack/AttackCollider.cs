@@ -1,14 +1,30 @@
-﻿using UniRx;
+﻿using doma;
+using UniRx;
 using UnityEngine;
 
 namespace Battles.Attack{
-	public class AttackCollider : MonoBehaviour{
+	public class AttackCollider : AttackToolEntity{
+		private bool IsActive{ get; set; }
+		private Collider myCollider;
 
-		private Subject<Collider> hitStream=new Subject<Collider>();
-		public IObservable<Collider> HitStream=>hitStream;
-		
+		private void Start(){
+			myCollider = this.GetComponent<Collider>();
+			myCollider.enabled = false;
+		}
+
 		private void OnTriggerEnter(Collider other){
-			hitStream.OnNext(other);
+			if(!IsActive)return;
+			hitStream.OnNext(other.gameObject);
+		}
+
+		public override void On(){
+			IsActive = true;
+			myCollider.enabled = true;
+		}
+
+		public override void Off(bool cancel = false){
+			IsActive = false;
+			myCollider.enabled = false;
 		}
 	}
 }

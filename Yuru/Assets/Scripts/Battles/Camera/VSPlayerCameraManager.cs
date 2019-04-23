@@ -7,6 +7,7 @@ using UnityEngine;
 namespace Battles.Camera {
     public class VSPlayerCameraManager : CameraManagerBase{
         public override void ChangePhase(Phase changedPhase) {
+            if(!Initialized) return;
             switch (changedPhase) {
                 case Phase.P2D:
                     vcams[1].SetActive(false);
@@ -32,14 +33,14 @@ namespace Battles.Camera {
             }
         }
 
-        public override void Init() {
-            var cams = Object.FindObjectsOfType<UnityEngine.Camera>();
-            cameras[0] = cams.First(i => i.name == "P1cam").GetComponent<UnityEngine.Camera>();
-            cameras[1] = cams.First(i => i.name == "P2cam").GetComponent<UnityEngine.Camera>();
+        public override void Init(UnityEngine.Camera[] cams) {
+            cameras[0] = cams[0];
+            cameras[1] = cams[1];
             var v = Object.FindObjectsOfType<CinemachineVirtualCamera>();
             vcams[0] = v.First(i => i.gameObject.name == "vcam 2d").gameObject;
             vcams[1] = v.First(i => i.gameObject.name == "vcam P1 3d").gameObject;
             vcams[2] = v.First(i => i.gameObject.name == "vcam P2 3d").gameObject;
+            Initialized = true;
         }
         
         IEnumerator LerpCamView(int camNum, Rect endRect, float time) {

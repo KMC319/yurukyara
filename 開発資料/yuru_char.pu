@@ -1,181 +1,416 @@
-@startuml
-namespace General{
-    namespace Systems{
-        class ModeControll<<static>>{
-            +Mode gameMode
-        }
+@startuml yuru
 
-        enum Mode{
-            ARCADE
-            COM
-            PRACTICE
-            TUTORIAL
-        }
+namespace Battles.Animations{
+    class AnimBox{
+        +AnimationClip
     }
-    namespace Input{
-        class InputRelayPoint<<d>>{
-        }
-
-        interface IUiKeySender{
-            +Subject<Unit> UpKey
-            +Subject<Unit> DownKey
-            +Subject<Unit> RightKey
-            +Subject<Unit> LeftKey
-            +Subject<Unit> EnterKey
-            +Subject<Unit> CancelKey
-        }
-        interface IUiKeyReciever{
-            +void UpKey()
-            +void DownKey()
-            +void RightKey()
-            +void LeftKey()
-            +void EnterKey()
-            +void CancelKey()
-        }
-
-        interface IBattleKeySender{
-            +Subject<float> HorizontalAxis
-            +Subject<float> VerticallAxis
-            +Subject<Unit> JumpKey
-            +Subject<Unit> RangeAtKey
-            +Subject<Unit> WeakAtKey
-            +Subject<Unit> StrongAtKey
-            +Subject<Unit> GuardKey
-        }
-        interface IBattleKeyReciever{
-            +void HorizontalAxis()
-            +void VerticallAxis()
-            +void JumpKey()
-            +void RangeAtKey()
-            +void WeakAtKey()
-            +void StrongAtKey()
-            +void GuardKey()
-        }
-
-        class UiKeySenderByUnity{
-        }
-        class BattleKeySenderByUnity{
-        }
-
-        InputRelayPoint-left->IUiKeySender
-        InputRelayPoint-left->IBattleKeySender
-        InputRelayPoint-right->IUiKeyReciever
-        InputRelayPoint-right->IBattleKeyReciever
-
-        UiKeySenderByUnity..u|>IUiKeySender
-        BattleKeySenderByUnity..u|>IBattleKeySender
-        }
+    class PlayAbleController{
+        +IObservable<AnimBox> PlayEndStream
+        +void TransAnimation(AnimBox)
+    }
+    PlayAbleController--|>Battles.Systems.IPauseObserver
 }
+namespace Battles.Attack{
+    class AttackBox{
 
-namespace Battles{
-    namespace Charas{
-        class CharControll{
-            +PhaseName currentPhase
-            +Subject<DamageBox> damageNotification
-            +void RecieveDamage(DamageBox damage)
-        }
-        class CharAttackControll{
-            -MotionBox weakAttack
-            -MotionBox strongAttack
-            -MotionBox RangeAttack
-            -MotionBox GrabAttack
-            -MotionBox GuardAttack 
-            +void AddDamage()
-        }
-        class CharMotionControll{
-            +void PlayMotion(string name)
-        }
-
-        class MotionBox<<struct>>{
-            +string motionName
-            +DamageBox DamageBox
-        }
-        class DamageBox<<struct>>{
-            +float damageAmount
-            +AttackTag tag
-        }
-
-        enum AttackTag{
-            Attack
-            StrongAttack
-            Grab
-            Guard
-        }
-
-        
-        CharControll..left|>General.Input.IBattleKeyReciever
-        CharControll-->CharAttackControll
-        CharControll-->CharMotionControll
-        CharAttackControll-->CharMotionControll
+    }
+    AttackBox--|>Battles.Animations.AnimBox
+    class AttackTool{
+        +void On()
+        +void Off()
+        +IObservable<Collider> HitStream
+    }
+    AttackBox*-down-AttackTool
+    AttackBox*-down-AttackInputInfo
+    AttackBox*-down-AttackDamageBox
+    class AttackInputInfo<<struct>>{
+        +PlayerKeyCode[]
+        +CommandType
+        +ApplyPhase
+    }
+    class AttackDamageBox<<struct>>{
+        +float damage
+        +AttackType
+        +Vector3 knockbackPower
     }
 
-    namespace Systems{
-        enum PcaseName{
-            3d
-            2d
-        }
+    class AttackCollider{
 
-        class BattleManager{
-        }
-        class TimeManager{
-            +float nowtime
-        }
-        class PhaseManager{
-        }
-        class PauseManager{
-        }
-
-
-        PhaseManager-->Battles.Charas.CharControll
     }
+    AttackCollider--|>AttackTool
+    class BlockShield{
 
+    }
+    BlockShield--|>AttackTool
+    class ShotTool{
+
+    }
+    ShotTool--|>AttackTool
+    class Bullet{
+        +IObservable<Collider> HitStream
+    }
+    Bullet*-up-ShotTool
 }
+namespace Battles.Camera{
+    class CameraManager{
 
-namespace UIs{
-    class InterFaceEventSystem<<d>>{
     }
-    interface ISelectablePanel<<d>>{
+    class CameraManagerBase{
+
     }
-    interface ICommandControll<<d>>{
+    class CameraMaster{
+
     }
+    class VSPlayerCameraManager{
 
-    namespace Battles{
-        class GaugeControll<<d>>{
-        }
-        class HealthGaugeControll{
-        }
-        class TimerInterface{
-        }
-
-
-        HealthGaugeControll-->GaugeControll
-        TimerInterface-->Battles.Systems.TimeManager
-    }
-    namespace Titles{
-        class TitlePanelControll{
-        }
-        class TitlePanel{
-        }
-
-
-        TitlePanelControll-->TitlePanel
-        TitlePanelControl-->UIs.ICommandControll
-        TitlePanelControl-->UIs.InterFaceEventSystem
-        TitlePanel..|>UIs.ISelectablePanel
-    }
-    namespace Select{
-        class IconCreater{
-            +List<IconPanel> CreateIcons(int num)
-        }
-        class IconPanel{
-            -string name;
-        }
-        class IconPanelsControll{
-        }
-
-        IconPanelsControll-->UIs.ICommandControll
-        IconPanelsControll-->UIs.InterFaceEventSystem
-        IconPanel--|>UIs.ISelectablePanel
     }
 }
+namespace Battles.Systems{
+    class PhaseManager<<SingleTon>>{
+        +Phase nowPhase
+    }
+    PhaseManager-IChangePhase
+
+    interface IChangePhase{
+        +void ChangePhase(Phase);
+    }
+
+    class CharFactory{
+        -void Launch(CharName,CharName)
+    }
+    CharFactory..>Systems.Chars.CharTag
+    CharFactory..>PlayerDIConteiner
+    class PlayerDIConteiner{
+        +void Launch(GameObject,GameObject)
+    }
+    PlayerDIConteiner..>Battles.Players.FirstPlayerBinder
+    PlayerDIConteiner..>Battles.Players.SecondPlayerBinder
+    PlayerDIConteiner..>LookTarget
+    class LookTarget{
+
+    }
+    LookTarget..>Battles.Players.PlayerRoot
+    class PauseAble{
+
+    }
+    interface IPauseObserver{
+        +void Pause()
+        +void Resume()
+    }
+
+    class HealtManagersControll{
+
+    }
+    HealtManagersControll*-down-HealthManager
+    class HealthManager{
+        +void DamageRecieve(AttackDamageBox)
+    }
+    HealthManager..>doma.GaugeControll
+    HealthManager..>PhaseManager
+
+    class Timer{
+        +Launch(float)
+        +IObservable<Unit> EndStream
+    }
+}
+namespace Battles.Players{
+    class BoxContainer{
+        +FindAnim(string)
+    }
+    class AttackAnimControll{
+        +IObservable<AnimResponce> responceStream
+        +void ChangeAnim(AnimBox)
+        +void ForceChangeAnim(AnimBox)
+    }
+    AttackAnimControll..>Battles.Animations.PlayAbleController
+    AttackAnimControll o-- BoxContainer
+    class MotionAnimControll{
+        +MotionDictionary mydic
+        +IObservable<AnimResponce> responceStream
+        +void ChangeAnim(AnimBox)
+        +void ForceChangeAnim(AnimBox)
+    }
+    MotionAnimControll..>Battles.Animations.PlayAbleController
+    MotionAnimControll o-- BoxContainer
+    class MotionBox{
+
+    }
+    MotionBox--|>Battles.Animations.AnimBox
+
+    class PlayerRoot{
+        +MoveControll current
+    }
+    PlayerRoot ..|> doma.Inputs.IBattleKeyReciever
+    PlayerRoot ..|> Battles.Systems.IChangePhase
+    PlayerRoot *-down- MoveControll3D
+    PlayerRoot *-down- MoveControll2D
+    PlayerRoot *-down- AttackControll
+    PlayerRoot *-down- GuardControll
+    PlayerRoot *-down- DamageControll
+
+    class AttackControll{
+
+    }
+    AttackControll..>Battles.Attack.AttackTool
+    AttackControll..>DamageControll
+    AttackControll..>MoveControll
+    AttackControll..>AttackAnimControll
+    AttackControll..>IPlayerBinder
+
+    class GuardControll{
+        +bool InGuard
+    }
+    GuardControll..>MotionAnimControll
+
+    class DamageControll{
+        +void Hit(AttackDamageBox)
+    }
+    DamageControll ..>MotionAnimControll
+    DamageControll ..> GuardControll
+
+    class MoveControll{
+        +bool InJumping
+        +void Move()
+        +void Stop()
+        +void Pause()
+        +void Jump()
+        +void ForceFall()
+        +void FallCheck()
+    }
+    class MoveControll2D{
+
+    }
+    MoveControll2D--|>MoveControll
+    class MoveControll3D{
+
+    }
+    MoveControll3D--|>MoveControll
+
+    interface IPlayerBinder{
+        PlayerRoot TargetPlayerRoot
+    }
+    class FirstPlayerBinder{
+
+    }
+    FirstPlayerBinder..|>IPlayerBinder
+    FirstPlayerBinder..>doma.Inputs.InputRelayPoint
+    class SecondPlayerBinder{
+    }
+    SecondPlayerBinder..|>IPlayerBinder
+}
+
+
+namespace CharSelects{
+    class CharIconInformation<<struct>>{
+        +CharName CharName
+        +Sprite Icon
+        +Sptie Char
+    }
+
+    class SelectControllManager{
+
+    }
+    SelectControllManager*-down-SelectController
+    SelectControllManager..>Systems.GameStateController
+    class CharSelectedPanelControll{
+
+    }
+    CharSelectedPanelControll..>doma.Interfaces.InterfaceEventSystem
+    abstract CharSeletedPanel{
+        +CharName charName
+    }
+    CharSeletedPanel..|>doma.Interfaces.ISelectablePanel
+    class CharSeletedPanelP1{
+
+    }
+    CharSeletedPanelP1--|>CharSeletedPanel
+    class CharSeletedPanelP2{
+
+    }
+    CharSeletedPanelP2--|>CharSeletedPanel
+
+    abstract SelectController{
+        +IObservable<FlowChar> CharStream
+    }
+    SelectController..>doma.Inputs.InputRelayPoint
+    SelectController*-down-CharSelectedPanelControll
+    SelectController*-down-doma.Interfaces.InterfaceEventSystem
+
+    class MultiSelect{
+
+    }
+    MultiSelect--|>SelectController
+    MultiSelect..>Systems.InstantUiInput
+    class SoloSelect{
+
+    }
+    SoloSelect--|>SelectController
+
+    class CharIconPanel{
+        +void SetUp(CharName,Sprite)
+    }
+    class IconFactory{
+
+    }
+    IconFactory-CharIconPanel
+}
+
+namespace doma{
+    class GaugeControll{
+        +void SetAmount(float)
+        +void TempUpdate(float)
+        +void EntityUpdate()
+        +void Reset()
+    }
+    class SoundPlayer{
+        +void SoundPlay(int)
+        +void SoundStop(int)
+    }
+    class ListExtension{
+
+    }
+    class DebugLogger{
+
+    }
+}
+namespace doma.Inputs{
+    class InputRelayPoint{
+        +bool IsActive
+        +void ChangeReciever(IInputReciever)
+    }
+
+    interface IUiKeySender{
+        +Subject<Unit> UpKey
+        +Subject<Unit> DownKey
+        +Subject<Unit> RightKey
+        +Subject<Unit> LeftKey
+        +Subject<Unit> EnterKey
+        +Subject<Unit> CancelKey
+    }
+    interface IUiKeyReciever{
+        +void UpKey()
+        +void DownKey()
+        +void RightKey()
+        +void LeftKey()
+        +void EnterKey()
+        +void CancelKey()
+    }
+    IUiKeyReciever..|>IInputReciever
+    interface IBattleKeySender{
+        +IObservable<float> HorizontalAxsis
+        +IObservable<float> VerticalAxsis
+        +IObservable<Unit> JumpKey
+        +IObservable<Unit> RangeAtKey
+        +IObservable<Unit> WeakAtKey
+        +IObservable<Unit> StrongAtKey
+        +IObservable<Unit> GuardKey
+    }
+    interface IBattleKeyReciever{
+        +void ChangeHorizontalAxis(float delta);
+        +void ChangeVerticalAxis(float delta);
+        +void JumpKey();
+        +void RangeAtKey();
+        +void WeakAtKey();
+        +void StrongAtKey();
+        +void GuardKey();
+    }
+    IBattleKeyReciever..|>IInputReciever
+    interface IInputReciever{
+        +void StartInputRecieve()
+        +void EndInputRecieve()
+    }
+
+    class UiKeySenderByUnity{
+    }
+    class BattleKeySenderByUnity{
+    }
+
+    InputRelayPoint-left->IUiKeySender
+    InputRelayPoint-left->IBattleKeySender
+    InputRelayPoint-right->IUiKeyReciever
+    InputRelayPoint-right->IBattleKeyReciever
+
+    UiKeySenderByUnity ..|>IUiKeySender
+    BattleKeySenderByUnity..|>IBattleKeySender
+}
+
+namespace doma.Interfaces{
+    class InterfaceEventSystem{
+
+    }
+    InterfaceEventSystem..|>doma.Inputs.IUiKeyReciever
+    InterfaceEventSystem..|>ISystemProcess
+    InterfaceEventSystem*-down-ISelectablePanel
+    interface ISelectablePanel{
+        +bool IsActive
+        +void OnSelect()
+        +void RemoveSelect()
+        +void Submit()
+    }
+    interface ISystemProcess{
+        +void Freeze()
+		+void ReBoot()
+    }
+}
+
+
+namespace Others{
+    class CoroutineHandler{
+
+    }
+}
+
+namespace Start{
+    class FlashingText{
+
+    }
+    class ModePanelControll{
+
+    }
+    ModePanelControll..>doma.Inputs.InputRelayPoint
+    ModePanelControll..>doma.Interfaces.InterfaceEventSystem
+    ModePanelControll..>Systems.GameStateController
+    class ModeSelectPanel{
+        +ModeName modeName
+    }
+    ModeSelectPanel..|>doma.Interfaces.ISelectablePanel
+}
+namespace Systems{
+    enum ModeName{
+        ARCADE
+        COM
+        PRACTICE
+        TUTORIAL
+    }
+    class GameStateController<<SingleTon>>{
+        +ModeName mode
+        +CharName player1
+        +CharName player2
+    }
+    class InstantBattleInput{
+
+    }
+    InstantBattleInput*-down-doma.Inputs.IBattleKeyReciever
+    class InstantUiInput{
+
+    }
+    InstantUiInput*-down-doma.Inputs.IUiKeyReciever
+    class GameManager<<SingleTon>>{
+
+    }
+}
+namespace Systems.Chars{
+    enum CharName{
+
+    }
+    class CharTag{
+        +CharName charName
+    }
+}
+
+
+
+
+
+
 @enduml
