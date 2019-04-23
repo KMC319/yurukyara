@@ -10,8 +10,6 @@ namespace Battles.Players{
 	[RequireComponent(typeof(PlayAbleController))]
 	public class AttackAnimControll : MonoBehaviour{
 		private PlayAbleController playAbleController;
-		private BoxContainer boxContainer;
-		private List<AttackBox> AttackBoxs => boxContainer.AttackBoxs;
 		private readonly Subject<AnimResponce> responseStream = new Subject<AnimResponce>();
 		public IObservable<AnimResponce> ResponseStream => responseStream;
 
@@ -19,8 +17,7 @@ namespace Battles.Players{
 
 		private void Start(){
 			playAbleController = this.GetComponent<PlayAbleController>();
-			boxContainer = this.GetComponent<BoxContainer>();
-
+		
 			playAbleController.PlayEndStream.Subscribe(FlowResponce);
 		}
 
@@ -33,26 +30,9 @@ namespace Battles.Players{
 		public void CashClear(){
 			current = null;
 		}
-
 		
-		public AttackBox FindAttack(AttackInputInfo info){
-			return  AttackBoxs
-					.Where(n => n.attackInputInfo.keyCodes.Count == info.keyCodes.Count)
-					.Where(n=>n.attackInputInfo.applyPhase==ApplyPhase.Both||n.attackInputInfo.applyPhase == info.applyPhase)
-					.Where(n => n.attackInputInfo.commandType == info.commandType)
-					.ToList()
-					.Find(n =>n.attackInputInfo.keyCodes.OrderBy(v=>v)
-						.SequenceEqual(info.keyCodes.OrderBy(w=>w)));
-		}
-
 		public void ForceChangeAnim(AnimBox anim_box){
 			playAbleController.TransAnimation(anim_box);
-		}
-
-		public AnimBox ForceChangeAnim(string name){
-			var res = boxContainer.FindAnim(name);
-			playAbleController.TransAnimation(res);
-			return res;
 		}
 
 		private void FlowResponce(AnimBox anim_box){

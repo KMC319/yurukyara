@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Battles.Players;
 using UniRx;
 using UnityEngine;
@@ -14,6 +15,9 @@ namespace Battles.Attack{
 		
 		private void Start(){
 			guardControll = this.GetComponent<GuardControll>();
+			attackTools.OfType<AttackToolEntity>().Select(n => n.HitStream)
+				.Merge()
+				.Subscribe(n => hitStream.OnNext(n));
 		}
 
 		private void Update(){
