@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 
 namespace Battles.Attack {
-    public class ForwardMoveAttack:AttackToolEntity {
+    public class ForwardMoveAttack :AttackToolEntity {
         [SerializeField] private float speed;
         [SerializeField] private float moveTime;
         [SerializeField] private AttackToolEntity[] attackToolEntities;

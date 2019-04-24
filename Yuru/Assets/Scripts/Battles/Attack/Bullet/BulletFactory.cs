@@ -37,13 +37,14 @@ namespace Battles.Attack {
         }
 
         public override void Off(bool cancel = false){
-            if (cancel) return;
             isActive = false;
-            foreach (var item in currentBurret) {
-                if(item==null)continue;
-                Destroy(item);
+            if (cancel) {
+                foreach (var item in currentBurret) {
+                    if(item==null)continue;
+                    Destroy(item);
+                }
+                currentBurret.Clear();
             }
-            currentBurret.Clear();
         }
 
         protected abstract void Create(BulletInfo t);

@@ -17,7 +17,7 @@ namespace Battles.Attack {
             mother = mom;
             target = targetObj;
             rigid.velocity = transform.forward * speed;
-            Destroy(gameObject, 5f);
+            Destroy(gameObject, 10f);
             Initialized = true;
         }
 

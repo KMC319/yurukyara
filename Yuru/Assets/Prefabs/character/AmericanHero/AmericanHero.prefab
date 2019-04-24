@@ -1150,6 +1150,7 @@ MonoBehaviour:
   speed: 15
   jumpPower: 1500
   fallDouble: 0.5
+  lookTarget: {fileID: 0}
 --- !u!114 &114151435278518124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1444,6 +1445,7 @@ MonoBehaviour:
   speed: 10
   jumpPower: 1500
   fallDouble: 0.5
+  lookTarget: {fileID: 0}
 --- !u!114 &114657321444453100
 MonoBehaviour:
   m_ObjectHideFlags: 1
