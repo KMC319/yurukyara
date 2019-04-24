@@ -1,5 +1,5 @@
 ﻿namespace Systems{
 	public enum ModeName{
-		Arcade,VsCom,Practice,Multi
+		Arcade,VsCom,Practice,Multi,Tutorial
 	}
 }

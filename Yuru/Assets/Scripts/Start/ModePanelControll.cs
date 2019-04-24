@@ -1,5 +1,6 @@
 ﻿using System;
 using Systems;
+using Systems.Chars;
 using CharSelects;
 using doma;
 using doma.Inputs;
@@ -49,7 +50,13 @@ namespace Start{
 				var mode_select_panel = (ModeSelectedPanel) i_selectable_panel;
 				GameStateManager.instance.mode = mode_select_panel.GetModeName;
 				DebugLogger.Log(mode_select_panel.GetModeName);
-				SceneManager.LoadScene("CharSelect");
+				if (mode_select_panel.GetModeName == ModeName.Tutorial) {
+					GameStateManager.instance.player1 = CharName.AmericanHero;
+					GameStateManager.instance.player2 = CharName.Moaian;
+					SceneManager.LoadScene("Tutorial");
+				} else {
+					SceneManager.LoadScene("CharSelect");
+				}
 			}else if (i_selectable_panel is IDisplayPanel){
 				var display_panel = (IDisplayPanel)i_selectable_panel;
 				display_panel.Launch();
