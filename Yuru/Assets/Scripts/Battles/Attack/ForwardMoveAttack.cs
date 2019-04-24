@@ -9,6 +9,7 @@ namespace Battles.Attack {
         [SerializeField] private float moveTime;
         [SerializeField] private AttackToolEntity[] attackToolEntities;
         [SerializeField] private float attackEnableTime;
+        private GameObject vcam2d;
 
         private Rigidbody rigidBody;
 
@@ -17,6 +18,10 @@ namespace Battles.Attack {
             rigidBody = this.GetComponent<Rigidbody>();
 
             attackToolEntities.Select(n => n.HitStream).Merge().Subscribe(n => hitStream.OnNext(n));
+        }
+
+        private void Start() {
+            vcam2d = GameObject.Find("vcam 2d");
         }
 
         public override void On() {
@@ -29,8 +34,8 @@ namespace Battles.Attack {
                 .TakeUntil(timer)
                 .TakeUntil(cancelStream)
                 .Subscribe(n => {
-                    rigidBody.velocity =new Vector3(0, rigidBody.velocity.y, 0) 
-                                        +My.CurrentMoveCotroll.lookTarget.forward*speed;
+                    rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, 0)
+                                         + vcam2d.transform.right * speed;
                 });
             Observable.Timer(TimeSpan.FromSeconds(attackEnableTime))
                 .TakeUntil(cancelStream)

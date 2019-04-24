@@ -46,6 +46,8 @@ namespace Battles.Players{
 		private void FixedUpdate(){
 			if (moveAble){
 				CurrentMoveCotroll.Move();
+			}else if (!DamageControll.InDamage) {
+				CurrentMoveCotroll.Stop(false);
 			}
 		}
 		

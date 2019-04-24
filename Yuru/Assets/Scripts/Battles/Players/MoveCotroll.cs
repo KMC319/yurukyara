@@ -41,12 +41,13 @@ namespace Battles.Players{
 
 		public abstract void Move();
 		
-		public virtual void Stop() {
-			if (!InJumping&&jumpAble){
+		public virtual void Stop(bool force = true) {
+			if (!InJumping&&jumpAble && force){
 				PlayMotion(motionAnimControll.MyDic.WaitName);
 				transform.rotation = lookTarget.rotation;
+			} else {
+				return;
 			}
-
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 			rigid.angularVelocity = Vector3.zero;
 		}

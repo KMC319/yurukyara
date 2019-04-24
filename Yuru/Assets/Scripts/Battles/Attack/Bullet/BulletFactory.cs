@@ -50,7 +50,7 @@ namespace Battles.Attack {
         protected abstract void Create(BulletInfo t);
 
         public void Hit(Collider other) {
-            if (isActive) hitStream.OnNext(other.gameObject);
+            hitStream.OnNext(other.gameObject);
         }
 
         protected void RegisterBullet(GameObject bullet) {

@@ -19,14 +19,11 @@ namespace Battles.Systems{
 			txt.text = "";
 		}
 
-		/// <summary>
-		/// TODO: バグ修正 Time.deltaTimeが0.02fより大きい場合EndStreamが発行されない場合がある
-		/// </summary>
 		private void Update(){
-			if (Math.Abs(currentTime) > 0.01f&&moveAble){
+			if (currentTime >= 0 && moveAble){
 				currentTime -= Time.deltaTime;
 				txt.text = ((int) currentTime).ToString();
-				if (Math.Abs(currentTime) < 0.01f){
+				if (currentTime < 0){
 					endStream.OnNext(Unit.Default);
 					moveAble = false;
 				}

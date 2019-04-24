@@ -41,7 +41,7 @@ namespace Battles.Players{
 				item.Cancel();
 			}
 			if (guardControll.InGuard){
-				if (attack_damage_box.attackType == AttackType.Weak){
+				if (attack_damage_box.attackType == AttackType.Weak || attack_damage_box.attackType == AttackType.Shot){
 					return;//ガード成功
 				}else if(attack_damage_box.attackType==AttackType.Strong || attack_damage_box.attackType==AttackType.Finish){
 					attack_damage_box.damage *= reductionRate;//削り

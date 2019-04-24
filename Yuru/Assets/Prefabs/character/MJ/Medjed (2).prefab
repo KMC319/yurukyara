@@ -1675,7 +1675,7 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114826650396584968}
     attackDamageBox:
-      damage: 5
+      damage: 3
       attackType: 0
       knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack:
@@ -1690,7 +1690,7 @@ MonoBehaviour:
       attackTools:
       - {fileID: 114808690174115834}
       attackDamageBox:
-        damage: 5
+        damage: 3
         attackType: 0
         knockbackPower: {x: 0, y: 0, z: 100}
       nextAttack:
@@ -1705,7 +1705,7 @@ MonoBehaviour:
         attackTools:
         - {fileID: 114826650396584968}
         attackDamageBox:
-          damage: 5
+          damage: 3
           attackType: 0
           knockbackPower: {x: 0, y: 0, z: 100}
         nextAttack:
@@ -1721,7 +1721,7 @@ MonoBehaviour:
           - {fileID: 114808690174115834}
           - {fileID: 114826650396584968}
           attackDamageBox:
-            damage: 7
+            damage: 5
             attackType: 2
             knockbackPower: {x: 0, y: 0, z: 3000}
           nextAttack: []
@@ -1737,9 +1737,9 @@ MonoBehaviour:
     - {fileID: 114808690174115834}
     - {fileID: 114826650396584968}
     attackDamageBox:
-      damage: 20
+      damage: 10
       attackType: 1
-      knockbackPower: {x: 0, y: 10, z: 100}
+      knockbackPower: {x: 0, y: 0, z: 3000}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 9cf83a6bc851b0743879068705994e54, type: 2}
     delayTime: 0.2
@@ -1753,7 +1753,7 @@ MonoBehaviour:
     - {fileID: 114808690174115834}
     - {fileID: 114826650396584968}
     attackDamageBox:
-      damage: 7
+      damage: 5
       attackType: 0
       knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack: []
@@ -1768,7 +1768,7 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114734269304045138}
     attackDamageBox:
-      damage: 5
+      damage: 10
       attackType: 6
       knockbackPower: {x: 0, y: 0, z: 3000}
     nextAttack: []
@@ -1783,9 +1783,9 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114433111320033998}
     attackDamageBox:
-      damage: 3
+      damage: 5
       attackType: 6
-      knockbackPower: {x: 0, y: 0, z: 10}
+      knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack: []
   - clip: {fileID: 7400000, guid: bc6d772a3db6b5847be20256faa31438, type: 2}
     delayTime: 0
@@ -1815,7 +1815,7 @@ MonoBehaviour:
       attackDamageBox:
         damage: 10
         attackType: 4
-        knockbackPower: {x: 0, y: 0, z: 0}
+        knockbackPower: {x: 0, y: 0, z: 500}
       nextAttack: []
   - clip: {fileID: 7400000, guid: 48b23bf82927a144ca1a9671c7baed81, type: 2}
     delayTime: 0
@@ -1828,12 +1828,12 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114842331969505796}
     attackDamageBox:
-      damage: 7
+      damage: 10
       attackType: 0
       knockbackPower: {x: 0, y: 0, z: 100}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 304d796ecc10ebd419108fccea2b6502, type: 2}
-    delayTime: 0
+    delayTime: 0.5
     bufferTime: 0
     attackInputInfo:
       keyCodes: 0200000004000000
@@ -1841,14 +1841,15 @@ MonoBehaviour:
       applyPhase: 1
     delayTimeForTools: 0
     attackTools:
-    - {fileID: 0}
+    - {fileID: 114826650396584968}
+    - {fileID: 114808690174115834}
     attackDamageBox:
-      damage: 7
+      damage: 3
       attackType: 0
       knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 304d796ecc10ebd419108fccea2b6502, type: 2}
-    delayTime: 0
+    delayTime: 0.5
     bufferTime: 0
     attackInputInfo:
       keyCodes: 0200000005000000
@@ -1856,15 +1857,16 @@ MonoBehaviour:
       applyPhase: 1
     delayTimeForTools: 0
     attackTools:
-    - {fileID: 0}
+    - {fileID: 114826650396584968}
+    - {fileID: 114808690174115834}
     attackDamageBox:
-      damage: 7
+      damage: 3
       attackType: 0
       knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 48de42ebe6249ab429b49c2dd02c5714, type: 2}
-    delayTime: 0
-    bufferTime: 0.5
+    delayTime: 0.5
+    bufferTime: 0
     attackInputInfo:
       keyCodes: 0200000004000000
       commandType: 0
@@ -1873,13 +1875,13 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114500110243501148}
     attackDamageBox:
-      damage: 3
+      damage: 5
       attackType: 6
       knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []
   - clip: {fileID: 7400000, guid: aad778172ce7a384dbe2aeb16aa66bd2, type: 2}
-    delayTime: 0
-    bufferTime: 1
+    delayTime: 0.5
+    bufferTime: 0
     attackInputInfo:
       keyCodes: 0200000005000000
       commandType: 0
@@ -1888,7 +1890,7 @@ MonoBehaviour:
     attackTools:
     - {fileID: 114796926215733248}
     attackDamageBox:
-      damage: 3
+      damage: 5
       attackType: 6
       knockbackPower: {x: 0, y: 0, z: 0}
     nextAttack: []

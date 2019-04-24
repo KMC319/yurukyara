@@ -45,7 +45,7 @@ namespace Battles.Systems{
 			StartCoroutine(StartIvent());
 
 			timer.EndStream.Subscribe(n =>StartCoroutine(TimeOver()));
-			healthManagersControll.DeadPlayerStream.Subscribe(n => StartCoroutine(BreakOut(n)));
+			healthManagersControll.DeadPlayerStream.ThrottleFirst(TimeSpan.FromSeconds(1)).Subscribe(n => StartCoroutine(BreakOut(n)));
 		}
 
 		private void Update(){
@@ -140,6 +140,7 @@ namespace Battles.Systems{
 
 		public void ReGame() {
 			round = 1;
+			WinerReferee.Reset();
 			SceneManager.LoadScene("Battle");
 		}
 

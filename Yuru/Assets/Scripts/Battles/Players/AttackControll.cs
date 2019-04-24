@@ -66,7 +66,7 @@ namespace Battles.Players{
 							.Where(m=>m==TaregtPlayer.gameObject)
 							.Where(m=>n.attackDamageBox.attackType==AttackType.Shot||
 							          n==currentAttack)
-							.ThrottleFirst(TimeSpan.FromSeconds(1f))
+							.ThrottleFirst(TimeSpan.FromSeconds(0.1f))
 							.Subscribe(m => {
 								onAttackHit.OnNext(n.attackDamageBox);
 								if (currentAttack.HasNext &&
