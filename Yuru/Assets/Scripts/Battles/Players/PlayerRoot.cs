@@ -1,6 +1,7 @@
 ﻿using System;
 using Systems.Chars;
 using Battles.Attack;
+using Battles.Effects;
 using Battles.Systems;
 using doma.Inputs;
 using UnityEngine;
@@ -46,6 +47,7 @@ namespace Battles.Players{
 		private void FixedUpdate(){
 			if (moveAble){
 				CurrentMoveCotroll.Move();
+				CurrentMoveCotroll.AddRepulsion();
 			}else if (!DamageControll.InDamage) {
 				CurrentMoveCotroll.Stop(false);
 			}

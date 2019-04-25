@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114961922723596800}
   - component: {fileID: 65275635277153032}
   - component: {fileID: 114799509057466176}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: osushi_rice
   m_TagString: Untagged
   m_Icon: {fileID: 0}

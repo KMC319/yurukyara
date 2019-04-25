@@ -11,10 +11,6 @@ namespace Battles.Attack {
 
         public abstract void Setup(BulletFactory mom, GameObject targetObj);
 
-        private void OnTriggerEnter(Collider other) {
-            hitStream.OnNext(other);
-        }
-
         public abstract void Pause();
         public abstract void Resume();
     }

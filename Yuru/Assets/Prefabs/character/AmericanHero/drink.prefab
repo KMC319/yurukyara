@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114766473729700242}
   - component: {fileID: 96154755476470218}
   - component: {fileID: 65527508090161794}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: drink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33572902527913364}
   - component: {fileID: 23131950566045954}
   - component: {fileID: 114787240246518094}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: drink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Initialized: 0
-  speed: 500
+  speed: 100
 --- !u!114 &114787240246518094
 MonoBehaviour:
   m_ObjectHideFlags: 1

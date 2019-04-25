@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Battles.Attack;
 using doma;
 using UniRx;
 using UnityEngine;
@@ -14,6 +16,17 @@ namespace Battles.Players{
 		public Transform lookTarget;
 
 		protected MotionAnimControll motionAnimControll;
+		private PlayerRoot targetPlayer;
+		private IMovableAttack[] movableAttacks;
+
+		public PlayerRoot TargetPlayer {
+			get {
+				if (targetPlayer == null) {
+					targetPlayer = GetComponent<IPlayerBinder>().TargetPlayerRoot;
+				}
+				return targetPlayer;
+			}
+		}
 
 		public bool LookLock { get; set; }
 
@@ -36,18 +49,30 @@ namespace Battles.Players{
 				.Subscribe(n => {
 					Jump();
 			});
+			movableAttacks = GetComponentsInChildren<IMovableAttack>();
 		}
 
 
 		public abstract void Move();
+
+		public virtual void AddRepulsion() {
+			var distance = Vector3.SqrMagnitude(TargetPlayer.transform.position - transform.position);
+			if (distance > 1) return;
+			rigid.AddForce(-lookTarget.forward * (400 / (distance + 1)), ForceMode.Acceleration);
+		}
 		
 		public virtual void Stop(bool force = true) {
-			if (!InJumping&&jumpAble && force){
-				PlayMotion(motionAnimControll.MyDic.WaitName);
-				transform.rotation = lookTarget.rotation;
+			if (force) {
+				if (!InJumping && jumpAble) {
+					PlayMotion(motionAnimControll.MyDic.WaitName);
+					transform.rotation = lookTarget.rotation;
+				}
 			} else {
-				return;
+				if (movableAttacks.Any(i => i.IsActive)) {
+					return;
+				}
 			}
+
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 			rigid.angularVelocity = Vector3.zero;
 		}

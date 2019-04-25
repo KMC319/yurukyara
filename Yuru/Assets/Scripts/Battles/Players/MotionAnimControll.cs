@@ -41,6 +41,14 @@ namespace Battles.Players{
 			Play(anim_box);
 		}
 
+		public void Pause() {
+			playAbleController.Pause();
+		}
+
+		public void Resume() {
+			playAbleController.Resume();
+		}
+
 		public void ForceChangeAnim(AnimBox anim_box){
 			playAbleController.TransAnimation(anim_box);
 		}

@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f021266d626461f9d5d6ea130130201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultEffect: {fileID: 1223443732791758, guid: eeb572219647cb245acac3826c23b645,
+  defaultEffect: {fileID: 1592494133600930, guid: 493debe82fc02e04e95d4525c2738cf3,
     type: 2}
 --- !u!1 &115770108
 GameObject:
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0cd62b64f647bf9e781f06619eb75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugChars: 0000000001000000
+  debugChars: 0200000000000000
   chars:
   - {fileID: 114482414692918188, guid: 96796414e2b4d93468c532e39a77d6c8, type: 2}
   - {fileID: 114547830788692940, guid: ac8052c027c18594f90d17db2a5282b4, type: 2}
@@ -2657,7 +2657,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2e940b6575244f241a671b310317f469, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

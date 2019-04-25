@@ -50,13 +50,7 @@ namespace Start{
 				var mode_select_panel = (ModeSelectedPanel) i_selectable_panel;
 				GameStateManager.instance.mode = mode_select_panel.GetModeName;
 				DebugLogger.Log(mode_select_panel.GetModeName);
-				if (mode_select_panel.GetModeName == ModeName.Tutorial) {
-					GameStateManager.instance.player1 = CharName.AmericanHero;
-					GameStateManager.instance.player2 = CharName.Moaian;
-					SceneManager.LoadScene("Tutorial");
-				} else {
-					SceneManager.LoadScene("CharSelect");
-				}
+				SceneManager.LoadScene("CharSelect");
 			}else if (i_selectable_panel is IDisplayPanel){
 				var display_panel = (IDisplayPanel)i_selectable_panel;
 				display_panel.Launch();

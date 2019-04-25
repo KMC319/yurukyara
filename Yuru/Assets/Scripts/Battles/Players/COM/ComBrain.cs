@@ -4,11 +4,12 @@ using UnityEngine;
 namespace Battles.Players {
 	public class ComBrain : MonoBehaviour {
 		public IBattleKeyReciever iBattleKeyReciever;
-		[SerializeField] private bool isActive;public bool IsActive{set{ isActive = value; }}
+		[SerializeField] private bool isActive;
+		public bool IsActive{set{ isActive = value; }}
 
 		private float minInterval = 0.25f;
 		private float maxInterval = 0.75f;
-		private int jump = 0;
+		private int jump = 50;
 		private int rangeAt = 50;
 		private int weakAt = 50;
 		private int strongAt = 50;

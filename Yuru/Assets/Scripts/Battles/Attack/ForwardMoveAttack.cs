@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 
 namespace Battles.Attack {
-    public class ForwardMoveAttack :AttackToolEntity {
+    public class ForwardMoveAttack : AttackToolEntity, IMovableAttack {
         [SerializeField] private float speed;
         [SerializeField] private float moveTime;
         [SerializeField] private AttackToolEntity[] attackToolEntities;
@@ -13,7 +13,10 @@ namespace Battles.Attack {
 
         private Rigidbody rigidBody;
 
-        private readonly Subject<Unit> cancelStream=new Subject<Unit>();
+        public bool IsActive { get; private set; }
+
+        private readonly Subject<Unit> cancelStream = new Subject<Unit>();
+
         private void Awake() {
             rigidBody = this.GetComponent<Rigidbody>();
 
@@ -26,17 +29,20 @@ namespace Battles.Attack {
 
         public override void On() {
             My.CurrentMoveCotroll.LookLock = true;
-            transform.LookAt(transform.position+My.CurrentMoveCotroll.lookTarget.forward*Math.Sign(speed));
-            
+            transform.LookAt(transform.position + My.CurrentMoveCotroll.lookTarget.forward * Math.Sign(speed));
+
             var timer = Observable.Timer(TimeSpan.FromSeconds(moveTime));
-            
+            IsActive = true;
             Observable.EveryUpdate()
                 .TakeUntil(timer)
                 .TakeUntil(cancelStream)
                 .Subscribe(n => {
-                    rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, 0)
-                                         + vcam2d.transform.right * speed;
-                });
+                        rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, 0)
+                                             + vcam2d.transform.right * speed;
+                        transform.LookAt(transform.position + vcam2d.transform.right * speed);
+                    },
+                    () => rigidBody.velocity = Vector3.zero
+                );
             Observable.Timer(TimeSpan.FromSeconds(attackEnableTime))
                 .TakeUntil(cancelStream)
                 .Subscribe(n => {
@@ -44,7 +50,6 @@ namespace Battles.Attack {
                         item.On();
                     }
                 });
-
         }
 
         public override void Off(bool cancel = false) {
@@ -53,6 +58,8 @@ namespace Battles.Attack {
             foreach (var item in attackToolEntities) {
                 item.Off();
             }
+
+            IsActive = false;
         }
     }
 }

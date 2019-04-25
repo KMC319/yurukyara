@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33430699922187914}
   - component: {fileID: 23651736312842576}
   - component: {fileID: 114178025897711176}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: pipeChair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114662032432772312}
   - component: {fileID: 65183957461462576}
   - component: {fileID: 114665482703290748}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}

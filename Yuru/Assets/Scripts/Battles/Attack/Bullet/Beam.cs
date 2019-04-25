@@ -9,6 +9,8 @@ namespace Battles.Attack {
         [SerializeField] private float speed;
         [SerializeField] private float chargeTime;
         [SerializeField] private float lifeTime;
+        [SerializeField] private AudioClip chargeClip;
+        [SerializeField] private AudioClip releaseClip;
         private Vector3 targetPos;
         private BulletFactory mom;
 
@@ -18,6 +20,7 @@ namespace Battles.Attack {
         private CapsuleCollider col;
 
         private IEnumerator myProcess;
+        private AudioSource audioSource;
         
         public override void Setup(BulletFactory factory, GameObject targetObj) {
             mom = factory;
@@ -34,10 +37,12 @@ namespace Battles.Attack {
             chargeParticle = temp.Last();
             lineRenderer = GetComponent<LineRenderer>();
             col = GetComponent<CapsuleCollider>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         private IEnumerator StartProcess() {
             chargeParticle.Play();
+            audioSource.PlayOneShot(chargeClip);
             var charge_count = 0.01f;
             while (charge_count<=chargeTime){//クソ程強引なポーズ対応
                 yield return new WaitForSeconds(0.01f);
@@ -45,6 +50,7 @@ namespace Battles.Attack {
             }
             chargeParticle.Stop();
             beamParticle.Play();
+            audioSource.PlayOneShot(releaseClip);
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, transform.position);
             var nowPos = transform.position;

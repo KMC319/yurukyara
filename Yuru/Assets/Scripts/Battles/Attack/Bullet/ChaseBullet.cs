@@ -1,3 +1,4 @@
+using Battles.Effects;
 using UnityEngine;
 
 namespace Battles.Attack {
@@ -31,7 +32,7 @@ namespace Battles.Attack {
 
             rigid.velocity = transform.forward * speed;
             RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, speed * Time.deltaTime);
-            if(hits.Length <= 0) return;
+            if (hits.Length <= 0) return;
             foreach (var hit in hits) {
                 OnTriggerEnter(hit.collider);
             }
@@ -40,7 +41,10 @@ namespace Battles.Attack {
         private void OnTriggerEnter(Collider other) {
             if (!Initialized) return;
             mother.Hit(other);
-            if (other.gameObject == target) Destroy(gameObject);
+            if (other.gameObject == target) {
+                HitEffectFactory.Instance.InstantiateEffect(null, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
 
         public override void Pause() {

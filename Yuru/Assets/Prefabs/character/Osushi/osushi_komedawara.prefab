@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114226617232212048}
   - component: {fileID: 65803658529419540}
   - component: {fileID: 114225321673941482}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: osushi_komedawara
   m_TagString: Untagged
   m_Icon: {fileID: 0}

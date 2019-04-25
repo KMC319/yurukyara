@@ -29,6 +29,7 @@ namespace Battles.Systems{
 
 		public void DamageRecieve(AttackDamageBox attack_damage_box){
 			health -= attack_damage_box.damage;
+			Debug.Log(attack_damage_box.damage);
 			gaugeControll.TempUpdate(health/maxHealth);
 			gaugeControll.EntityUpdate();
 
@@ -51,7 +52,7 @@ namespace Battles.Systems{
 					break;
 				case Phase.P2D:
 					stackHealth += attack_damage_box.damage;
-					if (stackHealth>=stackableHealth&&attack_type == AttackType.Finish){
+					if (stackHealth>=stackableHealth&&attack_type != AttackType.Weak){
 						stackHealth = 0;
 						PhaseManager.Instance.NowPhase = Phase.P3D;
 					}

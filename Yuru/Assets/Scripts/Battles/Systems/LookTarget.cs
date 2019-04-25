@@ -19,7 +19,7 @@ namespace Battles.Systems {
 
         // Update is called once per frame
         void LateUpdate() {
-            if (!root.CurrentMoveCotroll.InJumping && transform.parent.position.y - target.transform.parent.position.y < 0.5f && Vector3.Distance(target.transform.position, transform.position) > 1f) {
+            if (!root.CurrentMoveCotroll.InJumping && transform.parent.position.y - target.transform.parent.position.y < 0.5f && Vector3.SqrMagnitude(target.transform.position- transform.position) > 1f) {
                 targetDistance = target.transform.position - transform.position;
             }
 

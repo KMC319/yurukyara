@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4530225243234598}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HIP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4550145092883354}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MI_locator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4617918484993942}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4791535653874822}
   - component: {fileID: 137107613090707914}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4690668635259056}
   - component: {fileID: 114169894926584254}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: moaian12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4648000390145042}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_ForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 65560630040623162}
   - component: {fileID: 114602688038594344}
   - component: {fileID: 114548205284176340}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MoaianChild
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4340472571939570}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4742367964550260}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mother
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4238389817749932}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_ForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4394545001546664}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4974709354911130}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4638226765447334}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_Shoilder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4253813508605114}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4904134622986850}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_HandPinky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4100808427080194}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: L_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4356104365666122}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_Shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4029239997736516}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_HandPinky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4811886976686574}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: R_UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

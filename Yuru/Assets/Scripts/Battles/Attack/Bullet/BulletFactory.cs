@@ -36,13 +36,14 @@ namespace Battles.Attack {
             }
         }
 
-        public override void Off(bool cancel = false){
+        public override void Off(bool cancel = false) {
             isActive = false;
             if (cancel) {
                 foreach (var item in currentBurret) {
-                    if(item==null)continue;
+                    if (item == null) continue;
                     Destroy(item);
                 }
+
                 currentBurret.Clear();
             }
         }
@@ -50,7 +51,8 @@ namespace Battles.Attack {
         protected abstract void Create(BulletInfo t);
 
         public void Hit(Collider other) {
-            hitStream.OnNext(other.gameObject);
+            if (other.gameObject == Target.gameObject)
+                hitStream.OnNext(other.gameObject);
         }
 
         protected void RegisterBullet(GameObject bullet) {
@@ -66,6 +68,7 @@ namespace Battles.Attack {
                 yield return null;
                 time += Time.deltaTime;
             }
+
             Create(t);
         }
 
@@ -75,7 +78,7 @@ namespace Battles.Attack {
             }
 
             foreach (var item in currentBurret) {
-                if(item != null) item.GetComponent<Bullet>().Pause();
+                if (item != null) item.GetComponent<Bullet>().Pause();
             }
         }
 
@@ -85,7 +88,7 @@ namespace Battles.Attack {
             }
 
             foreach (var item in currentBurret) {
-                if(item != null) item.GetComponent<Bullet>().Resume();
+                if (item != null) item.GetComponent<Bullet>().Resume();
             }
         }
     }

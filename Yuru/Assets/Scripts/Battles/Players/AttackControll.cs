@@ -17,6 +17,7 @@ namespace Battles.Players{
 		
 		private AttackAnimControll attackAnimControll;
 		[NonSerialized]public MoveCotroll iMoveCotroll;
+		private IPlayerCancelProcess[] playerCancelProcesses;
 		
 		private readonly Subject<AttackDamageBox> onAttackHit=new Subject<AttackDamageBox>();
 		public UniRx.IObservable<AttackDamageBox> OnAttackHit => onAttackHit;
@@ -56,6 +57,7 @@ namespace Battles.Players{
 		private void Start() {
 			AttackBoxs = transform.GetComponentInChildren<BoxContainer>().AttackBoxs.ToArray();
 			attackAnimControll = this.GetComponentInChildren<AttackAnimControll>();
+			playerCancelProcesses = transform.GetComponentsInChildren<IPlayerCancelProcess>();
 		
 			attackAnimControll.ResponseStream.Subscribe(RecieveResponce);
 
@@ -65,11 +67,12 @@ namespace Battles.Players{
 						item.HitStream
 							.Where(m=>m==TaregtPlayer.gameObject)
 							.Where(m=>n.attackDamageBox.attackType==AttackType.Shot||
+							          n.attackDamageBox.attackType==AttackType.Grab||
 							          n==currentAttack)
-							.ThrottleFirst(TimeSpan.FromSeconds(0.1f))
+							.ThrottleFirst(TimeSpan.FromSeconds(0.5f))
 							.Subscribe(m => {
 								onAttackHit.OnNext(n.attackDamageBox);
-								if (currentAttack.HasNext &&
+								if (currentAttack!= null && currentAttack.HasNext &&
 								    currentAttack.NextAttack().attackInputInfo.commandType ==CommandType.Chain){
 									ChainAttack();
 								}
@@ -121,13 +124,18 @@ namespace Battles.Players{
 		private void Attack(PlayerKeyCode player_key_code){
 			AttackBox result = null;
 			var info=new AttackInputInfo(new List<PlayerKeyCode>(){player_key_code},CurrentState,CurrentPhase);
-			
-			if (keyBuffer != null){
-				var duo_info=info;
-				duo_info.keyCodes = new List<PlayerKeyCode>(info.keyCodes){(PlayerKeyCode) keyBuffer};
+
+			if (keyBuffer != null) {
+				var duo_info = info;
+				duo_info.keyCodes = new List<PlayerKeyCode>(info.keyCodes) {(PlayerKeyCode) keyBuffer};
 				result = FindAttack(duo_info);
+				if (result != null) {
+					foreach (var item in playerCancelProcesses.Where(i=>!(i is AttackControll))) {
+						item.Cancel();
+					}
+				}
 			}
-			
+
 			if (result == null){
 				if (currentAttack == null){
 					result = FindAttack(info);
@@ -139,6 +147,7 @@ namespace Battles.Players{
 				}
 			}
 
+			if (currentAttack != null && currentAttack == result) return;
 			if(result==null)return;//ここでNullなら攻撃がないので非実行
 			currentAttack?.ToolsCancel();
 			currentAttack = result;
