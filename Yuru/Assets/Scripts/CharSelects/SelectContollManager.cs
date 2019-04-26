@@ -56,10 +56,14 @@ namespace CharSelects{
 				throw;
 			}
 			DebugLogger.Log(selectedChars[0]+","+selectedChars[1]);
-			if (selectedChars[0] != null && selectedChars[1] != null){
-				GameStateManager.instance.player1 = (CharName)selectedChars[0];
-				GameStateManager.instance.player2 = (CharName)selectedChars[1];
-				SceneManager.LoadScene("Battle");
+			if (selectedChars[0] != null && selectedChars[1] != null) {
+				GameStateManager.instance.player1 = (CharName) selectedChars[0];
+				GameStateManager.instance.player2 = (CharName) selectedChars[1];
+				if (GameStateManager.instance.mode == ModeName.Practice) {
+					SceneManager.LoadScene("Tutorial");
+				} else {
+					SceneManager.LoadScene("Battle");
+				}
 			}
 		}
 

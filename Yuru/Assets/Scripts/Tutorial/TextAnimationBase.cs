@@ -48,7 +48,6 @@ namespace Tutorial {
         }
 
         private void PlayNext() {
-            Debug.Log(messageList[1]);
             messageList.RemoveAt(0);
             Observable.Timer(TimeSpan.FromSeconds(blankTime))
                 .Subscribe(_ => {

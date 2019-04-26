@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Systems.Chars;
 using Battles.Players;
+using Battles.Systems;
 using UnityEngine;
 using UniRx;
+using UnityEngine.SceneManagement;
 
 namespace Tutorial {
-    public class TutorialController : MonoBehaviour {
+    public class TutorialController : BattleManager {
         [SerializeField] private TutorialText tutorialText;
         [SerializeField] private TutorialTimer tutorialTimer;
         [SerializeField] private CheckListManager checkListManager;
@@ -33,6 +35,13 @@ namespace Tutorial {
                 });
         }
 
+        private void Update() {
+            if (Input.GetButtonDown("Start")){
+                pausable.Submit();
+                tutorialTimer.ReverseMoveAble();
+            }
+        }
+
 
         private void ChangeInputEnable(bool f) {
             foreach (var item in iplayerBinders) {
@@ -42,12 +51,21 @@ namespace Tutorial {
 
         private void NextTutorial() {
             state++;
+            if (datas.Length <= state) {
+                BGMer.Instance.Delete();
+                SceneManager.LoadScene("Start");
+                return;
+            }
             checkListManager.DisplayCheckList(state);
             tutorialTimer.ResetTimer(datas[state].Time);
 
             foreach (var message in datas[state].Messages) {
                 tutorialText.PlayStart(message);
             }
+        }
+
+        public override void BreakGame(string scene) {
+            SceneManager.LoadScene(scene);
         }
 
         [Serializable]

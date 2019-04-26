@@ -212,7 +212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -175}
+  m_AnchoredPosition: {x: 50, y: -245}
   m_SizeDelta: {x: 330, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &92946811
@@ -324,7 +324,7 @@ Prefab:
     - target: {fileID: 224255574215271266, guid: 8b38337121110b64a80e7c0f209f2fa6,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -245
+      value: -315
       objectReference: {fileID: 0}
     - target: {fileID: 224255574215271266, guid: 8b38337121110b64a80e7c0f209f2fa6,
         type: 2}
@@ -730,7 +730,7 @@ Prefab:
     - target: {fileID: 224155239293550034, guid: dbff643e5276bd94b9e0867d1c9507f6,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -175
+      value: -245
       objectReference: {fileID: 0}
     - target: {fileID: 224155239293550034, guid: dbff643e5276bd94b9e0867d1c9507f6,
         type: 2}
@@ -1002,7 +1002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -245}
+  m_AnchoredPosition: {x: 50, y: -315}
   m_SizeDelta: {x: 330, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &750399239
@@ -1135,7 +1135,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30A2\u30EB\u30D5\u30A1"
+  m_Text: "\u30D9\u30FC\u30BF"
 --- !u!222 &908612393
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1578,7 +1578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 100, y: -75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1252695318
@@ -1904,7 +1904,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1146327306635566, guid: fc7091d000f8bc543b28bd2e4394392f, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc7091d000f8bc543b28bd2e4394392f, type: 2}

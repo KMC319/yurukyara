@@ -24,7 +24,16 @@ namespace Battles.Attack {
                 yield return null;
                 time += Time.deltaTime;
             }
-            if (!isActive) yield break;
+
+            if (!isActive) {
+                foreach (var item in currentBurret) {
+                    if (item == null) continue;
+                    Destroy(item);
+                }
+
+                currentBurret.Clear();
+                yield break;
+            }
             bullet.GetComponent<Bullet>().Setup(this, Target.gameObject);
         }
 

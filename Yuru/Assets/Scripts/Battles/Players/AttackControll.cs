@@ -102,7 +102,7 @@ namespace Battles.Players{
 
 		private void RecieveResponce(AnimResponce anim_responce){
 			if (anim_responce == AnimResponce.AttackEnd){
-				currentAttack.ToolsOff();
+				currentAttack?.ToolsOff();
 				AttackEnd();
 			}
 		}

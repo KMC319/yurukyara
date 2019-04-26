@@ -6,18 +6,18 @@ using UnityEngine.UI;
 
 namespace Tutorial {
     public class CheckListManager : MonoBehaviour {
-        private Image[] imgs;
         [SerializeField] private CheckList[] checkList;
 
         private Text[] texts;
 
         private void Start() {
-            imgs = GetComponentsInChildren<Image>().OrderByDescending(i => i.transform.position.y).ToArray();
+            var imgs = GetComponentsInChildren<Image>().Skip(1).OrderByDescending(i => i.transform.position.y).ToArray();
             texts = imgs.Select(i => i.GetComponentInChildren<Text>()).ToArray();
             gameObject.SetActive(false);
         }
 
         public void DisplayCheckList(int state) {
+            if(state >= checkList.Length) return;
             foreach (var text in texts) {
                 text.transform.parent.gameObject.SetActive(false);
             }

@@ -956,7 +956,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1407020711901076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4375885563265654}
@@ -1361,7 +1361,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!65 &65807679809001282
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1861,7 +1861,7 @@ MonoBehaviour:
           knockbackPower: {x: 0, y: 0, z: 20}
         nextAttack: []
   - clip: {fileID: 7400000, guid: 54748933329834fe29f4ef9becfa05c3, type: 2}
-    delayTime: 0.4
+    delayTime: 0.3
     bufferTime: 0.3
     attackInputInfo:
       keyCodes: 03000000
@@ -1876,7 +1876,7 @@ MonoBehaviour:
       knockbackPower: {x: 0, y: 0, z: 20}
     nextAttack: []
   - clip: {fileID: 7400000, guid: bb0976a813b4b40698183d4d2482f040, type: 2}
-    delayTime: 0.2
+    delayTime: 0.1
     bufferTime: 0.3
     attackInputInfo:
       keyCodes: 02000000
@@ -1962,7 +1962,7 @@ MonoBehaviour:
     - {fileID: 114745767716632016}
     attackDamageBox:
       damage: 12
-      attackType: 0
+      attackType: 1
       knockbackPower: {x: 0, y: 0, z: 20}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 97cac5c4b17c041ee894c0f6deb89337, type: 2}
@@ -1999,7 +1999,7 @@ MonoBehaviour:
     delayTime: 0.2
     bufferTime: 0
     attackInputInfo:
-      keyCodes: 0500000002000000
+      keyCodes: 0400000002000000
       commandType: 0
       applyPhase: 1
     delayTimeForTools: 0

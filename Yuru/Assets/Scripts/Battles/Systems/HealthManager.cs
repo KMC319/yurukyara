@@ -29,7 +29,6 @@ namespace Battles.Systems{
 
 		public void DamageRecieve(AttackDamageBox attack_damage_box){
 			health -= attack_damage_box.damage;
-			Debug.Log(attack_damage_box.damage);
 			gaugeControll.TempUpdate(health/maxHealth);
 			gaugeControll.EntityUpdate();
 

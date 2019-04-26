@@ -24,8 +24,8 @@ namespace Battles.Systems{
 				currentTime -= Time.deltaTime;
 				txt.text = ((int) currentTime).ToString();
 				if (currentTime < 0){
-					endStream.OnNext(Unit.Default);
 					moveAble = false;
+					endStream.OnNext(Unit.Default);
 				}
 			}
 		}

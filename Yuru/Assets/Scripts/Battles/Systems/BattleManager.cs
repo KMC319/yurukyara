@@ -144,10 +144,10 @@ namespace Battles.Systems{
 			SceneManager.LoadScene("Battle");
 		}
 
-		public void BreakGame(string Scene) {
+		public virtual void BreakGame(string scene) {
 			round = 1;
 			WinerReferee.Reset();
-			SceneManager.LoadScene(Scene);
+			SceneManager.LoadScene(scene);
 		}
 	}
 }

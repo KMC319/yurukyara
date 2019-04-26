@@ -1392,7 +1392,7 @@ MonoBehaviour:
   moveTime: 1
   attackToolEntities:
   - {fileID: 114211424413853080}
-  attackEnableTime: 0
+  attackEnableTime: 0.5
 --- !u!114 &114296283528576492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1635,7 +1635,7 @@ MonoBehaviour:
     nextAttack: []
   - clip: {fileID: 7400000, guid: bd18c3f0a0e7824418b45e296f238467, type: 2}
     delayTime: 0.2
-    bufferTime: 0
+    bufferTime: 0.2
     attackInputInfo:
       keyCodes: 0200000000000000
       commandType: 0
@@ -1665,7 +1665,7 @@ MonoBehaviour:
       nextAttack: []
   - clip: {fileID: 7400000, guid: 7413c8118ebaf4f438f3335df7427b15, type: 2}
     delayTime: 0.2
-    bufferTime: 0
+    bufferTime: 0.2
     attackInputInfo:
       keyCodes: 0300000001000000
       commandType: 0
@@ -1675,7 +1675,7 @@ MonoBehaviour:
     - {fileID: 114191136836227766}
     attackDamageBox:
       damage: 12
-      attackType: 0
+      attackType: 1
       knockbackPower: {x: 0, y: 0, z: 20}
     nextAttack: []
   - clip: {fileID: 7400000, guid: 2d29e5492dcbb7348a5250b9eb8e2a15, type: 2}
@@ -1775,7 +1775,7 @@ MonoBehaviour:
   moveTime: 1
   attackToolEntities:
   - {fileID: 114611324722384098}
-  attackEnableTime: 0
+  attackEnableTime: 0.5
 --- !u!114 &114650666373945754
 MonoBehaviour:
   m_ObjectHideFlags: 1
